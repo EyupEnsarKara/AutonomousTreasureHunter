@@ -26,18 +26,12 @@ namespace ProLab2_1.Classes
         {
             return this.location;
         }
-        public Object GetItem()
-        {
-            return this.item;
-        }
+  
         public void SetLocation(Location location)
         {
             this.location = location;
         }
-        public void SetItem(Object item)
-        {
-            this.item= item;
-        }
+
     }
 
 
@@ -45,18 +39,13 @@ namespace ProLab2_1.Classes
     {
         quad[,] mapSpace = new quad[300,300];
         
-         
-
-
-       
+           
         public Map()
         {
             
             
         }
         
- 
-
 
     }
 }
