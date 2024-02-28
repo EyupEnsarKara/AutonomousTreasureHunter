@@ -27,9 +27,7 @@ namespace ProLab2_1.Classes
             barriers.Add(barrier);
         }
 
- 
-        
-           
+
         public Map()
         {
             

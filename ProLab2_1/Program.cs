@@ -24,16 +24,18 @@ namespace ProLab2_1
             map.AddBarrier(new Bee());
             map.AddBarrier(new Mountain());
             map.AddBarrier(new Stone());
-
-            String typeNames = typeof(Bee).ToString();
-            typeNames = typeNames.Substring(typeNames.LastIndexOf('.') + 1);
-            Console.WriteLine(typeNames);
-
-
+            
+          
 
 
 
             Console.ReadLine();
+        }
+        //method to get the type of the object
+        public static String GetTypeName(object obj)
+        {
+            String typeNames = obj.GetType().ToString();
+            return typeNames = typeNames.Substring(typeNames.LastIndexOf('.') + 1);
         }
     }
 }

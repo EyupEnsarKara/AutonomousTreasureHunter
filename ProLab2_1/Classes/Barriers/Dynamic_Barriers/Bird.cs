@@ -9,7 +9,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     internal class Bird:IBarrier
     {
         private static int birdId = 0;
-
+        private int size;
         private int id;
         public Bird()
         {
@@ -26,5 +26,9 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
             birdId++;
         }
 
+        public void SetBarrierSize()
+        {
+            this.size = 2;
+        }
     }
 }

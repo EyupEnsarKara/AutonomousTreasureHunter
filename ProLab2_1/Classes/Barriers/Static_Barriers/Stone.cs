@@ -9,7 +9,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Stone:IBarrier
     {
         private static int stoneId = 0;
-
+        private int size;
         private int id;
         public Stone()
         {
@@ -26,5 +26,12 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             stoneId++;
         }
 
+        public void SetBarrierSize()
+        {
+
+            Random random = new Random();
+            this.size = random.Next(1, 3);
+
+        }
     }
 }

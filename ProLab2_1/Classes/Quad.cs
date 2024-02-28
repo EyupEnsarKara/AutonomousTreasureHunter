@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProLab2_1.Classes.Barriers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,21 @@ namespace ProLab2_1.Classes
         private Location location;
         private bool isBarrier=false;
         private int id;
-        private string barrierType;
+        private object barrier;
 
         public Quad(Location location)
         {
             this.location = location;
             
-
         }
+        void SetBarrier(IBarrier barrier)
+        {
+            this.isBarrier = true;
+            this.id= barrier.GetBarrierId();
+            this.barrier = barrier;
+        }   
+
+
 
         public Location GetLocation()
         {

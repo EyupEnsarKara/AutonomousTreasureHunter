@@ -9,7 +9,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Wall:IBarrier
     {
         private static int wallId = 0;
-
+        private int size;
         private int id;
         public Wall()
         {
@@ -26,5 +26,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             wallId++;
         }
 
+        public void SetBarrierSize()
+        {
+         this.size = 10;
+        }
     }
 }
