@@ -10,35 +10,15 @@ using ProLab2_1.Classes.Barriers;
 
 namespace ProLab2_1.Classes
 { 
-    //add quad class
 
 
-    public class quad
-    {
-        private Location location;
 
-        public quad(Location location)
-        {
-            this.location = location;
-
-        }
-
-        public Location GetLocation()
-        {
-            return this.location;
-        }
-  
-        public void SetLocation(Location location)
-        {
-            this.location = location;
-        }
-
-    }
+    
 
 
     public class Map
     {
-        quad[,] mapSpace = new quad[300, 300];
+        Quad[,] mapSpace = new Quad[300, 300];
 
         private List<IBarrier> barriers = new List<IBarrier>();
 

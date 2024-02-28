@@ -25,8 +25,11 @@ namespace ProLab2_1
             map.AddBarrier(new Mountain());
             map.AddBarrier(new Stone());
 
-            
-            
+            String typeNames = typeof(Bee).ToString();
+            typeNames = typeNames.Substring(typeNames.LastIndexOf('.') + 1);
+            Console.WriteLine(typeNames);
+
+
 
 
 

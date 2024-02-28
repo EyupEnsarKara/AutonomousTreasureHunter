@@ -55,6 +55,7 @@
     <Compile Include="Classes\Character.cs" />
     <Compile Include="Classes\Location.cs" />
     <Compile Include="Classes\Map.cs" />
+    <Compile Include="Classes\Quad.cs" />
     <Compile Include="Forms\Map.cs">
       <SubType>Form</SubType>
     </Compile>
