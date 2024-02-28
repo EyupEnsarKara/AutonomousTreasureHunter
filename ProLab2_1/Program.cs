@@ -1,4 +1,6 @@
 ﻿using ProLab2_1.Classes;
+using ProLab2_1.Classes.Barriers.Dynamic_Barriers;
+using ProLab2_1.Classes.Barriers.Static_Barriers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,17 @@ namespace ProLab2_1
     {
         static void Main(string[] args)
         {     
+
+            Map map = new Map();
+            map.AddBarrier(new Bee());
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Bee());
+            map.AddBarrier(new Bird());
+            
+
+
+
+
             Console.ReadLine();
         }
     }

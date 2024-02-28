@@ -42,9 +42,17 @@ namespace ProLab2_1.Classes
 
         private List<IBarrier> barriers = new List<IBarrier>();
 
-        void AddBarrier(IBarrier barrier)
+        public void AddBarrier(IBarrier barrier)
         {
             barriers.Add(barrier);
+        }
+
+        public void printbarriers()
+        {
+            foreach (IBarrier barrier in barriers)
+            {
+                Console.WriteLine(barrier);
+            }
         }
         
            

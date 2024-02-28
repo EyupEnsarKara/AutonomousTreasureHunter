@@ -15,9 +15,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         {
            SetBarrierId();
         }
-        public int GetId()
+        public int GetBarrierId()
         {
-            return id;
+            return this.id;
         }
 
         public void SetBarrierId()

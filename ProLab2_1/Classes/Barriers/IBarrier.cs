@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers
 {
-    internal interface IBarrier
+    public interface IBarrier
     {
         void SetBarrierId();
+        int GetBarrierId();
     }
 }
