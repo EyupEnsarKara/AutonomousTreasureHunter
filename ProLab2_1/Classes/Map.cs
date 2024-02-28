@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -8,14 +9,51 @@ using System.Windows.Forms;
 namespace ProLab2_1.Classes
 { 
     //add quad class
-    internal class Map
-    { 
-       
+
+
+    public class quad
+    {
+        private Location location;
+
+        public quad(Location location)
+        {
+            this.location = location;
+
+        }
+
+
+        public Location GetLocation()
+        {
+            return this.location;
+        }
+        public Object GetItem()
+        {
+            return this.item;
+        }
+        public void SetLocation(Location location)
+        {
+            this.location = location;
+        }
+        public void SetItem(Object item)
+        {
+            this.item= item;
+        }
+    }
+
+
+    public class Map
+    {
+        quad[,] mapSpace = new quad[300,300];
+        
          
 
 
        
-
+        public Map()
+        {
+            
+            
+        }
         
  
 

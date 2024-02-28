@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProLab2_1.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,10 @@ namespace ProLab2_1
     {
         static void Main(string[] args)
         {
-            
-            
+            Map map = new Map();
 
+            
+            Console.ReadLine();
         }
     }
 }
