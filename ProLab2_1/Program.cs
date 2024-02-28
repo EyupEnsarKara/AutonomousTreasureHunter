@@ -10,10 +10,7 @@ namespace ProLab2_1
     internal class Program
     {
         static void Main(string[] args)
-        {
-            Map map = new Map();
-
-            
+        {     
             Console.ReadLine();
         }
     }

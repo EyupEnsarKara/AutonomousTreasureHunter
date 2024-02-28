@@ -6,7 +6,25 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 {
-    internal class Bee
-    {
+    internal class Bee:IBarrier
+    {   
+        private static int beeId = 0;
+
+        private int id;
+        public Bee()
+        {
+            SetBarrierId();
+        }
+        public int GetId()
+        {
+            return id;
+        }
+
+        public void SetBarrierId()
+        {
+            this.id = beeId;
+            beeId++;
+        }
+
     }
 }
