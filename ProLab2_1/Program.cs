@@ -10,7 +10,7 @@ namespace ProLab2_1
     {
         static void Main(string[] args)
         {
-            
+            //deneme
             
 
         }
