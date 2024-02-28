@@ -19,8 +19,14 @@ namespace ProLab2_1
             map.AddBarrier(new Mountain());
             map.AddBarrier(new Bee());
             map.AddBarrier(new Bird());
-            
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Bird());
+            map.AddBarrier(new Bee());
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Stone());
 
+            
+            
 
 
 

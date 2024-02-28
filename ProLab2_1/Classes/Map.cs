@@ -47,13 +47,7 @@ namespace ProLab2_1.Classes
             barriers.Add(barrier);
         }
 
-        public void printbarriers()
-        {
-            foreach (IBarrier barrier in barriers)
-            {
-                Console.WriteLine(barrier);
-            }
-        }
+ 
         
            
         public Map()
