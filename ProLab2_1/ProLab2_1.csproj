@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Barriers\Dynamic_Barriers\Bee.cs" />
+    <Compile Include="Classes\Barriers\Dynamic_Barriers\Bird.cs" />
+    <Compile Include="Classes\Barriers\Static_Barriers\Mountain.cs" />
+    <Compile Include="Classes\Barriers\Static_Barriers\Stone.cs" />
+    <Compile Include="Classes\Barriers\Static_Barriers\Tree.cs" />
+    <Compile Include="Classes\Barriers\Static_Barriers\Wall.cs" />
+    <Compile Include="Classes\Character.cs" />
+    <Compile Include="Classes\Location.cs" />
+    <Compile Include="Classes\Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
