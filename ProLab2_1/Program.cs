@@ -11,8 +11,9 @@ namespace ProLab2_1
         static void Main(string[] args)
         {
             Console.WriteLine("Test");
-            Console.WriteLine("Teest2");
             Console.ReadLine();
+            //bu birleşmiş
+
         }
     }
 }
