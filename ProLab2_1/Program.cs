@@ -11,19 +11,18 @@ namespace ProLab2_1
 {
     internal class Program
     {
+        static Map map;
         static void Main(string[] args)
         {     
+            Console.Write("Enter map size: ");
+            int mapSize = Convert.ToInt32(Console.ReadLine());
 
-            Map map = new Map();
-            map.AddBarrier(new Bee());
-            map.AddBarrier(new Mountain());
+            map = new Map(mapSize);
             map.AddBarrier(new Bee());
             map.AddBarrier(new Bird());
-            map.AddBarrier(new Mountain());
-            map.AddBarrier(new Bird());
-            map.AddBarrier(new Bee());
-            map.AddBarrier(new Mountain());
-            map.AddBarrier(new Stone());
+            map.AddBarrier(new Tree());
+            map.generateRandomMap();
+
             
           
 
@@ -31,11 +30,7 @@ namespace ProLab2_1
 
             Console.ReadLine();
         }
-        //method to get the type of the object
-        public static String GetTypeName(object obj)
-        {
-            String typeNames = obj.GetType().ToString();
-            return typeNames = typeNames.Substring(typeNames.LastIndexOf('.') + 1);
-        }
+
+
     }
 }

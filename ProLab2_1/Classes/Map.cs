@@ -20,6 +20,7 @@ namespace ProLab2_1.Classes
     public class Map
     {
         Quad[,] quads;
+        private int mapSize;
 
         private List<IBarrier> barriers = new List<IBarrier>();
 
@@ -29,18 +30,19 @@ namespace ProLab2_1.Classes
         }
 
 
-        public Map()
+        public Map(int mapSize)
         {
-           
-            
+            this.mapSize = mapSize;
+            quads= new Quad[mapSize,mapSize];
+            generateEmptyMap();
+
         }
 
-        //generating random map
 
 
-        public void generateRandomMap(int mapWidth, int mapHeight)
+        public void generateRandomMap()
         {
-            this.quads = new Quad[mapWidth, mapHeight];
+            
 
             Random random = new Random();
 
@@ -57,15 +59,16 @@ namespace ProLab2_1.Classes
 
                 do
                 {
-                    location = generateRandomLocation(mapWidth, mapHeight);
+                    location = generateRandomLocation(mapSize, mapSize);
                     x = location.getX();
                     y = location.getY();
-                } while (!testLocation(quads, x, y, width_, height_));
+                } while (!testLocation(x, y, width_, height_));
 
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
                     {
+                      
                         quads[i, j] = new Quad(new Location(i, j));
                         quads[i, j].SetBarrier(barrier);
                     }
@@ -82,16 +85,35 @@ namespace ProLab2_1.Classes
             int y=random.Next(height);
             return new Location(x, y);
         }
-        private bool testLocation(Quad[,] quads, int x, int y, int width, int height)
+        public void generateEmptyMap()
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    this.quads[i, j] = new Quad(new Location(i, j));
+                }
+            }
+        }
+        private bool testLocation(int x, int y, int width, int height)
         {
             for (int i = x; i < x + width; i++)
             {
                 for (int j = y; j < y + height; j++)
                 {
+
+
+                    if (i >= mapSize || j >= mapSize)
+                    {
+                        return false;
+                    }
+                    
+
                     if (quads[i, j].GetIsBarrier())
                     {
                         return false;
                     }
+
 
                 }
             }
