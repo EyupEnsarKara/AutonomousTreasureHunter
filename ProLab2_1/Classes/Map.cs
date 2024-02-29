@@ -50,6 +50,9 @@ namespace ProLab2_1.Classes
             foreach (IBarrier barrier in barriers)
             {
                 Location location = generateRandomLocation(random, witdh, height);
+                
+                
+                
                 int x = location.getX();
                 int y = location.getY();
                 int width = barrier.getBarrierWidth();
@@ -58,7 +61,7 @@ namespace ProLab2_1.Classes
                 {
                     for (int j = y; j < y + height_; j++)
                     {
-                        map[i, j].SetBarrier(barrier);
+                        
                     }
                 }
             }
@@ -72,6 +75,25 @@ namespace ProLab2_1.Classes
             int x=random.Next(width);
             int y=random.Next(height);
             return new Location(x, y);
+        }
+
+        private bool testLocation(Location location,IBarrier barrier)
+        {
+            int x = location.getX();
+            int y = location.getY();
+            int width = barrier.getBarrierWidth();
+            int height = barrier.getBarrierHeight();
+            for (int i = x; i < x + width; i++)
+            {
+                for (int j = y; j < y + height; j++)
+                {
+                    if(this.mapSpace[i, j].GetisBarrier())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
 

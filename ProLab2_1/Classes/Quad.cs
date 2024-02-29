@@ -38,5 +38,10 @@ namespace ProLab2_1.Classes
             this.location = location;
         }
 
+        public bool GetisBarrier()
+        {
+            return this.isBarrier;
+        }
+
     }
 }

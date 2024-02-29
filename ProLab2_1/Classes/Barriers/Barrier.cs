@@ -11,6 +11,7 @@ namespace ProLab2_1.Classes.Barriers
         private int width;
         private  int height;
         private int id;
+        
         public Barrier(int id)
         {
         }
