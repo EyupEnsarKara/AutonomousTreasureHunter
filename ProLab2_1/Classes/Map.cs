@@ -19,7 +19,7 @@ namespace ProLab2_1.Classes
 
     public class Map
     {
-        Quad[,] mapSpace = new Quad[300, 300];
+        Quad[,] quads;
 
         private List<IBarrier> barriers = new List<IBarrier>();
 
@@ -38,9 +38,9 @@ namespace ProLab2_1.Classes
         //generating random map
 
 
-        public Quad[,] generateRandomMap(int mapWidth, int mapHeight)
+        public void generateRandomMap(int mapWidth, int mapHeight)
         {
-            Quad[,] map = new Quad[mapWidth, mapHeight];
+            this.quads = new Quad[mapWidth, mapHeight];
 
             Random random = new Random();
 
@@ -49,25 +49,31 @@ namespace ProLab2_1.Classes
             //add barriers to the map
             foreach (IBarrier barrier in barriers)
             {
-                Location location = generateRandomLocation(mapWidth, mapHeight);
+                Location location;
                 
-                
-                
-                int x = location.getX();
-                int y = location.getY();
+                int x;
+                int y;
                 int width_ = barrier.getBarrierWidth();
                 int height_ = barrier.getBarrierHeight();
+
+                do
+                {
+                    location = generateRandomLocation(mapWidth, mapHeight);
+                    x = location.getX();
+                    y = location.getY();
+                } while (!testLocation(quads, x, y, width_, height_));
+
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
                     {
-                        
+                        quads[i, j] = new Quad(new Location(i, j));
+                        quads[i, j].SetBarrier(barrier);
                     }
                 }
+
             }
 
-
-            return map;
         }
 
         private Location generateRandomLocation(int width, int height)
@@ -78,27 +84,23 @@ namespace ProLab2_1.Classes
             return new Location(x, y);
         }
 
-        private bool testLocation(Location location,IBarrier barrier)
+
+        //add barriers is true or false method
+        private bool testLocation(Quad[,] quads, int x, int y, int width, int height)
         {
-            int x = location.getX();
-            int y = location.getY();
-            int width = barrier.getBarrierWidth();
-            int height = barrier.getBarrierHeight();
             for (int i = x; i < x + width; i++)
             {
                 for (int j = y; j < y + height; j++)
                 {
-                    if(this.mapSpace[i, j].GetisBarrier())
+                    if (quads[i, j].GetIsBarrier())
                     {
-                        return true;
+                        return false;
                     }
+
                 }
             }
-            return false;
+            return true;
         }
-
-
-        
 
 
 

@@ -11,8 +11,7 @@ namespace ProLab2_1.Classes
     {
         private Location location;
         private bool isBarrier=false;
-        private int id;
-        private object barrier;
+        private IBarrier barrier;
 
         public Quad(Location location)
         {
@@ -22,8 +21,7 @@ namespace ProLab2_1.Classes
         public void SetBarrier(IBarrier barrier)
         {
             this.isBarrier = true;
-            this.id= barrier.GetId();
-            this.barrier = barrier;
+            this.barrier = barrier;   
         }   
 
 
@@ -38,7 +36,7 @@ namespace ProLab2_1.Classes
             this.location = location;
         }
 
-        public bool GetisBarrier()
+        public bool GetIsBarrier()
         {
             return this.isBarrier;
         }
