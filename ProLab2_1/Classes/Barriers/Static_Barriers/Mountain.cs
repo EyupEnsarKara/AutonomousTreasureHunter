@@ -7,32 +7,24 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
-    internal class Mountain:IBarrier
+    internal class Mountain:Barrier,IBarrier
     {   
-        private static int mountainId = 0;
+        private static int mountainId = 1;
 
-        private int size;
-
-        private int id;
-        public Mountain()
+        public Mountain():base(mountainId)
         {
-            SetBarrierId();
-        }
-
-        public int GetBarrierId()
-        {
-            return this.id;
-        }
-
-        public void SetBarrierId()
-        {
-            this.id = mountainId;
             mountainId++;
+            SetBarrierSize();
         }
+
+ 
+
+
 
         public void SetBarrierSize()
         {
-            this.size = 15;
+            this.SetHeight(15);
+            this.SetWidth(15);
         }
     }
 }

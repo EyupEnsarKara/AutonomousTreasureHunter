@@ -6,31 +6,26 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
-    internal class Stone:IBarrier
+    internal class Stone:Barrier,IBarrier
     {
-        private static int stoneId = 0;
-        private int size;
-        private int id;
-        public Stone()
+        private static int stoneId = 1;
+
+        public Stone():base(stoneId)
         {
-            SetBarrierId();
-        }
-        public int GetBarrierId()
-        {
-            return this.id;
+            stoneId++;
+            SetBarrierSize();
         }
 
-        public void SetBarrierId()
-        {
-            this.id = stoneId;
-            stoneId++;
-        }
+
+
 
         public void SetBarrierSize()
         {
 
             Random random = new Random();
-            this.size = random.Next(1, 3);
+            int temp =random.Next(1, 3);
+            this.SetWidth(temp);
+            this.SetHeight(temp);
 
         }
     }
