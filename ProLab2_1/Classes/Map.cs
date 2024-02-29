@@ -46,19 +46,24 @@ namespace ProLab2_1.Classes
 
             IBarrier[] barriers =this.barriers.ToArray();
 
+            //add barriers to the map
             foreach (IBarrier barrier in barriers)
             {
-                Location location = generateRandomLocation(random,witdh,height);
-
-                for (int i = location.getX(); i <location.getX()+ barrier.; i++)
+                Location location = generateRandomLocation(random, witdh, height);
+                int x = location.getX();
+                int y = location.getY();
+                int width = barrier.getBarrierWidth();
+                int height_ = barrier.getBarrierHeight();
+                for (int i = x; i < x + width; i++)
                 {
-                    for (int j = location.getY();i<location.getY()+ barriers.Length; j++)
+                    for (int j = y; j < y + height_; j++)
                     {
-                        map[i,j].SetBarrier(barrier);
+                        map[i, j].SetBarrier(barrier);
                     }
                 }
-
             }
+
+
             return map;
         }
 

@@ -9,6 +9,7 @@ namespace ProLab2_1.Classes.Barriers
     public interface IBarrier
     {
 
+        int GetId();
         void SetBarrierSize();
 
         int getBarrierWidth();

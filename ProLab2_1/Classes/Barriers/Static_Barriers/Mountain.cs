@@ -17,8 +17,6 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             SetBarrierSize();
         }
 
-
-
         public int getBarrierHeight()
         {
             return (int)this.GetHeight();

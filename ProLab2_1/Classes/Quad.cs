@@ -22,7 +22,7 @@ namespace ProLab2_1.Classes
         public void SetBarrier(IBarrier barrier)
         {
             this.isBarrier = true;
-            this.id= barrier.GetBarrierId();
+            this.id= barrier.GetId();
             this.barrier = barrier;
         }   
 
