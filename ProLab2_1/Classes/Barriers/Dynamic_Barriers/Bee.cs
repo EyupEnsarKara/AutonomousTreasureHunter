@@ -13,18 +13,13 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         private int id;
         public Bee()
         {
-            SetBarrierId();
         }
         public int GetBarrierId()
         {
             return this.id;
         }
 
-        public void SetBarrierId()
-        {
-            this.id = beeId;
-            beeId++;
-        }
+
 
         public void SetBarrierSize()
         {

@@ -8,8 +8,6 @@ namespace ProLab2_1.Classes.Barriers
 {
     public interface IBarrier
     {
-
-        void SetBarrierId();
         
         int GetBarrierId();
          

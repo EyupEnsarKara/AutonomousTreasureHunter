@@ -11,12 +11,23 @@ namespace ProLab2_1.Classes.Barriers
         private int width;
         private  int height;
         private int id;
-        public Barrier(int width, int height, int id)
+        public Barrier(int id)
+        {
+        }
+        public void SetWidth(int width)
         {
             this.width = width;
+        }
+        
+        public void SetHeight(int height)
+        {
             this.height = height;
+        }
+        public void SetId(int id)
+        {
             this.id = id;
         }
+
         public int GetWidth()
         {
             return this.width;

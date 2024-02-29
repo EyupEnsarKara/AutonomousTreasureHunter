@@ -16,7 +16,6 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         private int id;
         public Mountain()
         {
-            SetBarrierId();
         }
 
         public int GetBarrierId()
@@ -24,11 +23,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             return this.id;
         }
 
-        public void SetBarrierId()
-        {
-            this.id = mountainId;
-            mountainId++;
-        }
+
 
         public void SetBarrierSize()
         {

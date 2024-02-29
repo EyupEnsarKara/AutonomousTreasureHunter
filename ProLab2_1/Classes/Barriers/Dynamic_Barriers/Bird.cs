@@ -13,18 +13,12 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         private int id;
         public Bird()
         {
-            SetBarrierId();
         }
         public int GetBarrierId()
         {
             return this.id;
         }
 
-        public void SetBarrierId()
-        {
-            this.id= birdId;
-            birdId++;
-        }
 
         public void SetBarrierSize()
         {

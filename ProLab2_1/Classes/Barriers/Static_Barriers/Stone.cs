@@ -13,18 +13,13 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         private int id;
         public Stone()
         {
-            SetBarrierId();
         }
         public int GetBarrierId()
         {
             return this.id;
         }
 
-        public void SetBarrierId()
-        {
-            this.id = stoneId;
-            stoneId++;
-        }
+
 
         public void SetBarrierSize()
         {
