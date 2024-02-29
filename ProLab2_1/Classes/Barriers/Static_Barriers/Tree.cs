@@ -9,18 +9,15 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Tree:Barrier,IBarrier
     {
         private static int treeId = 1;
-                 
-        private int id;
+
         public Tree() : base(treeId)
         {
-           SetBarrierSize();
-           treeId++;
+            treeId++;
+            SetBarrierSize();
+           
           
         }
-        public int GetBarrierId()
-        {
-            return this.id;
-        }
+
 
 
         public void SetBarrierSize()

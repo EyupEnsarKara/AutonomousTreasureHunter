@@ -8,18 +8,15 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Wall:Barrier,IBarrier
     {
-        private static int wallId = 0;
-        private int size;
-        private int id;
+        private static int wallId = 1;
+
         public Wall():base(wallId)
         {
+            wallId++;
             SetBarrierSize();
 
         }
-        public int GetBarrierId()
-        {
-            return this.id;
-        }
+
 
         public void SetBarrierSize()
         {
