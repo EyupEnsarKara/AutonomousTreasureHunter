@@ -19,7 +19,7 @@ namespace ProLab2_1.Classes
             this.location = location;
             
         }
-        void SetBarrier(IBarrier barrier)
+        public void SetBarrier(IBarrier barrier)
         {
             this.isBarrier = true;
             this.id= barrier.GetBarrierId();
