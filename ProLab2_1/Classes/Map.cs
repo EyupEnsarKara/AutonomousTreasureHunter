@@ -50,7 +50,7 @@ namespace ProLab2_1.Classes
             {
                 Location location = generateRandomLocation(random,witdh,height);
 
-                for (int i = location.getX(); i <location.getX()+ barriers.Length; i++)
+                for (int i = location.getX(); i <location.getX()+ barrier.; i++)
                 {
                     for (int j = location.getY();i<location.getY()+ barriers.Length; j++)
                     {

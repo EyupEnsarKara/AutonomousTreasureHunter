@@ -19,7 +19,15 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         }
 
 
+        public int getBarrierHeight()
+        {
+            return (int)this.GetHeight();
+        }
 
+        public int getBarrierWidth()
+        {
+            return (int)this.GetWidth();
+        }
         public void SetBarrierSize()
         {
             Random random = new Random();

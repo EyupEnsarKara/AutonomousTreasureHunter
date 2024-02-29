@@ -10,5 +10,8 @@ namespace ProLab2_1.Classes.Barriers
     {
 
         void SetBarrierSize();
+
+        int getBarrierWidth();
+        int getBarrierHeight();
     }
 }

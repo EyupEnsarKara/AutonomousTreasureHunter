@@ -18,6 +18,18 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
 
 
+        public int getBarrierHeight()
+        {
+            return (int)this.GetHeight();
+        }
+
+        public int getBarrierWidth()
+        {
+            return (int)this.GetWidth();
+        }
+
+
+
         public void SetBarrierSize()
         {
             this.SetWidth(2);
