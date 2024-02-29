@@ -28,7 +28,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 
         public void SetBarrierSize()
         {
-         this.size = 10;
+            this.size = 10;            
         }
     }
 }
