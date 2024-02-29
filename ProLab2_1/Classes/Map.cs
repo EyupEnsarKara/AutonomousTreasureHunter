@@ -38,9 +38,9 @@ namespace ProLab2_1.Classes
         //generating random map
 
 
-        public Quad[,] generateRandomMap(int witdh, int height)
+        public Quad[,] generateRandomMap(int mapWidth, int mapHeight)
         {
-            Quad[,] map = new Quad[witdh, height];
+            Quad[,] map = new Quad[mapWidth, mapHeight];
 
             Random random = new Random();
 
@@ -49,15 +49,15 @@ namespace ProLab2_1.Classes
             //add barriers to the map
             foreach (IBarrier barrier in barriers)
             {
-                Location location = generateRandomLocation(random, witdh, height);
+                Location location = generateRandomLocation(mapWidth, mapHeight);
                 
                 
                 
                 int x = location.getX();
                 int y = location.getY();
-                int width = barrier.getBarrierWidth();
+                int width_ = barrier.getBarrierWidth();
                 int height_ = barrier.getBarrierHeight();
-                for (int i = x; i < x + width; i++)
+                for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
                     {
@@ -70,8 +70,9 @@ namespace ProLab2_1.Classes
             return map;
         }
 
-        private Location generateRandomLocation(Random random,int width, int height)
+        private Location generateRandomLocation(int width, int height)
         {
+            Random random = new Random();
             int x=random.Next(width);
             int y=random.Next(height);
             return new Location(x, y);
