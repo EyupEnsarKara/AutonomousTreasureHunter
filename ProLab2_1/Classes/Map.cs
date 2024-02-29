@@ -46,7 +46,6 @@ namespace ProLab2_1.Classes
 
             IBarrier[] barriers =this.barriers.ToArray();
 
-            //add barriers to the map
             foreach (IBarrier barrier in barriers)
             {
                 Location location;
@@ -83,9 +82,6 @@ namespace ProLab2_1.Classes
             int y=random.Next(height);
             return new Location(x, y);
         }
-
-
-        //add barriers is true or false method
         private bool testLocation(Quad[,] quads, int x, int y, int width, int height)
         {
             for (int i = x; i < x + width; i++)
