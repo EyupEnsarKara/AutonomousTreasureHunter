@@ -1,11 +1,13 @@
 ﻿using ProLab2_1.Classes;
 using ProLab2_1.Classes.Barriers.Dynamic_Barriers;
 using ProLab2_1.Classes.Barriers.Static_Barriers;
+using ProLab2_1.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProLab2_1
 {
@@ -22,6 +24,10 @@ namespace ProLab2_1
             map.AddBarrier(new Bird());
             map.AddBarrier(new Tree());
             map.generateRandomMap();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MapForm());
 
             
           

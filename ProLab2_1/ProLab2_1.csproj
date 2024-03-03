@@ -57,11 +57,11 @@
     <Compile Include="Classes\Location.cs" />
     <Compile Include="Classes\Map.cs" />
     <Compile Include="Classes\Quad.cs" />
-    <Compile Include="Forms\Map.cs">
+    <Compile Include="Forms\MapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Map.Designer.cs">
-      <DependentUpon>Map.cs</DependentUpon>
+    <Compile Include="Forms\MapForm.Designer.cs">
+      <DependentUpon>MapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +71,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Map.resx">
-      <DependentUpon>Map.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MapForm.resx">
+      <DependentUpon>MapForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
