@@ -21,9 +21,12 @@ namespace ProLab2_1
             map.AddBarrier(new Bee());
             map.AddBarrier(new Bird());
             map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Bird());
             map.generateRandomMap();
 
-            
+            map.printMap();
           
 
 

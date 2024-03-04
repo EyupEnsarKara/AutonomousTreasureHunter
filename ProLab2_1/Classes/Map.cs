@@ -37,7 +37,27 @@ namespace ProLab2_1.Classes
             generateEmptyMap();
 
         }
+        //print map methods
+        public void printMap()
+        {
+            for (int i = 0; i < mapSize; i++)
+            {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    if (quads[i, j].GetIsBarrier())
+                    {
+               
 
+                        Console.Write("1");
+                    }
+                    else
+                    {
+                        Console.Write("0");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
 
 
         public void generateRandomMap()
