@@ -21,7 +21,7 @@ namespace ProLab2_1.Forms
         {
             Graphics g = e.Graphics;
 
-            int w = 100; int h = 100;
+            int w = 20; int h = 20;
 
             
             for (int i = pictureBox1.Width; i >=0; i-=w)
