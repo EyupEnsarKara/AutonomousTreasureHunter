@@ -23,14 +23,17 @@ namespace ProLab2_1
             map.AddBarrier(new Bee());
             map.AddBarrier(new Bird());
             map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Bird());
             map.generateRandomMap();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MapForm());
 
-            
-          
+
+
 
 
 
