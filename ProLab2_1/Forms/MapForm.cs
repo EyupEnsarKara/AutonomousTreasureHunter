@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +17,8 @@ namespace ProLab2_1.Forms
     public partial class MapForm : Form
     {
         private int MapSize;
+        private Location head = new Location(0,0);
+        private Quad[,] quads = Program.map.GetQuads();
 
         public MapForm(int MapSize)
         {
@@ -76,26 +79,39 @@ namespace ProLab2_1.Forms
                 int x = location.getX(), y = location.getY();
 
                 g.DrawImage(global::ProLab2_1.Resources.tree, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
-
             }
-
-
-
-
-
-
-
-
+            g.DrawImage(global::ProLab2_1.Resources.steve, head.getX() * quadSize, head.getY() * quadSize,quadSize,quadSize);
         }
 
-
-
-
-
-
-
-
-
-
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            int x = head.getX();
+            int y = head.getY();
+            switch (e.KeyCode)
+            {
+                
+                case Keys.Right:
+                    if (quads[x + 1, y].GetIsBarrier())
+                        break;
+                    head.setX(x+1);
+                    break;
+                case Keys.Left:
+                    if (quads[x - 1, y].GetIsBarrier())
+                        break;
+                    head.setX(x-1);
+                    break;
+                case Keys.Up:
+                    if (quads[x, y-1].GetIsBarrier())
+                        break;
+                    head.setY(y-1);
+                    break;
+                case Keys.Down:
+                    if (quads[x, y+1].GetIsBarrier())
+                        break;
+                    head.setY(y+ 1);
+                    break;
+            }
+            GameMap.Invalidate();
+        }
     }
 }
