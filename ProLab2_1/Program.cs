@@ -32,8 +32,8 @@ namespace ProLab2_1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MapForm());
 
-
-
+            
+          
 
 
 
