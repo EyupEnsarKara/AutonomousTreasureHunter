@@ -19,7 +19,7 @@ namespace ProLab2_1.Classes
 
     public class Map
     {
-        Quad[,] quads;
+        private Quad[,] quads;
         private int mapSize;
 
         private List<IBarrier> barriers = new List<IBarrier>();
@@ -139,6 +139,18 @@ namespace ProLab2_1.Classes
             }
             return true;
         }
+
+        public List<IBarrier> GetBarriers()
+        {
+            return barriers;
+        }
+        
+        public Quad[,] GetQuads()
+        {
+            return quads;
+        }
+
+
 
 
 

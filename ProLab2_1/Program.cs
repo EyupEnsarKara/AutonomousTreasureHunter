@@ -13,7 +13,7 @@ namespace ProLab2_1
 {
     internal class Program
     {
-        static Map map;
+        static public Map map;
         static void Main(string[] args)
         {     
             Console.Write("Enter map size: ");

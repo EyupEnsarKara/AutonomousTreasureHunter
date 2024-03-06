@@ -41,5 +41,7 @@ namespace ProLab2_1.Classes
             return this.isBarrier;
         }
 
+
+
     }
 }
