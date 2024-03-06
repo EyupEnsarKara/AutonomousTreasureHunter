@@ -21,14 +21,14 @@ namespace ProLab2_1
 
             map = new Map(mapSize);
 
+
             map.AddBarrier(new Tree());
             map.AddBarrier(new Tree());
             map.AddBarrier(new Tree());
             map.AddBarrier(new Mountain());
             map.AddBarrier(new Mountain());
-            map.AddBarrier(new Tree());
-            map.AddBarrier(new Tree());
-            map.AddBarrier(new Tree());
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Mountain());
 
             map.generateRandomMap();
 

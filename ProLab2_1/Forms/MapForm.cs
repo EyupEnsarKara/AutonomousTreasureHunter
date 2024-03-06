@@ -19,6 +19,7 @@ namespace ProLab2_1.Forms
         private int MapSize;
         private Location head = new Location(0,0);
         private Quad[,] quads = Program.map.GetQuads();
+        private float quadSize = 0;
 
         public MapForm(int MapSize)
         {
@@ -28,6 +29,7 @@ namespace ProLab2_1.Forms
             this.Text = "Map";
             AddPictureBox(GameMap);
             this.Size = new Size(751+16, 751+40);
+            quadSize = (float)GameMap.Width / MapSize;
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
@@ -38,7 +40,7 @@ namespace ProLab2_1.Forms
 
         private void GameMap_Paint(object sender, PaintEventArgs e)
         {
-            float quadSize = (float)GameMap.Width / MapSize;
+            
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Black,0.001f);
             for (float i = 0; i <= GameMap.Width+1; i += quadSize)
@@ -87,29 +89,32 @@ namespace ProLab2_1.Forms
         {
             int x = head.getX();
             int y = head.getY();
+            Console.WriteLine(x);
             switch (e.KeyCode)
             {
                 
                 case Keys.Right:
-                    if (quads[x + 1, y].GetIsBarrier())
+                    if ( x >= MapSize-1|| quads[x + 1, y].GetIsBarrier())
                         break;
                     head.setX(x+1);
                     break;
                 case Keys.Left:
-                    if (quads[x - 1, y].GetIsBarrier())
+                    if (x <= 0 || quads[x - 1, y].GetIsBarrier())
                         break;
                     head.setX(x-1);
                     break;
                 case Keys.Up:
-                    if (quads[x, y-1].GetIsBarrier())
+                    if (y <= 0 ||quads[x, y-1].GetIsBarrier())
                         break;
                     head.setY(y-1);
                     break;
                 case Keys.Down:
-                    if (quads[x, y+1].GetIsBarrier())
+                    if (y >= MapSize-1 || quads[x, y + 1].GetIsBarrier())
                         break;
                     head.setY(y+ 1);
                     break;
+
+                    
             }
             GameMap.Invalidate();
         }
