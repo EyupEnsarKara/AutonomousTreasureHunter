@@ -12,40 +12,48 @@ namespace ProLab2_1.Forms
 {
     public partial class MapForm : Form
     {
-        public MapForm()
+        private int MapSize;
+
+        public MapForm(int MapSize)
         {
+            this.MapSize = MapSize;
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Map";
+            AddPictureBox(GameMap);
+            this.Size = new Size(751+16, 751+40);
+        }
+        PictureBox AddPictureBox(PictureBox pictureBox)
+        {
+            pictureBox.Location = new Point(0, 0);
+            pictureBox.Size = new Size(751,751);
+            return pictureBox;
         }
 
-        private void PictureBoxUpdateGraphic(object sender, PaintEventArgs e)
+        private void GameMap_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-
-            int w = 20; int h = 20;
-
+            Pen pen = new Pen(Color.Black,0.001f);
+            for (float i = 0; i <= GameMap.Width+1; i += (float)GameMap.Width/MapSize)
+            {
+                g.DrawLine(pen, i, 0, i, GameMap.Height);
+            }
+            for (float i = 0; i <= GameMap.Height+1; i += (float)GameMap.Width / MapSize)
+            {
+                g.DrawLine(pen, 0, i, GameMap.Width, i);
+            }
             
-            for (int i = pictureBox1.Width; i >=0; i-=w)
-            {
-                g.DrawLine(new Pen(Brushes.Black), i, 0, i, pictureBox1.Height);
-                Console.WriteLine("ilk");
-            }
-
-            for (int i = pictureBox1.Height; i >= 0; i -= h)
-            {
-                g.DrawLine(new Pen(Brushes.Black),0,i,pictureBox1.Width,i);
-                Console.WriteLine("iki");
-            }
-            g.DrawLine(new Pen(Brushes.Black),0,pictureBox1.Height-1,pictureBox1.Width,pictureBox1.Height-1);
-
-
-            //g.DrawLine(new Pen(Brushes.Black), 0, 5, pictureBox1.Width, 5);
-
 
         }
 
-        private void StartAction(object sender, EventArgs e)
-        {
-            pictureBox1.Invalidate();
-        }
+
+
+
+
+
+
+
+
+
     }
 }

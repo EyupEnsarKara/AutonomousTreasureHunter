@@ -27,13 +27,8 @@ namespace ProLab2_1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MapForm());
-
-            
-          
-
-
-
+            Application.Run(new MapForm(mapSize));
+           
             Console.ReadLine();
         }
 
