@@ -20,12 +20,16 @@ namespace ProLab2_1
             int mapSize = Convert.ToInt32(Console.ReadLine());
 
             map = new Map(mapSize);
-            map.AddBarrier(new Bee());
-            map.AddBarrier(new Bird());
+
             map.AddBarrier(new Tree());
             map.AddBarrier(new Tree());
             map.AddBarrier(new Tree());
-            map.AddBarrier(new Bird());
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Mountain());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+            map.AddBarrier(new Tree());
+
             map.generateRandomMap();
 
             Application.EnableVisualStyles();

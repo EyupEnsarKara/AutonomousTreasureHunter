@@ -14,5 +14,7 @@ namespace ProLab2_1.Classes.Barriers
 
         int getBarrierWidth();
         int getBarrierHeight();
+        Location getLocation();
+        void setLocation(Location location);
     }
 }

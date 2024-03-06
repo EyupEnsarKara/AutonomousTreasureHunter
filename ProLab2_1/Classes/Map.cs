@@ -93,6 +93,8 @@ namespace ProLab2_1.Classes
                         quads[i, j].SetBarrier(barrier);
                     }
                 }
+                barrier.setLocation(new Location(x,y));
+                
 
             }
 

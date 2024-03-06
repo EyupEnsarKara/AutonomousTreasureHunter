@@ -62,19 +62,29 @@ namespace ProLab2_1.Forms
             //    Location locate = quad.GetLocation();
             //    int x = locate.getX();
             //    int y = locate.getY();
-            //    Console.WriteLine("X:"+x+" Y:"+y);
-            //    g.FillRectangle(Brushes.Red, x*quadSize, y*quadSize, quadSize, quadSize);
-                
+            //    Console.WriteLine("X:" + x + " Y:" + y);
+            //    g.FillRectangle(Brushes.Red, x * quadSize, y * quadSize, quadSize, quadSize);
+
             //}
 
 
+            List<IBarrier> list = Program.map.GetBarriers();
+            foreach (IBarrier barrier in list)
+            {
+
+                Location location = barrier.getLocation();
+                int x = location.getX(), y = location.getY();
+
+                g.DrawImage(global::ProLab2_1.Resources.tree, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
+
+            }
 
 
 
 
 
 
-            
+
 
         }
 

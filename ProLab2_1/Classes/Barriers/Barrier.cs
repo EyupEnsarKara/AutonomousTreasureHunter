@@ -11,6 +11,7 @@ namespace ProLab2_1.Classes.Barriers
         private int width;
         private  int height;
         private int id;
+        private Location location;
         
         public Barrier(int id)
         {
@@ -40,6 +41,14 @@ namespace ProLab2_1.Classes.Barriers
         public int GetId()
         {
             return this.id;
+        }
+        public Location getLocation()
+        {
+            return this.location;
+        }
+        public void setLocation(Location location)
+        {
+            this.location = location;
         }
 
     }
