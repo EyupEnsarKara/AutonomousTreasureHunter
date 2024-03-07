@@ -54,23 +54,6 @@ namespace ProLab2_1.Forms
 
 
 
-            //bu sadece kırmızı boyuyor
-            //Quad[,] quads = Program.map.GetQuads();
-            //foreach (Quad quad in quads)
-            //{
-            //    //Console.WriteLine(quad.GetIsBarrier());
-            //    if (!quad.GetIsBarrier())
-            //    {
-            //        continue;
-            //    }
-
-            //    Location locate = quad.GetLocation();
-            //    int x = locate.getX();
-            //    int y = locate.getY();
-            //    Console.WriteLine("X:" + x + " Y:" + y);
-            //    g.FillRectangle(Brushes.Red, x * quadSize, y * quadSize, quadSize, quadSize);
-
-            //}
 
 
             List<IBarrier> list = Program.map.GetBarriers();
@@ -81,8 +64,12 @@ namespace ProLab2_1.Forms
                 int x = location.getX(), y = location.getY();
 
                 g.DrawImage(global::ProLab2_1.Resources.tree, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
+
+            
             }
             g.DrawImage(global::ProLab2_1.Resources.steve, head.getX() * quadSize, head.getY() * quadSize,quadSize,quadSize);
+
+
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
