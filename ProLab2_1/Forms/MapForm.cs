@@ -62,9 +62,12 @@ namespace ProLab2_1.Forms
 
                 Location location = barrier.getLocation();
                 int x = location.getX(), y = location.getY();
+                Bitmap image = global::ProLab2_1.Resources.tree;
+                Bitmap TotalImage = image.Clone(new Rectangle(0, 0, image.Width / 2, image.Height), image.PixelFormat);
 
-                g.DrawImage(global::ProLab2_1.Resources.tree, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
 
+                g.DrawImage(, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
+                
             
             }
             g.DrawImage(global::ProLab2_1.Resources.steve, head.getX() * quadSize, head.getY() * quadSize,quadSize,quadSize);

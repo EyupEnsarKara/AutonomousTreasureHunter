@@ -89,5 +89,32 @@
   <ItemGroup>
     <None Include="Resources\steve.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer_Tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bird.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer_Bee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer_Mountain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer_Stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Winter_Bee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Winter_Mountain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Winter_Rock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Winter_Tree.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
