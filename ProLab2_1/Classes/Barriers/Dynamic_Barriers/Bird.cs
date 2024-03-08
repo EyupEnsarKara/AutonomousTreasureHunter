@@ -9,12 +9,17 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 {
     internal class Bird : DynamicBarrier, IBarrier
     {
+
+
+        private bool isTurn = false;
+
         private static int birdId = 1;
-        private string direction = "up-down";
-        public Bird(Image image) : base(birdId,image)
+        
+        public Bird(Image image) : base(birdId,image,"Vertical",5)
         {
             birdId++;
             SetBarrierSize();
+            
         }
 
 
@@ -36,6 +41,37 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
             this.SetWidth(2);
             this.SetHeight(2);
 
+        }
+
+         public void Move()
+        {
+            Location location = this.getLocation();
+            int x=location.getX(),y=location.getY();
+
+            int currentmove = getCurrentMovedSize();
+            if(!isTurn)
+            {
+                if(currentmove < this.getMaxMove())
+                {
+                    this.increaseCurrentMovedSize();
+                    x++;
+                }
+                else isTurn = true;
+            }
+            else
+            {
+                if(currentmove > (this.getMaxMove()*-1))
+                {
+                    this.decreaseCurrentMovedSize();
+                    x--;
+                }
+                else isTurn=false;
+            }
+
+
+
+            this.setLocation(new Location(x,y));
+            
         }
     }
     internal class summerBird : Bird

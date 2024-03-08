@@ -1,5 +1,6 @@
 ﻿using ProLab2_1.Classes;
 using ProLab2_1.Classes.Barriers;
+using ProLab2_1.Classes.Barriers.Dynamic_Barriers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,7 @@ namespace ProLab2_1.Forms
             this.Size = new Size(751+16, 751+40);
             quadSize = (float)GameMap.Width / MapSize;
             GameEvent.Start();
+            MoveObjectTimer.Start();
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
@@ -143,6 +145,28 @@ namespace ProLab2_1.Forms
         private void GameTimerTick(object sender, EventArgs e)
         {
             GameMap.Invalidate();
+        }
+
+        private void MoveObjectEvent(object sender, EventArgs e)
+        {
+            List<IBarrier> list = Program.map.GetBarriers();
+
+            foreach(IBarrier barrier in list)
+            {
+                if(barrier is DynamicBarrier)
+                {
+                    if(barrier is Bird)
+                    {
+                        Bird bird = (Bird)barrier;
+                        bird.Move();
+                    }
+                    if(barrier is Bee)
+                    {
+                        Bee bee = (Bee)barrier;
+                        bee.Move();
+                    }
+                }
+            }
         }
     }
 }
