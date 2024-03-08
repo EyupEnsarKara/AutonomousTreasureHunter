@@ -88,8 +88,8 @@ namespace ProLab2_1.Classes
                 {
                     for (int j = y; j < y + height_; j++)
                     {
-                      
-                        quads[i, j] = new Quad(new Location(i, j));
+                        
+                        //quads[i, j] = new Quad(new Location(i, j));
                         quads[i, j].SetBarrier(barrier);
                     }
                 }
@@ -113,7 +113,9 @@ namespace ProLab2_1.Classes
             {
                 for (int j = 0; j < mapSize; j++)
                 {
+
                     this.quads[i, j] = new Quad(new Location(i, j));
+                    if (i >= mapSize / 2) this.quads[i, j].SetSummer();
                 }
             }
         }

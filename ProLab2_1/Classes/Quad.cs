@@ -10,7 +10,9 @@ namespace ProLab2_1.Classes
     public class Quad
     {
         private Location location;
-        private bool isBarrier=false;
+        private bool isBarrier= false;
+        private bool isSummer = false;
+
         private IBarrier barrier;
 
         public Quad(Location location)
@@ -39,6 +41,14 @@ namespace ProLab2_1.Classes
         public bool GetIsBarrier()
         {
             return this.isBarrier;
+        }
+        public bool GetIsSummer()
+        {
+            return this.isSummer;
+        }
+        public void SetSummer()
+        {
+            this.isSummer = true;
         }
 
 

@@ -42,9 +42,32 @@ namespace ProLab2_1.Forms
         {
             
             Graphics g = e.Graphics;
+
+
+            //mevsimlere göre renklendirme
+
+            for (int i = 0; i < MapSize; i++)
+            {
+                for (int j = 0; j < MapSize; j++)
+                {
+                    if (quads[i, j].GetIsSummer())
+                    {
+                        g.FillRectangle(Brushes.LightYellow, i * quadSize, j * quadSize, quadSize, quadSize);
+                    }
+                    else
+                    {
+                        g.FillRectangle(Brushes.LightBlue, i * quadSize, j * quadSize, quadSize, quadSize);
+                    }
+                }
+            }
+
+
+
+
+
             Pen pen = new Pen(Color.Black,0.001f);
 
-
+            //kareli düzlem çizimi
             for (float i = 0; i <= GameMap.Width+1; i += quadSize)
             {
                 g.DrawLine(pen, i, 0, i, GameMap.Height);
@@ -54,10 +77,14 @@ namespace ProLab2_1.Forms
                 g.DrawLine(pen, 0, i, GameMap.Width, i);
             }
 
+            
+
+            
 
 
 
 
+            //bariyer çizimleri
             List<IBarrier> list = Program.map.GetBarriers();
             foreach (IBarrier barrier in list)
             {
@@ -70,7 +97,10 @@ namespace ProLab2_1.Forms
                 
             
             }
+            //karakter çizimi
             g.DrawImage(global::ProLab2_1.Resources.steve, head.getX() * quadSize, head.getY() * quadSize,quadSize,quadSize);
+
+
 
 
         }
