@@ -121,6 +121,8 @@ namespace ProLab2_1.Classes
         }
         private bool testLocation(int x, int y, int width, int height)
         {
+            bool isSummer = quads[x, y].GetIsSummer();
+
             for (int i = x; i < x + width; i++)
             {
                 for (int j = y; j < y + height; j++)
@@ -134,6 +136,10 @@ namespace ProLab2_1.Classes
                     
 
                     if (quads[i, j].GetIsBarrier())
+                    {
+                        return false;
+                    }
+                    if (quads[i, j].GetIsSummer() != isSummer)
                     {
                         return false;
                     }
