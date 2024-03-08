@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 {
-    internal class Bird : Barrier, IBarrier
+    internal class Bird : DynamicBarrier, IBarrier
     {
         private static int birdId = 1;
         private string direction = "up-down";

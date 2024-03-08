@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 {
-    internal class Bee:Barrier,IBarrier
+    internal class Bee:DynamicBarrier,IBarrier
     {   
         private static int beeId = 1;
         private string direction = "right-left";

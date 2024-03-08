@@ -48,6 +48,7 @@
     <Compile Include="Classes\Barriers\Barrier.cs" />
     <Compile Include="Classes\Barriers\Dynamic_Barriers\Bee.cs" />
     <Compile Include="Classes\Barriers\Dynamic_Barriers\Bird.cs" />
+    <Compile Include="Classes\Barriers\Dynamic_Barriers\DynamicBarrier.cs" />
     <Compile Include="Classes\Barriers\IBarrier.cs" />
     <Compile Include="Classes\Barriers\Static_Barriers\Mountain.cs" />
     <Compile Include="Classes\Barriers\Static_Barriers\Stone.cs" />
