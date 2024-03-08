@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     internal class Bird : Barrier, IBarrier
     {
         private static int birdId = 1;
-
+        private string direction = "up-down";
         public Bird(Image image) : base(birdId,image)
         {
             birdId++;

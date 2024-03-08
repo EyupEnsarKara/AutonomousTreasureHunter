@@ -30,6 +30,7 @@ namespace ProLab2_1.Forms
             AddPictureBox(GameMap);
             this.Size = new Size(751+16, 751+40);
             quadSize = (float)GameMap.Width / MapSize;
+            GameEvent.Start();
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
@@ -137,6 +138,10 @@ namespace ProLab2_1.Forms
 
                     
             }
+        }
+
+        private void GameTimerTick(object sender, EventArgs e)
+        {
             GameMap.Invalidate();
         }
     }

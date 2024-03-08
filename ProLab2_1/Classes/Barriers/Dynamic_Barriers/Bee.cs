@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     internal class Bee:Barrier,IBarrier
     {   
         private static int beeId = 1;
-
+        private string direction = "right-left";
         public Bee(Image image): base(beeId,image)
         {
             beeId++;
