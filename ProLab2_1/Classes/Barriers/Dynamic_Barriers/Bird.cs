@@ -40,7 +40,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     }
     internal class summerBird : Bird
     {
-        public summerBird() : base(Resources.Summer_Bird)
+        public summerBird() : base(Resources.Bird)
         {
 
         }
@@ -48,7 +48,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     }
     internal class winterBird : Bird
     {
-        public winterBird() : base(Resources.Winter_Bird)
+        public winterBird() : base(Resources.Bird)
         {
 
         }

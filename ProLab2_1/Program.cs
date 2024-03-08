@@ -4,6 +4,7 @@ using ProLab2_1.Classes.Barriers.Static_Barriers;
 using ProLab2_1.Forms;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,27 +21,9 @@ namespace ProLab2_1
             int mapSize = Convert.ToInt32(Console.ReadLine());
 
             map = new Map(mapSize);
+            addBarriers(map);
 
-
-            map.AddBarrier(new Tree());
-            map.AddBarrier(new Tree());
-            map.AddBarrier(new Tree());
-            map.AddBarrier(new Mountain());
-            map.AddBarrier(new Mountain());
-    
-            map.AddBarrier(new Bee());
-            map.AddBarrier(new Bee());
-            map.AddBarrier(new Bee());
-
-            map.AddBarrier(new Stone());
-            map.AddBarrier(new Stone());
-            map.AddBarrier(new Stone());
-
-            map.AddBarrier(new Wall()); 
-            map.AddBarrier(new Wall());
-            map.AddBarrier(new Bird());
-            map.AddBarrier(new Bird());
-            map.AddBarrier(new Bird());
+            
 
 
             map.generateRandomMap();
@@ -57,6 +40,28 @@ namespace ProLab2_1
             Console.ReadLine();
         }
 
+        public static void addBarriers(Map map)
+        {
+            for (int i = 0;i<2;i++)
+            {
+                map.AddBarrier(new summerBee());
+                map.AddBarrier(new summerBird());
+                map.AddBarrier(new summerMountain());
+                map.AddBarrier(new summerStone());
+                map.AddBarrier(new summerTree());
+                map.AddBarrier(new summerWall());
+                map.AddBarrier(new winterBee());
+                map.AddBarrier(new winterBird());
+                map.AddBarrier(new winterMountain());
+                map.AddBarrier(new winterStone());
+                map.AddBarrier(new winterTree());
+                map.AddBarrier(new winterWall());
+     
+            }
+
+            
+        }
+        
 
     }
 }

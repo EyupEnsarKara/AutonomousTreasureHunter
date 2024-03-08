@@ -40,15 +40,15 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             SetHeight(size);
         }
     }
-    internal class SummerTree : Tree
+    internal class summerTree : Tree
     {
-        public SummerTree() : base(Resources.Summer_Tree)
+        public summerTree() : base(Resources.Summer_Tree)
         {
         }
     }
-    internal class WinterTree : Tree
+    internal class winterTree : Tree
     {
-        public WinterTree() : base(Resources.Winter_Tree)
+        public winterTree() : base(Resources.Winter_Tree)
         {
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     {
         private static int wallId = 1;
 
-        public Wall():base(wallId, Resources.Winter_Rock)
+        public Wall(Image image):base(wallId, image)
         {
             wallId++;
             SetBarrierSize();
@@ -32,4 +33,18 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             SetHeight(1);
         }
     }
+    internal class summerWall:Wall
+    {
+        public summerWall() : base(Resources.Winter_Rock)
+        {
+            
+        }
+    }
+        internal class winterWall:Wall
+            {
+                public winterWall() : base(Resources.Winter_Rock)
+                {
+            
+                }
+            }
 }

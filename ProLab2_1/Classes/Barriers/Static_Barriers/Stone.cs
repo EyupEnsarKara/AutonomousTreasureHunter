@@ -39,15 +39,15 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         }
     }
     //add summer and winter classes
-    internal class SummerStone : Stone
+    internal class summerStone : Stone
     {
-        public SummerStone() : base(Resources.Summer_Stone)
+        public summerStone() : base(Resources.Summer_Stone)
         {
         }
     }
-    internal class WinterStone : Stone
+    internal class winterStone : Stone
     {
-        public WinterStone() : base(Resources.Winter_Stone)
+        public winterStone() : base(Resources.Summer_Stone)
         {
         }
     }
