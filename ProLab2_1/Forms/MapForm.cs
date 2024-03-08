@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,9 @@ namespace ProLab2_1.Forms
     public partial class MapForm : Form
     {
         private int MapSize;
-        private Location head = new Location(0,0);
         private Quad[,] quads = Program.map.GetQuads();
         private float quadSize = 0;
-
+        private Character character = Program.map.GetCharacter();
         public MapForm(int MapSize)
         {
             this.MapSize = MapSize;
@@ -98,7 +98,7 @@ namespace ProLab2_1.Forms
             
             }
             //karakter çizimi
-            g.DrawImage(global::ProLab2_1.Resources.steve, head.getX() * quadSize, head.getY() * quadSize,quadSize,quadSize);
+            g.DrawImage(global::ProLab2_1.Resources.steve, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
 
 
 
@@ -107,8 +107,9 @@ namespace ProLab2_1.Forms
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            int x = head.getX();
-            int y = head.getY();
+            
+            int x = character.GetCurrentLocation().getX();
+            int y = character.GetCurrentLocation().getY();
             Console.WriteLine(x);
             switch (e.KeyCode)
             {
@@ -116,22 +117,22 @@ namespace ProLab2_1.Forms
                 case Keys.Right:
                     if ( x >= MapSize-1|| quads[x + 1, y].GetIsBarrier())
                         break;
-                    head.setX(x+1);
+                    character.GetCurrentLocation().setX(x+1);
                     break;
                 case Keys.Left:
                     if (x <= 0 || quads[x - 1, y].GetIsBarrier())
                         break;
-                    head.setX(x-1);
+                    character.GetCurrentLocation().setX(x-1);
                     break;
                 case Keys.Up:
                     if (y <= 0 ||quads[x, y-1].GetIsBarrier())
                         break;
-                    head.setY(y-1);
+                    character.GetCurrentLocation().setY(y-1);
                     break;
                 case Keys.Down:
                     if (y >= MapSize-1 || quads[x, y + 1].GetIsBarrier())
                         break;
-                    head.setY(y+ 1);
+                    character.GetCurrentLocation().setY(y+ 1);
                     break;
 
                     

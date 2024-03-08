@@ -23,6 +23,7 @@ namespace ProLab2_1.Classes
         private int mapSize;
 
         private List<IBarrier> barriers = new List<IBarrier>();
+        private Character character;
 
         public void AddBarrier(IBarrier barrier)
         {
@@ -62,7 +63,7 @@ namespace ProLab2_1.Classes
 
         public void generateRandomMap()
         {
-            
+            Console.WriteLine("Generating Map...");
 
             Random random = new Random();
 
@@ -95,9 +96,16 @@ namespace ProLab2_1.Classes
                 }
                 barrier.setLocation(new Location(x,y));
                 
-
             }
+            Console.WriteLine("Generated Barriers");
 
+            Location playerLocation = generateRandomLocation(mapSize, mapSize);
+            while (quads[playerLocation.getX(),playerLocation.getY()].GetIsBarrier())
+            {
+                playerLocation = generateRandomLocation(mapSize, mapSize);
+            }
+            character=new Character(1, "Steve", playerLocation);
+            Console.WriteLine("Generated player location");
         }
 
         private Location generateRandomLocation(int width, int height)
@@ -158,6 +166,10 @@ namespace ProLab2_1.Classes
         public Quad[,] GetQuads()
         {
             return quads;
+        }
+        public Character GetCharacter()
+        {
+            return character;
         }
 
 
