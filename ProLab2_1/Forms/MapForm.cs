@@ -43,6 +43,8 @@ namespace ProLab2_1.Forms
             
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Black,0.001f);
+
+
             for (float i = 0; i <= GameMap.Width+1; i += quadSize)
             {
                 g.DrawLine(pen, i, 0, i, GameMap.Height);
@@ -62,11 +64,9 @@ namespace ProLab2_1.Forms
 
                 Location location = barrier.getLocation();
                 int x = location.getX(), y = location.getY();
-                Bitmap image = global::ProLab2_1.Resources.tree;
-                Bitmap TotalImage = image.Clone(new Rectangle(0, 0, image.Width / 2, image.Height), image.PixelFormat);
+               
 
-
-                g.DrawImage(, x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
+                g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
                 
             
             }

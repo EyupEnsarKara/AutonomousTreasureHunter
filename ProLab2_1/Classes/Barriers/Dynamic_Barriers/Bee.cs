@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,11 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
     {   
         private static int beeId = 1;
 
-        public Bee(): base(beeId)
+        public Bee(Image image): base(beeId,image)
         {
             beeId++;
             SetBarrierSize();
+           
         }
 
         public int getBarrierHeight()
@@ -34,5 +36,25 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
         }
 
+
     }
+        
+    internal class summerBee:Bee
+    {
+        public summerBee():base(Resources.Summer_Bee)
+        {
+            
+        }
+
+    }
+    internal class winterBee:Bee
+    {
+        public winterBee():base(Resources.Winter_Bee)
+        {
+            
+        }
+    }
+
+
+
 }

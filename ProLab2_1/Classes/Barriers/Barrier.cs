@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,11 @@ namespace ProLab2_1.Classes.Barriers
         private  int height;
         private int id;
         private Location location;
+        private Image image;
         
-        public Barrier(int id)
+        public Barrier(int id,Image image)
         {
+            this.image = image;
         }
         public void SetWidth(int width)
         {
@@ -50,6 +53,11 @@ namespace ProLab2_1.Classes.Barriers
         {
             this.location = location;
         }
+        public Image getImage()
+        {
+         return this.image;
+
+        }   
 
     }
 }

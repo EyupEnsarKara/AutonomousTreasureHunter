@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     {
         private static int wallId = 1;
 
-        public Wall():base(wallId)
+        public Wall():base(wallId, Resources.Winter_Rock)
         {
             wallId++;
             SetBarrierSize();

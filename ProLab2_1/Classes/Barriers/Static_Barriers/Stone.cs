@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     {
         private static int stoneId = 1;
 
-        public Stone():base(stoneId)
+        public Stone(Image image):base(stoneId,image)
         {
             stoneId++;
             SetBarrierSize();
@@ -37,4 +38,18 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 
         }
     }
+    //add summer and winter classes
+    internal class SummerStone : Stone
+    {
+        public SummerStone() : base(Resources.Summer_Stone)
+        {
+        }
+    }
+    internal class WinterStone : Stone
+    {
+        public WinterStone() : base(Resources.Winter_Stone)
+        {
+        }
+    }
+    
 }

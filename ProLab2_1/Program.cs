@@ -27,8 +27,21 @@ namespace ProLab2_1
             map.AddBarrier(new Tree());
             map.AddBarrier(new Mountain());
             map.AddBarrier(new Mountain());
-            map.AddBarrier(new Mountain());
-            map.AddBarrier(new Mountain());
+    
+            map.AddBarrier(new Bee());
+            map.AddBarrier(new Bee());
+            map.AddBarrier(new Bee());
+
+            map.AddBarrier(new Stone());
+            map.AddBarrier(new Stone());
+            map.AddBarrier(new Stone());
+
+            map.AddBarrier(new Wall()); 
+            map.AddBarrier(new Wall());
+            map.AddBarrier(new Bird());
+            map.AddBarrier(new Bird());
+            map.AddBarrier(new Bird());
+
 
             map.generateRandomMap();
 

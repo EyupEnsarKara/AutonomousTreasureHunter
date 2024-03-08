@@ -11,7 +11,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     {   
         private static int mountainId = 1;
 
-        public Mountain():base(mountainId)
+        public Mountain(Image image):base(mountainId,image)
         {
             mountainId++;
             SetBarrierSize();
@@ -33,4 +33,21 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             this.SetWidth(15);
         }
     }
+    //add summer and winter classeS
+    internal class summerMountain:Mountain
+    {
+        public summerMountain():base(Resources.Summer_Mountain)
+        {
+           
+        }
+
+    }
+    internal class winterMountain:Mountain
+    {
+        public winterMountain():base(Resources.Winter_Mountain)
+        {
+            
+        }
+    }
+    
 }

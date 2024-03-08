@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 {
-    internal class Bird:Barrier,IBarrier
+    internal class Bird : Barrier, IBarrier
     {
         private static int birdId = 1;
 
-        public Bird(): base(birdId)
+        public Bird(Image image) : base(birdId,image)
         {
             birdId++;
             SetBarrierSize();
@@ -34,6 +35,21 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         {
             this.SetWidth(2);
             this.SetHeight(2);
+
+        }
+    }
+    internal class summerBird : Bird
+    {
+        public summerBird() : base(Resources.Summer_Bird)
+        {
+
+        }
+
+    }
+    internal class winterBird : Bird
+    {
+        public winterBird() : base(Resources.Winter_Bird)
+        {
 
         }
     }
