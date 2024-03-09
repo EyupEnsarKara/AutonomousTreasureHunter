@@ -43,35 +43,36 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
         }
 
-         public void Move()
+        public void Move()
         {
             Location location = this.getLocation();
-            int x=location.getX(),y=location.getY();
+            int x = location.getX(), y = location.getY();
 
             int currentmove = getCurrentMovedSize();
-            if(!isTurn)
+            if (!isTurn)
             {
-                if(currentmove < this.getMaxMove())
+                if (currentmove < this.getMaxMove() * 2 - 1)
                 {
                     this.increaseCurrentMovedSize();
-                    x++;
+                    y++;
                 }
                 else isTurn = true;
             }
             else
             {
-                if(currentmove > (this.getMaxMove()*-1))
+                if (currentmove > 0)
                 {
                     this.decreaseCurrentMovedSize();
-                    x--;
+                    y--;
                 }
-                else isTurn=false;
+                else isTurn = false;
+
             }
 
 
 
-            this.setLocation(new Location(x,y));
-            
+            this.setLocation(new Location(x, y));
+
         }
     }
     internal class summerBird : Bird

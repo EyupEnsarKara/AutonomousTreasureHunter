@@ -94,7 +94,8 @@ namespace ProLab2_1.Forms
 
                 Location location = barrier.getLocation();
                 int x = location.getX(), y = location.getY();
-               
+
+                g.FillRectangle(Brushes.LightBlue, x * quadSize, y * quadSize, quadSize * barrier.getBarrierWidth(), quadSize * barrier.getBarrierHeight());
 
                 g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
                 
@@ -113,7 +114,6 @@ namespace ProLab2_1.Forms
             
             int x = character.GetCurrentLocation().getX();
             int y = character.GetCurrentLocation().getY();
-            Console.WriteLine(x);
             switch (e.KeyCode)
             {
                 

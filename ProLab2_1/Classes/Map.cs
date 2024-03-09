@@ -14,7 +14,7 @@ namespace ProLab2_1.Classes
 
 
 
-    //
+    
 
 
     public class Map
@@ -39,26 +39,7 @@ namespace ProLab2_1.Classes
 
         }
         //print map methods
-        public void printMap()
-        {
-            for (int i = 0; i < mapSize; i++)
-            {
-                for (int j = 0; j < mapSize; j++)
-                {
-                    if (quads[i, j].GetIsBarrier())
-                    {
-               
 
-                        Console.Write("1");
-                    }
-                    else
-                    {
-                        Console.Write("0");
-                    }
-                }
-                Console.WriteLine();
-            }
-        }
 
 
         public void generateRandomMap()
@@ -77,6 +58,24 @@ namespace ProLab2_1.Classes
                 int y;
                 int width_ = barrier.getBarrierWidth();
                 int height_ = barrier.getBarrierHeight();
+
+                if(barrier is DynamicBarrier)
+                {   DynamicBarrier barrier_ = (DynamicBarrier)barrier;
+
+                    if (barrier is Bee)
+                    {
+                        width_+=barrier_.getMaxMove()*2-1;
+                    }
+                    else if (barrier is Bird)
+                    {
+                        height_ += barrier_.getMaxMove() * 2 - 1;
+
+                    }
+                    Console.WriteLine("width : "+width_);
+                    Console.WriteLine("h : "+height_);
+
+                }
+             
 
                 do
                 {

@@ -48,23 +48,22 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
             int currentmove = getCurrentMovedSize();
             if (!isTurn)
             {
-                Console.WriteLine("Turn girdi");
-                if (currentmove < this.getMaxMove())
+                if (currentmove < this.getMaxMove()*2-1)
                 {
                     this.increaseCurrentMovedSize();
-                    y++;
+                    x++;
                 }
                 else isTurn = true;
             }
             else
             {
-                Console.WriteLine("dış else");
-                if (currentmove > (this.getMaxMove() * -1))
+                if (currentmove > 0)
                 {
                     this.decreaseCurrentMovedSize();
-                    y--;
+                    x--;
                 }
                 else isTurn = false;
+                           
             }
 
 
