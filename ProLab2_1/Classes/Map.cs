@@ -38,7 +38,6 @@ namespace ProLab2_1.Classes
             generateEmptyMap();
 
         }
-        //print map methods
 
 
 
@@ -89,7 +88,6 @@ namespace ProLab2_1.Classes
                     for (int j = y; j < y + height_; j++)
                     {
                         
-                        //quads[i, j] = new Quad(new Location(i, j));
                         quads[i, j].SetBarrier(barrier);
                     }
                 }

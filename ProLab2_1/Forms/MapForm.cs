@@ -95,7 +95,7 @@ namespace ProLab2_1.Forms
                 Location location = barrier.getLocation();
                 int x = location.getX(), y = location.getY();
 
-                g.FillRectangle(Brushes.LightBlue, x * quadSize, y * quadSize, quadSize * barrier.getBarrierWidth(), quadSize * barrier.getBarrierHeight());
+                g.FillRectangle(Brushes.Red, x * quadSize, y * quadSize, quadSize * barrier.getBarrierWidth(), quadSize * barrier.getBarrierHeight());
 
                 g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
                 
@@ -103,6 +103,7 @@ namespace ProLab2_1.Forms
             }
             //karakter çizimi
             g.DrawImage(global::ProLab2_1.Resources.steve, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
+            g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);
 
 
 
