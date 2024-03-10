@@ -36,7 +36,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     //add summer and winter classeS
     internal class summerMountain:Mountain
     {
-        public summerMountain():base(Resources.Golden_Chest)
+        public summerMountain():base(Resources.Summer_Mountain)
         {
            
         }

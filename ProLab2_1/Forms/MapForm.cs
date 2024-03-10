@@ -33,6 +33,7 @@ namespace ProLab2_1.Forms
             quadSize = (float)GameMap.Width / MapSize;
             GameEvent.Start();
             MoveObjectTimer.Start();
+            character.updateFogRemoveArea(quads);
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
