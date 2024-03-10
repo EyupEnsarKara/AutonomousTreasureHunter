@@ -34,7 +34,7 @@ namespace ProLab2_1.Classes
 
                 for (int j = (y+3); j >=(y-3); j--)
                 {
-                    if(i<0 || j<0 || i>width || j > height) continue;
+                    if(i<0 || j<0 || i>=width || j >= height) continue;
                     quads[i, j].removeFog();
                 }
             }
