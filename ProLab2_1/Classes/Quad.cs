@@ -12,6 +12,7 @@ namespace ProLab2_1.Classes
         private Location location;
         private bool isBarrier= false;
         private bool isSummer = false;
+        private bool isVisible = false;
 
         private IBarrier barrier;
 
@@ -51,6 +52,14 @@ namespace ProLab2_1.Classes
             this.isSummer = true;
         }
 
+        public void removeFog()
+        {
+            this.isVisible = true;
+        }
+        public bool getVisible()
+        {
+            return this.isVisible;
+        }
 
 
     }

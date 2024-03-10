@@ -20,6 +20,27 @@ namespace ProLab2_1.Classes
             Name = name;
             this.CurrentLocation = CurrentLocation;
         }
+
+
+
+        public void updateFogRemoveArea(Quad[,] quads)
+        {
+            int x=CurrentLocation.getX();
+            int y=CurrentLocation.getY();
+            int width = quads.GetLength(0);
+            int height = quads.GetLength(1);
+            for (int i = (x+3); i >=(x-3); i--)
+            {
+
+                for (int j = (y+3); j >=(y-3); j--)
+                {
+                    if(i<0 || j<0 || i>=width || j >= height) continue;
+                    quads[i, j].removeFog();
+                }
+            }
+            
+            
+        }
         
         public int GetId()
         {
