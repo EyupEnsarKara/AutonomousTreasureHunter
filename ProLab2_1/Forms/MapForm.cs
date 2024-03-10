@@ -68,17 +68,7 @@ namespace ProLab2_1.Forms
 
 
 
-            Pen pen = new Pen(Color.Black,0.001f);
-
-            //kareli düzlem çizimi
-            for (float i = 0; i <= GameMap.Width+1; i += quadSize)
-            {
-                g.DrawLine(pen, i, 0, i, GameMap.Height);
-            }
-            for (float i = 0; i <= GameMap.Height+1; i += quadSize)
-            {
-                g.DrawLine(pen, 0, i, GameMap.Width, i);
-            }
+           
 
             
 
@@ -106,6 +96,31 @@ namespace ProLab2_1.Forms
             g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);
 
 
+
+            //Sis katmanı ekleme
+
+            for(int i = 0; i < quads.GetLength(0); i++)
+            {
+                for (int j = 0; j < quads.GetLength(1); j++)
+                {
+                    if (!quads[i,j].getVisible())
+                    {
+                        g.FillRectangle(Brushes.White, i * quadSize, j * quadSize, quadSize, quadSize);
+                    }
+                }
+            }
+
+            Pen pen = new Pen(Color.Black, 0.001f);
+
+            //kareli düzlem çizimi
+            for (float i = 0; i <= GameMap.Width + 1; i += quadSize)
+            {
+                g.DrawLine(pen, i, 0, i, GameMap.Height);
+            }
+            for (float i = 0; i <= GameMap.Height + 1; i += quadSize)
+            {
+                g.DrawLine(pen, 0, i, GameMap.Width, i);
+            }
 
 
         }
@@ -138,9 +153,12 @@ namespace ProLab2_1.Forms
                         break;
                     character.GetCurrentLocation().setY(y+ 1);
                     break;
-
+                case Keys.Enter:
+                    Program.map.clearFoggedAllArea();
+                    break;
                     
             }
+            character.updateFogRemoveArea(quads);
         }
 
         private void GameTimerTick(object sender, EventArgs e)

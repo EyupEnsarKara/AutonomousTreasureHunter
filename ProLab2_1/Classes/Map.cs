@@ -155,6 +155,17 @@ namespace ProLab2_1.Classes
             return true;
         }
 
+        public void clearFoggedAllArea()
+        {
+            for(int i = 0; i < quads.GetLength(0); i++)
+            {
+                for (int j = 0; j < quads.GetLength(1); j++)
+                {
+                    quads[i, j].removeFog();
+                }
+            }
+        }
+
         public List<IBarrier> GetBarriers()
         {
             return barriers;
