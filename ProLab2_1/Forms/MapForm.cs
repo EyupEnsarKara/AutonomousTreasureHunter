@@ -29,7 +29,7 @@ namespace ProLab2_1.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Map";
             AddPictureBox(GameMap);
-            this.Size = new Size(751+16, 751+40);
+            this.Size = new Size(751+16, 751+42);
             quadSize = (float)GameMap.Width / MapSize;
             GameEvent.Start();
             MoveObjectTimer.Start();
@@ -64,15 +64,25 @@ namespace ProLab2_1.Forms
                 }
             }
 
+            Pen pen = new Pen(Color.Black, 0.001f);
+
+            //kareli düzlem çizimi
+            for (float i = 0; i <= GameMap.Width + 1; i += quadSize)
+            {
+                g.DrawLine(pen, i, 0, i, GameMap.Height);
+            }
+            for (float i = 0; i <= GameMap.Height + 1; i += quadSize)
+            {
+                g.DrawLine(pen, 0, i, GameMap.Width, i);
+            }
 
 
 
 
-           
 
-            
 
-            
+
+
 
 
 
@@ -89,6 +99,12 @@ namespace ProLab2_1.Forms
 
                 g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
                 
+                //if(barrier is DynamicBarrier)
+                //{
+                //    DynamicBarrier barrier2 = (DynamicBarrier)barrier;
+                //    g.DrawLine(pen, x * quadSize + (quadSize / 2), y * quadSize + (quadSize / 2), x * quadSize + (quadSize / 2), y * quadSize + (quadSize / 2));
+
+                //}
             
             }
             //karakter çizimi
@@ -110,17 +126,7 @@ namespace ProLab2_1.Forms
                 }
             }
 
-            Pen pen = new Pen(Color.Black, 0.001f);
-
-            //kareli düzlem çizimi
-            for (float i = 0; i <= GameMap.Width + 1; i += quadSize)
-            {
-                g.DrawLine(pen, i, 0, i, GameMap.Height);
-            }
-            for (float i = 0; i <= GameMap.Height + 1; i += quadSize)
-            {
-                g.DrawLine(pen, 0, i, GameMap.Width, i);
-            }
+            
 
 
         }

@@ -121,6 +121,18 @@
   <data name="Bird" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Bird.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Copper_Chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Copper_Chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Emerald_Chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Emerald_Chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Golden_Chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Golden_Chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Silver_Chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Silver_Chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="steve" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\steve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

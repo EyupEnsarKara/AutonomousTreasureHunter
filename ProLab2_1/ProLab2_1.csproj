@@ -117,5 +117,17 @@
   <ItemGroup>
     <None Include="Resources\Winter_Tree.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Golden_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copper_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emerald_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Silver_Chest.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
