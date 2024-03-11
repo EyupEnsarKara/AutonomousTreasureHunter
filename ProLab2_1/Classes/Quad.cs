@@ -13,6 +13,7 @@ namespace ProLab2_1.Classes
         private bool isBarrier= false;
         private bool isSummer = false;
         private bool isVisible = false;
+        private bool isCollectible = false;
 
         private IBarrier barrier;
 
@@ -59,6 +60,18 @@ namespace ProLab2_1.Classes
         public bool getVisible()
         {
             return this.isVisible;
+        }
+        public void setCollectible()
+        {
+            this.isCollectible = true;
+        }
+        public bool getCollectible()
+        {
+            return this.isCollectible;
+        }
+        public void resetCollectible()
+        {
+            this.isCollectible = false;
         }
 
 

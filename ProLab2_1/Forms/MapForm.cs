@@ -108,6 +108,21 @@ namespace ProLab2_1.Forms
                 //}
             
             }
+            //sandık çizimleri
+            
+            foreach(Chest chest in Program.map.GetChests())
+            {
+                Location chestLocation = chest.getLocation();
+                int x = chestLocation.getX(), y = chestLocation.getY();
+                g.FillRectangle(Brushes.LightSeaGreen, x * quadSize, y * quadSize, quadSize * chest.getWidth(), quadSize * chest.getHeight());
+
+                g.DrawImage(chest.getImage(), x * quadSize, y * quadSize, quadSize * chest.getWidth(), quadSize * chest.getHeight());
+            }
+
+
+
+
+
             //karakter çizimi
             g.DrawImage(global::ProLab2_1.Resources.steve, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
             g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);

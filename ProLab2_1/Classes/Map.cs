@@ -24,6 +24,7 @@ namespace ProLab2_1.Classes
 
         private List<IBarrier> barriers = new List<IBarrier>();
         private Character character;
+        private List<Chest> chests = new List<Chest>();
 
         public void AddBarrier(IBarrier barrier)
         {
@@ -78,7 +79,7 @@ namespace ProLab2_1.Classes
 
                 do
                 {
-                    location = generateRandomLocation(mapSize, mapSize);
+                    location = generateRandomLocation(mapSize, mapSize, random);
                     x = location.getX();
                     y = location.getY();
                 } while (!testLocation(x, y, width_, height_));
@@ -96,19 +97,60 @@ namespace ProLab2_1.Classes
                 
             }
             Console.WriteLine("Generated Barriers");
+            generateChestLocations(random);
 
-            Location playerLocation = generateRandomLocation(mapSize, mapSize);
+            Location playerLocation = generateRandomLocation(mapSize, mapSize, random);
             while (quads[playerLocation.getX(),playerLocation.getY()].GetIsBarrier())
             {
-                playerLocation = generateRandomLocation(mapSize, mapSize);
+                playerLocation = generateRandomLocation(mapSize, mapSize,random);
             }
             character=new Character(1, "Steve", playerLocation);
             Console.WriteLine("Generated player location");
         }
 
-        private Location generateRandomLocation(int width, int height)
+        public void generateChestLocations(Random random)
         {
-            Random random = new Random();
+            Console.WriteLine("Generating Map...");
+
+
+
+            foreach (Chest chest in chests)
+            {
+                Location location;
+
+                int x;
+                int y;
+                int width_ = chest.getWidth();
+                int height_ = chest.getHeight();
+
+
+
+                do
+                {
+                    location = generateRandomLocation(mapSize, mapSize,random);
+                    x = location.getX();
+                    y = location.getY();
+                } while (!testLocation(x, y, width_, height_));
+
+                for (int i = x; i < x + width_; i++)
+                {
+                    for (int j = y; j < y + height_; j++)
+                    {
+
+                        quads[i, j].setCollectible();
+                    }
+                }
+                Console.WriteLine("Sanıdk konumu atandı : "+x+" y:"+y);
+                chest.setLocation(new Location(x, y));
+
+            }
+            Console.WriteLine("Generated Chests");
+
+
+        }
+
+        private Location generateRandomLocation(int width, int height,Random random)
+        {
             int x=random.Next(width);
             int y=random.Next(height);
             return new Location(x, y);
@@ -149,6 +191,10 @@ namespace ProLab2_1.Classes
                     {
                         return false;
                     }
+                    if (quads[i,j].getCollectible())
+                    {
+                        return false;
+                    }
 
 
                 }
@@ -179,6 +225,15 @@ namespace ProLab2_1.Classes
         public Character GetCharacter()
         {
             return character;
+        }
+
+        public void addChest(Chest chest)
+        {
+            chests.Add(chest);
+        }
+        public List<Chest> GetChests()
+        {
+            return this.chests;
         }
 
 

@@ -56,7 +56,10 @@ namespace ProLab2_1
                 map.AddBarrier(new winterStone());
                 map.AddBarrier(new winterTree());
                 map.AddBarrier(new winterWall());
-     
+                map.addChest(new Golden_Chest());
+                map.addChest(new Emerald_Chest());
+                map.addChest(new Copper_Chest());
+                map.addChest(new Silver_Chest());
             }
 
             
