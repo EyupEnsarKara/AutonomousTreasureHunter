@@ -216,7 +216,9 @@ namespace ProLab2_1.Forms
                 {
                     character.CollectChest(chest);
                     Program.map.removeChest(chest);
-                    Console.WriteLine(chest.GetType());
+                    //sadece tür ismini bastırsın
+                    Console.WriteLine(chest.GetType().Name+" Toplandı (x:"+chest.getLocation().getX()+" y:"+chest.getLocation().getY()+") Id:"+chest.getId());
+
                     break;
                 }
             }

@@ -52,6 +52,10 @@ namespace ProLab2_1.Classes
         {
             this.location = location;
         }
+        public int getId()
+        {
+            return this.id;
+        }
     }
 
 
