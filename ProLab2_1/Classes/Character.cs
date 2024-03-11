@@ -12,6 +12,7 @@ namespace ProLab2_1.Classes
         private string Name;
         private List<Location> VisitedLocations= new List<Location>();
         private Location CurrentLocation;
+        private List<Chest> Collected_Chests = new List<Chest>();
 
 
         public Character(int id, string name,Location CurrentLocation)
@@ -62,6 +63,15 @@ namespace ProLab2_1.Classes
         public Location GetCurrentLocation()
         {
             return CurrentLocation;
+        }
+        public void CollectChest(Chest chest)
+        {
+            Collected_Chests.Add(chest);
+        }
+
+        public List<Chest> GetCollectedChests()
+        {
+            return Collected_Chests;
         }
     
     
