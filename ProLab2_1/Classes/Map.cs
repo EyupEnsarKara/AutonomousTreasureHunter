@@ -236,7 +236,22 @@ namespace ProLab2_1.Classes
             return this.chests;
         }
 
+        public void removeChest(Chest chest)
+        {
+            int x = chest.getLocation().getX();
+            int y = chest.getLocation().getY();
 
+            for(int i = x; i < x + chest.getWidth(); i++)
+            {
+                for(int j = y; j < y + chest.getHeight(); j++)
+                {
+                    quads[i, j].resetCollectible();
+                }
+            }   
+            chests.Remove(chest);
+
+
+        }
 
 
 

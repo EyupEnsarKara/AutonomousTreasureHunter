@@ -9,11 +9,13 @@ namespace ProLab2_1.Classes
 {
     public class Chest
     {
+        private static int chestCount = 0;
         private Image image;
         private int Value;
         private int width;
         private int height;
         private Location location;
+        private int id;
         
 
         public Chest(Image image, int value)
@@ -22,6 +24,8 @@ namespace ProLab2_1.Classes
             Value = value;
             this.height = 3;
             this.width = 3;
+            this.id = chestCount;
+            chestCount++;
         }
 
         public Image getImage()

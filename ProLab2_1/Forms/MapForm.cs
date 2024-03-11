@@ -208,6 +208,22 @@ namespace ProLab2_1.Forms
                     }
                 }
             }
+
+
+            foreach(Chest chest in Program.map.GetChests())
+            {
+                if (character.GetCurrentLocation().getX() >= chest.getLocation().getX() && character.GetCurrentLocation().getX() <= chest.getLocation().getX() + chest.getWidth() - 1 && character.GetCurrentLocation().getY() >= chest.getLocation().getY() && character.GetCurrentLocation().getY() <= chest.getLocation().getY() + chest.getHeight() - 1)
+                {
+                    character.CollectChest(chest);
+                    Program.map.removeChest(chest);
+                    Console.WriteLine(chest.GetType());
+                    break;
+                }
+            }
+
+            
+
+
         }
     }
 }
