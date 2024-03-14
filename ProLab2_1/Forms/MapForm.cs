@@ -46,7 +46,7 @@ namespace ProLab2_1.Forms
         {
             
             Graphics g = e.Graphics;
-
+            
 
             //mevsimlere göre renklendirme
 
@@ -149,7 +149,7 @@ namespace ProLab2_1.Forms
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            
+            Location previousLocation = character.GetCurrentLocation();
             int x = character.GetCurrentLocation().getX();
             int y = character.GetCurrentLocation().getY();
             switch (e.KeyCode)
@@ -180,7 +180,9 @@ namespace ProLab2_1.Forms
                     break;
                     
             }
+            
             character.updateFogRemoveArea(quads);
+            
         }
 
         private void GameTimerTick(object sender, EventArgs e)
@@ -226,6 +228,17 @@ namespace ProLab2_1.Forms
             
 
 
+        }
+
+
+
+        private void drawLineBetweenQuads(Graphics g,Location p1,Location p2,Brush brush)
+        {
+            Pen pen = new Pen(brush);
+
+
+            g.DrawLine(pen, p1.getX() + quadSize / 2, p1.getY() + quadSize / 2, p2.getX() + quadSize / 2, p2.getX() + quadSize / 2);
+            
         }
     }
 }
