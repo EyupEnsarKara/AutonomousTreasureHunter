@@ -46,7 +46,6 @@ namespace ProLab2_1.Forms
         {
             
             Graphics g = e.Graphics;
-            
 
             //mevsimlere göre renklendirme
 
@@ -77,17 +76,6 @@ namespace ProLab2_1.Forms
                 g.DrawLine(pen, 0, i, GameMap.Width, i);
             }
 
-
-
-
-
-
-
-
-
-
-
-
             //bariyer çizimleri
             List<IBarrier> list = Program.map.GetBarriers();
             foreach (IBarrier barrier in list)
@@ -100,12 +88,7 @@ namespace ProLab2_1.Forms
 
                 g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
                 
-                //if(barrier is DynamicBarrier)
-                //{
-                //    DynamicBarrier barrier2 = (DynamicBarrier)barrier;
-                //    g.DrawLine(pen, x * quadSize + (quadSize / 2), y * quadSize + (quadSize / 2), x * quadSize + (quadSize / 2), y * quadSize + (quadSize / 2));
 
-                //}
             
             }
             //sandık çizimleri
@@ -141,8 +124,25 @@ namespace ProLab2_1.Forms
                     }
                 }
             }
+            //draw visited locations
+            Location tempLocation=new Location(0,0);
+            bool temp = false;
+            Pen pen1 = new Pen(Color.Red, 2);
 
-            
+            foreach (Location location in character.GetVisitedLocations())
+            {
+                if(temp)
+                g.DrawLine(pen1, tempLocation.getX() * quadSize+(quadSize/2), tempLocation.getY() * quadSize + (quadSize / 2), location.getX()*quadSize + (quadSize / 2), location.getY() * quadSize + (quadSize / 2));
+                            
+                tempLocation = location;
+                temp = true;
+
+
+            }
+            if(temp)
+              g.DrawLine(pen1, tempLocation.getX() * quadSize + (quadSize / 2), tempLocation.getY() * quadSize + (quadSize / 2), character.GetCurrentLocation().getX() * quadSize + (quadSize / 2), character.GetCurrentLocation().getY() * quadSize + (quadSize / 2));
+
+
 
 
         }
@@ -158,21 +158,28 @@ namespace ProLab2_1.Forms
                 case Keys.Right:
                     if ( x >= MapSize-1|| quads[x + 1, y].GetIsBarrier())
                         break;
+                    character.AddVisitedLocation();
                     character.GetCurrentLocation().setX(x+1);
                     break;
                 case Keys.Left:
                     if (x <= 0 || quads[x - 1, y].GetIsBarrier())
                         break;
+                    character.AddVisitedLocation();
+
                     character.GetCurrentLocation().setX(x-1);
                     break;
                 case Keys.Up:
                     if (y <= 0 ||quads[x, y-1].GetIsBarrier())
                         break;
+                    character.AddVisitedLocation();
+
                     character.GetCurrentLocation().setY(y-1);
                     break;
                 case Keys.Down:
                     if (y >= MapSize-1 || quads[x, y + 1].GetIsBarrier())
                         break;
+                    character.AddVisitedLocation();
+
                     character.GetCurrentLocation().setY(y+ 1);
                     break;
                 case Keys.Enter:
@@ -224,7 +231,7 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-
+            character.automaticallyMove(quads);
             
 
 

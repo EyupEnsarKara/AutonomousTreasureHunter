@@ -20,6 +20,7 @@ namespace ProLab2_1.Classes
             Id = id;
             Name = name;
             this.CurrentLocation = CurrentLocation;
+
         }
 
 
@@ -52,9 +53,9 @@ namespace ProLab2_1.Classes
             return Name;
         }
 
-        public void AddVisitedLocation(Location location)
+        public void AddVisitedLocation()
         {
-            VisitedLocations.Add(location);
+            VisitedLocations.Add(new Location(CurrentLocation.getX(),CurrentLocation.getY()));
         }
         public List<Location> GetVisitedLocations()
         {
@@ -73,7 +74,59 @@ namespace ProLab2_1.Classes
         {
             return Collected_Chests;
         }
-    
-    
+
+        int tempDirection = 0;  
+
+        public void automaticallyMove(Quad[,] quads)
+        {
+            Random random = new Random();
+            int x = CurrentLocation.getX();
+            int y = CurrentLocation.getY();
+
+            int direction;
+          
+            do
+            {
+                direction = random.Next(0, 4);
+            } while ((tempDirection == 0 && direction == 1) || (tempDirection == 2 && direction == 3));
+
+            switch (direction)
+            {
+                case 0:
+                    if (x >= quads.GetLength(0) - 1 || quads[x + 3, y].GetIsBarrier())
+                        break;
+                    AddVisitedLocation();
+                    CurrentLocation.setX(x + 1);
+                    break;
+                case 1:
+                    if (x <= 0 || quads[x - 3, y].GetIsBarrier())
+                        break;
+                    AddVisitedLocation();
+
+                    CurrentLocation.setX(x - 1);
+                    break;
+                case 2:
+                    if (y <= 0 )
+                        if(quads[x, y - 3].GetIsBarrier())
+                        break;
+                    AddVisitedLocation();
+                    CurrentLocation.setY(y - 1);
+                    break;
+                case 3:
+                    if (y >= quads.GetLength(1) - 1 || quads[x, y + 3].GetIsBarrier())
+                        break;
+                    AddVisitedLocation();
+                    CurrentLocation.setY(y + 1);
+                    break;
+            }
+            tempDirection = direction;
+
+
+            updateFogRemoveArea(quads);
+
+
+
+        }
+
     }
 }
