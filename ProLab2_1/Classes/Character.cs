@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes
 {
+    enum Directions
+    {
+        Left,Right,
+        Top,Bottom
+    }
     public class Character
     {
+        
+
+
         private int Id;
         private string Name;
         private List<Location> VisitedLocations= new List<Location>();
@@ -20,7 +28,6 @@ namespace ProLab2_1.Classes
             Id = id;
             Name = name;
             this.CurrentLocation = CurrentLocation;
-
         }
 
 
@@ -75,110 +82,134 @@ namespace ProLab2_1.Classes
             return Collected_Chests;
         }
 
-        int tempDirection = 0;
+        private int Direction;
 
         public void automaticallyMove(Quad[,] quads)
         {
-            Random random = new Random();
-            int x = CurrentLocation.getX();
-            int y = CurrentLocation.getY();
-            bool foundBarrier;
+            int x = CurrentLocation.getX(),y = CurrentLocation.getY();
+            getDirection(quads, x, y);
+            updateFogRemoveArea(quads);
 
-            // Ziyaret edilen konumları işaretlemek için isVisited değerini true yap
-            quads[x, y].setIsVisited(true);
-
-            // Görüş alanındaki koordinatları temsil eden bir döngü
-            for (int i = x - 3; i <= x + 3; i++)
-            {
-                for (int j = y - 3; j <= y + 3; j++)
-                {
-                    if (i >= 0 && i < quads.GetLength(0) && j >= 0 && j < quads.GetLength(1))
-                    {
-                        if (quads[i, j].getCollectible())
-                        { // Eğer görüş alanında bir toplanabilir nesne varsa
-                          // O nesneye doğru git
-                            if (i > x)
-                            {
-                                AddVisitedLocation();
-                                CurrentLocation.setX(x + 1);
-                                updateFogRemoveArea(quads);
-                                return;
-                            }
-                            else if (i < x)
-                            {
-                                AddVisitedLocation();
-                                CurrentLocation.setX(x - 1);
-                                updateFogRemoveArea(quads);
-                                return;
-                            }
-
-                            if (j > y)
-                            {
-                                AddVisitedLocation();
-                                CurrentLocation.setY(y + 1);
-                                updateFogRemoveArea(quads);
-                                return;
-                            }
-                            else if (j < y)
-                            {
-                                AddVisitedLocation();
-                                CurrentLocation.setY(y - 1);
-                                updateFogRemoveArea(quads);
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Eğer toplanabilir bir nesne yoksa rastgele bir yöne git
-            int direction;
-            do
-            {
-                direction = random.Next(0, 4); // Rastgele bir yön seç
-            } while (direction == (tempDirection + 2) % 4); // Geldiği yöne geri dönmemesi için kontrol
-
-            tempDirection = direction; // Geldiği yönü kaydet
-
-            switch (direction)
-            {
-                case 0: // Sağa git
-                    if (x < quads.GetLength(0) - 1 && !quads[x + 1, y].GetIsBarrier() && !quads[x + 1, y].getIsVisited())
-                    {
-                        AddVisitedLocation();
-                        CurrentLocation.setX(x + 1);
-                        updateFogRemoveArea(quads);
-                    }
-                    break;
-
-                case 1: // Sola git
-                    if (x > 0 && !quads[x - 1, y].GetIsBarrier() && !quads[x - 1, y].getIsVisited())
-                    {
-                        AddVisitedLocation();
-                        CurrentLocation.setX(x - 1);
-                        updateFogRemoveArea(quads);
-                    }
-                    break;
-
-                case 2: // Yukarı git
-                    if (y > 0 && !quads[x, y - 1].GetIsBarrier() && !quads[x, y - 1].getIsVisited())
-                    {
-                        AddVisitedLocation();
-                        CurrentLocation.setY(y - 1);
-                        updateFogRemoveArea(quads);
-                    }
-                    break;
-
-                case 3: // Aşağı git
-                    if (y < quads.GetLength(1) - 1 && !quads[x, y + 1].GetIsBarrier() && !quads[x, y + 1].getIsVisited())
-                    {
-                        AddVisitedLocation();
-                        CurrentLocation.setY(y + 1);
-                        updateFogRemoveArea(quads);
-                    }
-                    break;
-            }
+            
         }
+        public int getDirection(Quad[,] quads,int x,int y)
+        {
+            int L=-1, R=-1, T=-1, B=-1;
+
+            if(!checkLocation(Directions.Left,quads))
+            {
+                L = 1;
+            }
+            if (!checkLocation(Directions.Right, quads))
+            {
+                R = 2;
+            }
+            if (!checkLocation(Directions.Top, quads))
+            {
+                T = 3;
+            }
+            if (!checkLocation(Directions.Bottom, quads))
+            {
+                B = 4;
+            }
+
+            Random random = new Random();
+            int tempDirect = random.Next(1, 5);
+            switch(tempDirect)
+            {
+                case 1:
+                    if (tempDirect != L)
+                        break;
+                    move(tempDirect);
+                    Direction = tempDirect;
+                    break;
+                case 2:
+                    if (tempDirect != R)
+                        break;
+                    move(tempDirect);
+                    Direction = tempDirect;
+                    break;
+                case 3:
+                    if (tempDirect != T)
+                        break;
+                    move(tempDirect);
+                    Direction = tempDirect;
+                    break;
+                case 4:
+                    if (tempDirect != B)
+                        break;
+                    move(tempDirect);
+                    Direction = tempDirect;
+
+                    break;
+            }
+            
+
+
+
+            return 0;
+        }
+        private bool checkLocation(Directions direction, Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(),y = CurrentLocation.getY();
+            bool barrierDetected = false;
+            switch(direction)
+            {
+                case Directions.Left:
+                    for(int i =x;i>=x-3;i--)
+                    {
+                        if (quads[i,y].GetIsBarrier()) barrierDetected=true;
+                    }
+                    break;
+                case Directions.Right:
+                    for (int i = x; i <= x + 3; i++)
+                    {
+                        if (quads[i, y].GetIsBarrier()) barrierDetected = true;
+                    }
+                    break;
+                case Directions.Top:
+                    for (int i = y; i >= y - 3; i--)
+                    {
+                        if (quads[x, i].GetIsBarrier()) barrierDetected = true;
+                    }
+                    break;
+                case Directions.Bottom:
+                    for (int i = y; i <= y - 3; i++)
+                    {
+                        if (quads[x, i].GetIsBarrier()) barrierDetected = true;
+                    }
+                    break;
+            }
+
+            return barrierDetected;
+
+        }
+
+
+
+        private void move(int direction, Quad[,] quads)
+        {
+            int x=CurrentLocation.getX(),y=CurrentLocation.getY();
+            AddVisitedLocation();
+            
+            switch(direction)
+            {
+                case 1:
+                    x--;
+                    break;
+                case 2:
+                    x++;
+                    break;
+                case 3:
+                    y--;
+                    break;
+                case 4:
+                    y++;
+                    break;
+            }
+            CurrentLocation = new Location(x,y);
+        }
+
 
 
 
