@@ -82,47 +82,115 @@ namespace ProLab2_1.Classes
             Random random = new Random();
             int x = CurrentLocation.getX();
             int y = CurrentLocation.getY();
+            bool foundBarrier;
 
-            int direction;
-          
-            do
-            {
-                direction = random.Next(0, 4);
-            } while ((tempDirection == 0 && direction == 1) || (tempDirection == 2 && direction == 3));
+
+            int direction = random.Next(0, 4); // Rastgele bir yön seç
 
             switch (direction)
             {
-                case 0:
-                    if (x >= quads.GetLength(0) - 1 || quads[x + 3, y].GetIsBarrier())
-                        break;
-                    AddVisitedLocation();
-                    CurrentLocation.setX(x + 1);
+                case 0: // Sağa git
+                    if (x < quads.GetLength(0) - 3)
+                    {
+                        foundBarrier = false;
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            if (quads[x + i, y].GetIsBarrier())
+                            {
+                                foundBarrier = true;
+                                break;
+                            }
+                        }
+                        if (!foundBarrier)
+                        {
+                            for (int i = 1; i <= 3; i++)
+                            {
+                                AddVisitedLocation();
+                                CurrentLocation.setX(x + i);
+                            }
+                            updateFogRemoveArea(quads);
+                            break;
+                        }
+                    }
                     break;
-                case 1:
-                    if (x <= 0 || quads[x - 3, y].GetIsBarrier())
-                        break;
-                    AddVisitedLocation();
 
-                    CurrentLocation.setX(x - 1);
+                case 1: // Sola git
+                    if (x >= 3)
+                    {
+                        foundBarrier = false;
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            if (quads[x - i, y].GetIsBarrier())
+                            {
+                                foundBarrier = true;
+                                break;
+                            }
+                        }
+                        if (!foundBarrier)
+                        {
+                            for (int i = 1; i <= 3; i++)
+                            {
+                                AddVisitedLocation();
+                                CurrentLocation.setX(x - i);
+                            }
+                            updateFogRemoveArea(quads);
+                            break;
+                        }
+                    }
                     break;
-                case 2:
-                    if (y <= 0 )
-                        if(quads[x, y - 3].GetIsBarrier())
-                        break;
-                    AddVisitedLocation();
-                    CurrentLocation.setY(y - 1);
+
+                case 2: // Yukarı git
+                    if (y >= 3)
+                    {
+                        foundBarrier = false;
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            if (quads[x, y - i].GetIsBarrier())
+                            {
+                                foundBarrier = true;
+                                break;
+                            }
+                        }
+                        if (!foundBarrier)
+                        {
+                            for (int i = 1; i <= 3; i++)
+                            {
+                                AddVisitedLocation();
+                                CurrentLocation.setY(y - i);
+                            }
+                            updateFogRemoveArea(quads);
+                            break;
+                        }
+                    }
                     break;
-                case 3:
-                    if (y >= quads.GetLength(1) - 1 || quads[x, y + 3].GetIsBarrier())
-                        break;
-                    AddVisitedLocation();
-                    CurrentLocation.setY(y + 1);
+
+                case 3: // Aşağı git
+                    if (y < quads.GetLength(1) - 3)
+                    {
+                        foundBarrier = false;
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            if (quads[x, y + i].GetIsBarrier())
+                            {
+                                foundBarrier = true;
+                                break;
+                            }
+                        }
+                        if (!foundBarrier)
+                        {
+                            for (int i = 1; i <= 3; i++)
+                            {
+                                AddVisitedLocation();
+                                CurrentLocation.setY(y + i);
+                            }
+                            updateFogRemoveArea(quads);
+                            break;
+                        }
+                    }
                     break;
             }
-            tempDirection = direction;
-
-
             updateFogRemoveArea(quads);
+
 
 
 
