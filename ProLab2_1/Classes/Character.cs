@@ -75,7 +75,7 @@ namespace ProLab2_1.Classes
             return Collected_Chests;
         }
 
-        int tempDirection = 0;  
+        int tempDirection = 0;
 
         public void automaticallyMove(Quad[,] quads)
         {
@@ -84,8 +84,66 @@ namespace ProLab2_1.Classes
             int y = CurrentLocation.getY();
             bool foundBarrier;
 
+            // Görüş alanındaki koordinatları temsil eden bir döngü
+            for (int i = x - 3; i <= x + 3; i++)
+            {
+                for (int j = y - 3; j <= y + 3; j++)
+                {
+                    if (i >= 0 && i < quads.GetLength(0) && j >= 0 && j < quads.GetLength(1))
+                    {
+                        if (quads[i, j].getCollectible())
+                        { // Eğer görüş alanında bir toplanabilir nesne varsa
+                          // O nesneye doğru git
+                            if (i > x)
+                            {
+                                for (int k = x; k < i; k++)
+                                {
+                                    AddVisitedLocation();
+                                    CurrentLocation.setX(k);
+                                }
+                            }
+                            else if (i < x)
+                            {
+                                for (int k = x; k > i; k--)
+                                {
+                                    AddVisitedLocation();
+                                    CurrentLocation.setX(k);
+                                }
+                            }
 
-            int direction = random.Next(0, 4); // Rastgele bir yön seç
+                            if (j > y)
+                            {
+                                for (int k = y; k < j; k++)
+                                {
+                                    AddVisitedLocation();
+                                    CurrentLocation.setY(k);
+                                }
+                            }
+                            else if (j < y)
+                            {
+                                for (int k = y; k > j; k--)
+                                {
+                                    AddVisitedLocation();
+                                    CurrentLocation.setY(k);
+                                }
+                            }
+
+                            updateFogRemoveArea(quads);
+                            // Görüş alanındaki bir nesneye geldiğinizde döngüyü sonlandırın
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Eğer toplanabilir bir nesne yoksa rastgele bir yöne git
+            int direction;
+            do
+            {
+                direction = random.Next(0, 4); // Rastgele bir yön seç
+            } while (direction == (tempDirection + 2) % 4); // Geldiği yöne geri dönmemesi için kontrol
+
+            tempDirection = direction; // Geldiği yönü kaydet
 
             switch (direction)
             {
@@ -109,7 +167,6 @@ namespace ProLab2_1.Classes
                                 CurrentLocation.setX(x + i);
                             }
                             updateFogRemoveArea(quads);
-                            break;
                         }
                     }
                     break;
@@ -134,7 +191,6 @@ namespace ProLab2_1.Classes
                                 CurrentLocation.setX(x - i);
                             }
                             updateFogRemoveArea(quads);
-                            break;
                         }
                     }
                     break;
@@ -159,7 +215,6 @@ namespace ProLab2_1.Classes
                                 CurrentLocation.setY(y - i);
                             }
                             updateFogRemoveArea(quads);
-                            break;
                         }
                     }
                     break;
@@ -184,12 +239,12 @@ namespace ProLab2_1.Classes
                                 CurrentLocation.setY(y + i);
                             }
                             updateFogRemoveArea(quads);
-                            break;
                         }
                     }
                     break;
             }
-            updateFogRemoveArea(quads);
+
+
 
 
 
