@@ -28,6 +28,7 @@ namespace ProLab2_1.Classes
             Id = id;
             Name = name;
             this.CurrentLocation = CurrentLocation;
+            VisitedLocations.Add(CurrentLocation);
         }
 
 
@@ -156,11 +157,101 @@ namespace ProLab2_1.Classes
                     break;
 
             }
-            if (VisitedLocations[VisitedLocations.Count - 1].getX() <CurrentLocation.getX())
+            checkChest(quads);
+            if (checkChest(quads) != null)
+            {
+                moveTowardsChest(checkChest(quads), quads);
+            }
 
-            return direct;
+                
+            Console.WriteLine("L:"+L+" R:"+R+" T:"+T+" B:"+B);
+            if ((L == -1) && (R == -1) && (T == -1) )
+                return getLastDirection();
+            else if ((L == -1) && (R == -1) &&  (B == -1))
+                return getLastDirection();
+            else if ((L == -1) &&  (T == -1) && (B == -1))
+                return getLastDirection();
+            else if ((R == -1)  && (T == -1) && (B == -1))
+                return getLastDirection();
+            else if (direct==getLastDirection())
+            {
+                 return getDirection(quads);
+            }
+            else 
+                return direct;
+          
+
+
 
         }
+        public Directions getLastDirection()
+        {
+            Location lastLocation = VisitedLocations[VisitedLocations.Count - 1];
+            int x = lastLocation.getX(), y = lastLocation.getY();
+            int x1 = CurrentLocation.getX(), y1 = CurrentLocation.getY();
+            if (x1 == x)
+            {
+                if (y1 < y)
+                    return Directions.Bottom;
+                else
+                    return Directions.Top;
+            }
+            else
+            {
+                if (x1 > x)
+                    return Directions.Left;
+                else
+                    return Directions.Right;
+            }
+        }
+        public Location checkChest(Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(), y = CurrentLocation.getY();
+            int width = quads.GetLength(0);
+            int height = quads.GetLength(1);
+            for (int i = (x + 3); i >= (x - 3); i--)
+            {
+
+                for (int j = (y + 3); j >= (y - 3); j--)
+                {
+                    if (i < 0 || j < 0 || i >= width || j >= height) continue;
+                    if (quads[i, j].getCollectible())
+                    {
+                        //return locaiton of the chest
+                        return new Location(i, j);
+         
+                    }
+                }
+            }
+            return null;
+        }
+
+        public void moveTowardsChest(Location chestLocation, Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(), y = CurrentLocation.getY();
+            int x1 = chestLocation.getX(), y1 = chestLocation.getY();
+            if (x1 == x)
+            {
+                if (y1 < y)
+                    move(Directions.Bottom, quads);
+                else
+                    move(Directions.Top, quads);
+            }
+            else
+            {
+                if (x1 > x)
+                    move(Directions.Left, quads);
+                else
+                    move(Directions.Right, quads);
+            }
+        }
+
+
+
+
+
+
+
         private bool checkLocation(Directions direction, Quad[,] quads)
         {
             int x = CurrentLocation.getX(),y = CurrentLocation.getY();
