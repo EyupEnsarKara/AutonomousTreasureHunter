@@ -16,13 +16,13 @@ using System.Windows.Forms;
 
 namespace ProLab2_1.Forms
 {
-    public partial class MapForm : Form
+    public partial class MapFormtest : Form
     {
         private int MapSize;
         private Quad[,] quads = Program.map.GetQuads();
         private float quadSize = 0;
         private Character character = Program.map.GetCharacter();
-        public MapForm(int MapSize)
+        public MapFormtest(int MapSize)
         {
             this.MapSize = MapSize;
             InitializeComponent();
@@ -31,8 +31,7 @@ namespace ProLab2_1.Forms
             AddPictureBox(GameMap);
             this.Size = new Size(751+16, 751+42);
             quadSize = (float)GameMap.Width / MapSize;
-            GameEvent.Start();
-            MoveObjectTimer.Start();
+ 
             character.updateFogRemoveArea(quads);
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
@@ -77,70 +76,16 @@ namespace ProLab2_1.Forms
             }
 
             //bariyer çizimleri
-            List<IBarrier> list = Program.map.GetBarriers();
-            foreach (IBarrier barrier in list)
+            for(int i = 0; i<quads.GetLength(0);i++)
             {
-
-                Location location = barrier.getLocation();
-                int x = location.getX(), y = location.getY();
-
-                g.FillRectangle(Brushes.Red, x * quadSize, y * quadSize, quadSize * barrier.getBarrierWidth(), quadSize * barrier.getBarrierHeight());
-
-                g.DrawImage(barrier.getImage(), x*quadSize, y *quadSize, quadSize*barrier.getBarrierWidth(), quadSize*barrier.getBarrierHeight());
-                
-
-            
-            }
-            //sandık çizimleri
-            
-            foreach(Chest chest in Program.map.GetChests())
-            {
-                Location chestLocation = chest.getLocation();
-                int x = chestLocation.getX(), y = chestLocation.getY();
-                g.FillRectangle(Brushes.LightSeaGreen, x * quadSize, y * quadSize, quadSize * chest.getWidth(), quadSize * chest.getHeight());
-
-                g.DrawImage(chest.getImage(), x * quadSize, y * quadSize, quadSize * chest.getWidth(), quadSize * chest.getHeight());
-            }
-
-
-
-
-
-            //karakter çizimi
-            g.DrawImage(global::ProLab2_1.Resources.steve, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
-            g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);
-
-
-
-            //Sis katmanı ekleme
-
-            for(int i = 0; i < quads.GetLength(0); i++)
-            {
-                for (int j = 0; j < quads.GetLength(1); j++)
+                for(int j = 0;j < quads.GetLength(1);j++)
                 {
-                    if (!quads[i,j].getVisible())
-                    {
-                        g.FillRectangle(Brushes.White, i * quadSize, j * quadSize, quadSize, quadSize);
-                    }
+                    if (quads[i,j].getIsVisited())
+                    g.FillRectangle(Brushes.Red, i * quadSize, j * quadSize,quadSize, quadSize);
                 }
             }
-            //draw visited locations
-            Location tempLocation=new Location(0,0);
-            bool temp = false;
-            Pen pen1 = new Pen(Color.Red, 2);
-
-            foreach (Location location in character.GetVisitedLocations())
-            {
-                if(temp)
-                g.DrawLine(pen1, tempLocation.getX() * quadSize+(quadSize/2), tempLocation.getY() * quadSize + (quadSize / 2), location.getX()*quadSize + (quadSize / 2), location.getY() * quadSize + (quadSize / 2));
-                            
-                tempLocation = location;
-                temp = true;
-
-
-            }
-            if(temp)
-              g.DrawLine(pen1, tempLocation.getX() * quadSize + (quadSize / 2), tempLocation.getY() * quadSize + (quadSize / 2), character.GetCurrentLocation().getX() * quadSize + (quadSize / 2), character.GetCurrentLocation().getY() * quadSize + (quadSize / 2));
+            
+            
 
 
 
@@ -185,11 +130,7 @@ namespace ProLab2_1.Forms
                 case Keys.Enter:
                     Program.map.clearFoggedAllArea();
                     break;
-                case Keys.A:
-                    MapFormtest mapFormtest = new MapFormtest(MapSize);
-                    mapFormtest.Show();
-                    break;
-
+                
             }
             
             character.updateFogRemoveArea(quads);
@@ -237,7 +178,7 @@ namespace ProLab2_1.Forms
             }
             character.automaticallyMove(quads);
             character.automaticallyMove(quads);
-;
+            character.automaticallyMove(quads);
 
 
 

@@ -1,6 +1,6 @@
 ﻿namespace ProLab2_1.Forms
 {
-    partial class MapForm
+    partial class MapFormtest
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.GameMap = new System.Windows.Forms.PictureBox();
-            this.GameEvent = new System.Windows.Forms.Timer(this.components);
-            this.MoveObjectTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,17 +43,7 @@
             this.GameMap.TabStop = false;
             this.GameMap.Paint += new System.Windows.Forms.PaintEventHandler(this.GameMap_Paint);
             // 
-            // GameEvent
-            // 
-            this.GameEvent.Interval = 1;
-            this.GameEvent.Tick += new System.EventHandler(this.GameTimerTick);
-            // 
-            // MoveObjectTimer
-            // 
-            this.MoveObjectTimer.Interval = 2;
-            this.MoveObjectTimer.Tick += new System.EventHandler(this.MoveObjectEvent);
-            // 
-            // MapForm
+            // MapFormtest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -64,7 +51,7 @@
             this.Controls.Add(this.GameMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "MapForm";
+            this.Name = "MapFormtest";
             this.Text = "MapForm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).EndInit();
@@ -75,7 +62,5 @@
         #endregion
 
         private System.Windows.Forms.PictureBox GameMap;
-        private System.Windows.Forms.Timer GameEvent;
-        private System.Windows.Forms.Timer MoveObjectTimer;
     }
 }

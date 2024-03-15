@@ -72,6 +72,7 @@ namespace ProLab2_1.Classes
         {
             return CurrentLocation;
         }
+        
         public void CollectChest(Chest chest)
         {
             Collected_Chests.Add(chest);
@@ -130,29 +131,34 @@ namespace ProLab2_1.Classes
 
             Random random = new Random();
             int tempDirect = random.Next(1, 5);
+            Directions direct=Directions.Right;
             switch(tempDirect)
             {
                 case 1:
                     if (tempDirect != L)
                         break;
-                    return Directions.Left;
+                    direct=Directions.Left;
+                    break;
                 case 2:
                     if (tempDirect != R)
                         break;
-                    return Directions.Right;
+                    direct = Directions.Right;
+                    break;
                 case 3:
                     if (tempDirect != T)
                         break;
-                    return Directions.Top;
+                    direct = Directions.Top;
+                    break;
                 case 4:
                     if (tempDirect != B)
                         break;
-                    return Directions.Bottom;
+                    direct = Directions.Bottom;
+                    break;
 
             }
+            if (VisitedLocations[VisitedLocations.Count - 1].getX() <CurrentLocation.getX())
 
-
-            return Directions.Right;
+            return direct;
 
         }
         private bool checkLocation(Directions direction, Quad[,] quads)
@@ -164,8 +170,8 @@ namespace ProLab2_1.Classes
             switch(direction)
             {
                 case Directions.Left:
-                    if (x - 3 < 0) return true;
-                    for (int i =x;i>=x-3 && i>=0;i--)
+                    if (x - 1 < 0) return true;
+                    for (int i =x;i >= x - 1;i--)
                     {
                         if (quads[i,y].GetIsBarrier()) barrierDetected = true;
                         
@@ -173,23 +179,23 @@ namespace ProLab2_1.Classes
                     
                     break;
                 case Directions.Right:
-                    if (x + 3 >= max_lenght) return true;
-                    for (int i = x; i <= x + 3 && i<max_lenght-1; i++)
+                    if (x + 1 >= max_lenght) return true;
+                    for (int i = x; i <= x + 1 ; i++)
                     {
                         if (quads[i, y].GetIsBarrier()) barrierDetected = true;
-                        
+
                     }
                     break;
                 case Directions.Top:
-                    if (y - 3 <0) return true;
-                    for (int i = y; i >= y - 3 && i>=0; i--)
+                    if (y - 1 <0) return true;
+                    for (int i = y; i >= y - 1 ; i--)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
                     break;
                 case Directions.Bottom:
-                    if (y + 3 >= max_lenght) return true;
-                    for (int i = y; i <= y - 3 && i<max_lenght-1; i++)
+                    if (y + 1 >= max_lenght) return true;
+                    for (int i = y; i <= y + 1 ; i++)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
@@ -222,6 +228,7 @@ namespace ProLab2_1.Classes
                     y++;
                     break;
             }
+            quads[x,y].setIsVisited(true);
             CurrentLocation = new Location(x,y);
         }
 

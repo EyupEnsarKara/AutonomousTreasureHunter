@@ -42,7 +42,7 @@ namespace ProLab2_1
 
         public static void addBarriers(Map map)
         {
-            for (int i = 0;i<2;i++)
+            for (int i = 0;i<1;i++)
             {
                 map.AddBarrier(new summerBee());
                 map.AddBarrier(new summerBird());
