@@ -159,28 +159,37 @@ namespace ProLab2_1.Classes
         {
             int x = CurrentLocation.getX(),y = CurrentLocation.getY();
             bool barrierDetected = false;
+            int max_lenght = quads.GetLength(0);
+            
             switch(direction)
             {
                 case Directions.Left:
-                    for(int i =x;i>=x-3;i--)
+                    if (x - 3 < 0) return true;
+                    for (int i =x;i>=x-3 && i>=0;i--)
                     {
-                        if (quads[i,y].GetIsBarrier()) barrierDetected=true;
+                        if (quads[i,y].GetIsBarrier()) barrierDetected = true;
+                        
                     }
+                    
                     break;
                 case Directions.Right:
-                    for (int i = x; i <= x + 3; i++)
+                    if (x + 3 >= max_lenght) return true;
+                    for (int i = x; i <= x + 3 && i<max_lenght-1; i++)
                     {
                         if (quads[i, y].GetIsBarrier()) barrierDetected = true;
+                        
                     }
                     break;
                 case Directions.Top:
-                    for (int i = y; i >= y - 3; i--)
+                    if (y - 3 <0) return true;
+                    for (int i = y; i >= y - 3 && i>=0; i--)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
                     break;
                 case Directions.Bottom:
-                    for (int i = y; i <= y - 3; i++)
+                    if (y + 3 >= max_lenght) return true;
+                    for (int i = y; i <= y - 3 && i<max_lenght-1; i++)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
