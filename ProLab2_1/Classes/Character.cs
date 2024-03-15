@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes
 {
-    enum Directions
+    public enum Directions
     {
         Left,Right,
         Top,Bottom
@@ -82,17 +82,32 @@ namespace ProLab2_1.Classes
             return Collected_Chests;
         }
 
-        private int Direction;
+        Directions tempDirect = Directions.Right;
+
 
         public void automaticallyMove(Quad[,] quads)
         {
             int x = CurrentLocation.getX(),y = CurrentLocation.getY();
-            getDirection(quads, x, y);
+
+            if (!checkLocation(tempDirect, quads))
+            {
+                move(tempDirect, quads);
+                Console.WriteLine("mOOve");
+
+            }    
+            else
+            {
+                
+                tempDirect = getDirection(quads);
+                Console.WriteLine(tempDirect);
+
+            }
+                
             updateFogRemoveArea(quads);
 
             
         }
-        public int getDirection(Quad[,] quads,int x,int y)
+        public Directions getDirection(Quad[,] quads)
         {
             int L=-1, R=-1, T=-1, B=-1;
 
@@ -120,34 +135,25 @@ namespace ProLab2_1.Classes
                 case 1:
                     if (tempDirect != L)
                         break;
-                    move(tempDirect);
-                    Direction = tempDirect;
-                    break;
+                    return Directions.Left;
                 case 2:
                     if (tempDirect != R)
                         break;
-                    move(tempDirect);
-                    Direction = tempDirect;
-                    break;
+                    return Directions.Right;
                 case 3:
                     if (tempDirect != T)
                         break;
-                    move(tempDirect);
-                    Direction = tempDirect;
-                    break;
+                    return Directions.Top;
                 case 4:
                     if (tempDirect != B)
                         break;
-                    move(tempDirect);
-                    Direction = tempDirect;
+                    return Directions.Bottom;
 
-                    break;
             }
-            
 
 
+            return Directions.Right;
 
-            return 0;
         }
         private bool checkLocation(Directions direction, Quad[,] quads)
         {
@@ -187,23 +193,23 @@ namespace ProLab2_1.Classes
 
 
 
-        private void move(int direction, Quad[,] quads)
+        private void move(Directions direction, Quad[,] quads)
         {
             int x=CurrentLocation.getX(),y=CurrentLocation.getY();
             AddVisitedLocation();
             
             switch(direction)
             {
-                case 1:
+                case Directions.Left:
                     x--;
                     break;
-                case 2:
+                case Directions.Right:
                     x++;
                     break;
-                case 3:
+                case Directions.Top:
                     y--;
                     break;
-                case 4:
+                case Directions.Bottom:
                     y++;
                     break;
             }
