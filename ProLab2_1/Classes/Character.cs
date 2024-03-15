@@ -94,14 +94,12 @@ namespace ProLab2_1.Classes
             if (!checkLocation(tempDirect, quads))
             {
                 move(tempDirect, quads);
-                Console.WriteLine("mOOve");
 
             }    
             else
             {
                 
                 tempDirect = getDirection(quads);
-                Console.WriteLine(tempDirect);
 
             }
                 
@@ -157,15 +155,16 @@ namespace ProLab2_1.Classes
                     break;
 
             }
-            checkChest(quads);
+            Location location = new Location(0, 0);
             if (checkChest(quads) != null)
             {
-                moveTowardsChest(checkChest(quads), quads);
+                location = checkChest(quads);
+
+                Console.WriteLine("X:" + location.getX() + " Y:" + location.getY());
             }
 
-                
-            Console.WriteLine("L:"+L+" R:"+R+" T:"+T+" B:"+B);
-            if ((L == -1) && (R == -1) && (T == -1) )
+          //  Console.WriteLine("L:" + L + " R:" + R + " T:" + T + " B:" + B);
+            if ((L == -1) && (R == -1) && (T == -1))
                 return getLastDirection();
             else if ((L == -1) && (R == -1) &&  (B == -1))
                 return getLastDirection();
@@ -214,12 +213,14 @@ namespace ProLab2_1.Classes
 
                 for (int j = (y + 3); j >= (y - 3); j--)
                 {
+           
+
                     if (i < 0 || j < 0 || i >= width || j >= height) continue;
                     if (quads[i, j].getCollectible())
                     {
                         //return locaiton of the chest
                         return new Location(i, j);
-         
+                        
                     }
                 }
             }

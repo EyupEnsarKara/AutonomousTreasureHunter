@@ -235,8 +235,19 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-           character.automaticallyMove(quads);
-   
+            //check chest
+            Location location = new Location(0, 0);
+            if (character.checkChest(quads) != null)
+            {
+                location = character.checkChest(quads);
+
+                Console.WriteLine("X:" + location.getX() + " Y:" + location.getY());
+            }
+
+
+            //   character.automaticallyMove(quads);
+
+
 
 
 
