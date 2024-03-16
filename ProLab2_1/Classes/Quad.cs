@@ -74,8 +74,8 @@ namespace ProLab2_1.Classes
         {
             this.isCollectible = false;
         }
-        public void setIsVisited(bool isvisited)
-        { this.isVisited = isvisited; }
+        public void setIsVisited()
+        { this.isVisited = true; }
         public bool getIsVisited()
         {
             return this.isVisited;

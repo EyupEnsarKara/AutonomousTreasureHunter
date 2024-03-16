@@ -92,14 +92,12 @@ namespace ProLab2_1.Classes
             if (!checkLocation(tempDirect, quads))
             {
                 move(tempDirect, quads);
-                Console.WriteLine("mOOve");
 
             }    
             else
             {
                 
                 tempDirect = getDirection(quads);
-                Console.WriteLine(tempDirect);
 
             }
                 
@@ -107,54 +105,123 @@ namespace ProLab2_1.Classes
 
             
         }
+        class element
+        {
+            public Directions direction;
+            public int priority;
+        }
         public Directions getDirection(Quad[,] quads)
         {
             int L=-1, R=-1, T=-1, B=-1;
+            element[] directions = new element[4];
+            //elementlerin oluşumu
+            for (int i = 0; i < 4; i++) directions[i] = new element();
+
 
             if(!checkLocation(Directions.Left,quads))
             {
-                L = 1;
+                directions[0].direction = Directions.Left;
+                directions[0].priority = 2;
+            }
+            else
+            {
+                directions[0].direction = Directions.Left;
+                directions[0].priority = 0;
             }
             if (!checkLocation(Directions.Right, quads))
             {
-                R = 2;
+                directions[1].direction = Directions.Right;
+                directions[1].priority = 2;
             }
-            if (!checkLocation(Directions.Top, quads))
+            else
             {
-                T = 3;
+                directions[1].direction = Directions.Right;
+                directions[1].priority = 0;
             }
-            if (!checkLocation(Directions.Bottom, quads))
+            if (!checkLocation(Directions.Right, quads))
             {
-                B = 4;
+                directions[2].direction = Directions.Top;
+                directions[2].priority = 2;
             }
-
-            Random random = new Random();
-            int tempDirect = random.Next(1, 5);
-            switch(tempDirect)
+            else
             {
-                case 1:
-                    if (tempDirect != L)
-                        break;
-                    return Directions.Left;
-                case 2:
-                    if (tempDirect != R)
-                        break;
-                    return Directions.Right;
-                case 3:
-                    if (tempDirect != T)
-                        break;
-                    return Directions.Top;
-                case 4:
-                    if (tempDirect != B)
-                        break;
-                    return Directions.Bottom;
+                directions[2].direction = Directions.Top;
+                directions[2].priority = 0;
+            }
+            if (!checkLocation(Directions.Right, quads))
+            {
+                directions[3].direction = Directions.Bottom;
+                directions[3].priority = 2;
+            }
+            else
+            {
+                directions[3].direction = Directions.Bottom;
+                directions[3].priority = 0;
+            }
 
+            //şimdi de ziyaret edilen yönlerin önceliğini düşelim
+
+            foreach(element element in directions)
+            {
+                Console.WriteLine("bura girdi");
+                if (element.priority != 0)
+                if(checkIsVisited(element.direction,quads))
+                    {
+                        element.priority = 1;
+                        Console.WriteLine("ziyaret edilen işaretlendi");
+                    }
+                
+                
+            }
+            
+
+            //şimdi de duruma göre en uygununu göndermesini sağlamak lazım demi :)
+
+            //bu arkadaş boş yönler için
+            foreach (element element in directions)
+            {
+                if (element.priority > 1) return element.direction;
+            }
+            //buda ziyaret edilenler için
+            foreach (element element in directions)
+            {
+                if (element.priority > 0) return element.direction;
             }
 
 
-            return Directions.Right;
+
+            //buda boş kalmaması için :D
+            return Directions.Bottom;
+
+
+
 
         }
+        private bool checkIsVisited(Directions direction, Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(),y = CurrentLocation.getY();
+
+            switch (direction)
+            {
+                case Directions.Left:
+                    return quads[x - 1, y].getIsVisited();
+                    
+                case Directions.Right:
+                    return quads[x + 1, y].getIsVisited();
+                   
+                case Directions.Top:
+                    return quads[x, y - 1].getIsVisited();
+                 
+                case Directions.Bottom:
+                    return quads[x, y + 1].getIsVisited();
+            }
+            return false;
+        }
+
+
+
+
+
         private bool checkLocation(Directions direction, Quad[,] quads)
         {
             int x = CurrentLocation.getX(),y = CurrentLocation.getY();
@@ -164,8 +231,8 @@ namespace ProLab2_1.Classes
             switch(direction)
             {
                 case Directions.Left:
-                    if (x - 3 < 0) return true;
-                    for (int i =x;i>=x-3 && i>=0;i--)
+                    if (x - 1 < 0) return true;
+                    for (int i =x;i>=x-1 && i>=0;i--)
                     {
                         if (quads[i,y].GetIsBarrier()) barrierDetected = true;
                         
@@ -173,23 +240,23 @@ namespace ProLab2_1.Classes
                     
                     break;
                 case Directions.Right:
-                    if (x + 3 >= max_lenght) return true;
-                    for (int i = x; i <= x + 3 && i<max_lenght-1; i++)
+                    if (x + 1 >= max_lenght) return true;
+                    for (int i = x; i <= x + 1 && i<max_lenght-1; i++)
                     {
                         if (quads[i, y].GetIsBarrier()) barrierDetected = true;
                         
                     }
                     break;
                 case Directions.Top:
-                    if (y - 3 <0) return true;
-                    for (int i = y; i >= y - 3 && i>=0; i--)
+                    if (y - 1 <0) return true;
+                    for (int i = y; i >= y - 1 && i>=0; i--)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
                     break;
                 case Directions.Bottom:
-                    if (y + 3 >= max_lenght) return true;
-                    for (int i = y; i <= y - 3 && i<max_lenght-1; i++)
+                    if (y + 1 >= max_lenght) return true;
+                    for (int i = y; i <= y + 1 && i<max_lenght-1; i++)
                     {
                         if (quads[x, i].GetIsBarrier()) barrierDetected = true;
                     }
@@ -222,10 +289,32 @@ namespace ProLab2_1.Classes
                     y++;
                     break;
             }
+            quads[x, y].setIsVisited();
             CurrentLocation = new Location(x,y);
         }
 
 
+
+        private Directions getLastDirection()
+        {
+            Location lastLocation = VisitedLocations[VisitedLocations.Count-1];
+            int x = lastLocation.getX(),y = lastLocation.getY();
+            int current_x = CurrentLocation.getX(),current_y = CurrentLocation.getY();
+
+            if(current_x == x)
+            {
+                if(current_y < y) return Directions.Top;
+                else return Directions.Bottom;
+            }
+            else
+            {
+                if (current_x < x) return Directions.Right;
+                else return Directions.Left;
+            }
+
+            
+        }
+        
 
 
     }
