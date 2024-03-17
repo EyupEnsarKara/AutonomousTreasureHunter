@@ -9,15 +9,18 @@ namespace ProLab2_1.Classes.Barriers
 {
     public class Barrier
     {
+        private static int barriersCount = 0;
         private int width;
         private  int height;
         private int id;
         private Location location;
         private Image image;
         
-        public Barrier(int id,Image image)
+        public Barrier(Image image)
         {
             this.image = image;
+            this.id = barriersCount;
+            barriersCount++;
         }
         public void SetWidth(int width)
         {

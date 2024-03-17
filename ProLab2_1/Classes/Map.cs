@@ -25,7 +25,7 @@ namespace ProLab2_1.Classes
         private List<IBarrier> barriers = new List<IBarrier>();
         private Character character;
         private List<Chest> chests = new List<Chest>();
-
+        private string foundList = string.Empty;
         public void AddBarrier(IBarrier barrier)
         {
             barriers.Add(barrier);
@@ -283,6 +283,12 @@ namespace ProLab2_1.Classes
                 }
             }
             return array;
+        }
+        public string getFoundList()
+        { return foundList; }
+        public void addLineToFoundList(string str)
+        {
+            foundList=foundList+"\n"+str;
         }
 
 

@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Tree:Barrier,IBarrier
     {
-        private static int treeId = 1;
 
-        public Tree(Image image) : base(treeId, image)
+        public Tree(Image image) : base(image)
         {
-            treeId++;
             SetBarrierSize();
            
           

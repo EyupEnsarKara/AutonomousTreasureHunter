@@ -34,6 +34,7 @@
             this.MoveObjectTimer = new System.Windows.Forms.Timer(this.components);
             this.lbl_counMovements = new System.Windows.Forms.Label();
             this.lbl_chestCounts = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,11 +79,22 @@
             this.lbl_chestCounts.TabIndex = 2;
             this.lbl_chestCounts.Text = "Kalan sandık sayısı :";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Enabled = false;
+            this.richTextBox1.Location = new System.Drawing.Point(770, 110);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(378, 72);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // MapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 749);
+            this.ClientSize = new System.Drawing.Size(1160, 749);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.lbl_chestCounts);
             this.Controls.Add(this.lbl_counMovements);
             this.Controls.Add(this.GameMap);
@@ -104,5 +116,6 @@
         private System.Windows.Forms.Timer MoveObjectTimer;
         private System.Windows.Forms.Label lbl_counMovements;
         private System.Windows.Forms.Label lbl_chestCounts;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Wall:Barrier,IBarrier
     {
-        private static int wallId = 1;
 
-        public Wall(Image image):base(wallId, image)
+        public Wall(Image image):base(image)
         {
-            wallId++;
             SetBarrierSize();
 
         }

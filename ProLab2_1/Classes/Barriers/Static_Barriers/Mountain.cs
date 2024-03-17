@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Mountain:Barrier,IBarrier
     {   
-        private static int mountainId = 1;
 
-        public Mountain(Image image):base(mountainId,image)
+        public Mountain(Image image):base(image)
         {
-            mountainId++;
             SetBarrierSize();
         }
 

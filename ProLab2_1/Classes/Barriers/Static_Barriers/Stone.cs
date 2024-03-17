@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Stone:Barrier,IBarrier
     {
-        private static int stoneId = 1;
 
-        public Stone(Image image):base(stoneId,image)
+        public Stone(Image image):base(image)
         {
-            stoneId++;
             SetBarrierSize();
         }
 

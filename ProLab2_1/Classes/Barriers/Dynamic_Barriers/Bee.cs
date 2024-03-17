@@ -14,11 +14,10 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         {
             Right=0, Left=1
         }
-        private static int beeId = 1;
         private bool isTurn = false;
-        public Bee(): base(beeId,Resources.Winter_Bee,"Horizontial", 3)
+        public Bee(): base(Resources.Winter_Bee,"Horizontial", 3)
         {
-            beeId++;
+
             SetBarrierSize();
            
         }
