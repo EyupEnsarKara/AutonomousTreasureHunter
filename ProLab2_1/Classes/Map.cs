@@ -119,15 +119,20 @@ namespace ProLab2_1.Classes
 
                 }
              
-
+                bool testTheme = false;
                 do
                 {
                     location = generateRandomLocation(mapSize, mapSize, random);
                     x = location.getX();
                     y = location.getY();
-                } while (!testLocation(x, y, width_, height_));
+                    if(barrier is DynamicBarrier) testTheme = true;
+                    if (barrier.getTheme()=="summer"&& x>=(mapSize/2)) testTheme = true;
+                    if(barrier.getTheme()=="winter"&& x<(mapSize/2)) testTheme = true;
+                
 
 
+                } while (!testLocation(x, y, width_, height_)||!testTheme);
+                testTheme = false;
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
@@ -137,15 +142,12 @@ namespace ProLab2_1.Classes
                     }
                 }
 
-                if(x<quads.Length/2 && barrier.getTheme()=="summer")
-                {
-                    Console.WriteLine("çalıştı");
-                    barriers.SetValue(barrier.changeObjectTheme(), count);
-                }
                 barrier.setLocation(new Location(x,y));
                 count++;
                 
+                
             }
+            
             Console.WriteLine("Generated Barriers");
             generateChestLocations(random);
 
@@ -156,6 +158,30 @@ namespace ProLab2_1.Classes
             }
             character=new Character(1, "Steve", playerLocation);
             Console.WriteLine("Generated player location");
+            optimizeMap();
+        }
+        public void optimizeMap()
+        {
+            for(int i = 0;i<barriers.Count;i++)
+            {
+                IBarrier barrier = barriers[i];
+                if (barrier.getTheme() == "summer" && barrier.getLocation().getX() < mapSize / 2)
+                {
+                    barriers.RemoveAt(i);
+                    IBarrier barrier1 = barrier.changeObjectTheme();
+                    barrier1.setLocation(barrier.getLocation());
+                    barriers.Add(barrier1);
+                    i = 0;
+                }
+                else if (barrier.getTheme() == "winter" && barrier.getLocation().getX() > mapSize / 2)
+                {
+                    barriers.RemoveAt(i);
+                    IBarrier barrier1 = barrier.changeObjectTheme();
+                    barrier1.setLocation(barrier.getLocation());
+                    barriers.Add(barrier1);
+                    i = 0;
+                }
+            }
         }
 
         public void generateChestLocations(Random random)
@@ -180,6 +206,7 @@ namespace ProLab2_1.Classes
                     location = generateRandomLocation(mapSize, mapSize,random);
                     x = location.getX();
                     y = location.getY();
+                   
                 } while (!testLocation(x, y, width_, height_));
 
                 for (int i = x; i < x + width_; i++)
