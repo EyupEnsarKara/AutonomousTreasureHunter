@@ -249,10 +249,41 @@ namespace ProLab2_1.Classes
                 }
             }   
             chests.Remove(chest);
-
-
         }
-
+        public int[,] ConvertToIntArray()
+        {
+            int[,] array= new int[mapSize,mapSize];
+            for(int i = 0; i <mapSize; i++)
+            {
+                for (int j = 0; j <mapSize; j++)
+                {
+                    if (quads[i,j].GetIsBarrier()) array[i,j] = 1;
+                    else array[i,j] = 0;
+                }
+            }
+            return array;
+        }
+        public int getMapSize()
+        {
+            return mapSize;
+        }
+        public int[,] ConvertToVisibiltyIntArray(int size,int startX,int StartY)
+        {
+            int convertsize= (2*size)+1;
+            int[,] array = new int[convertsize, convertsize];
+            int innerX=0, innerY=0;
+            for (int i = Math.Max(0, startX - size); i < Math.Min(startX + size,mapSize); i++,innerX++)
+            {
+                innerY = 0;
+                for (int j = Math.Max(0, StartY - size); j < Math.Min(StartY + size, mapSize); j++,innerY++)
+                {
+                    Console.WriteLine("i: "+i+"   j:"+j+"    size:"+size+"   innerX"+innerX+"   innerY"+innerY);
+                    if (quads[i, j].GetIsBarrier()) array[innerX, innerY] = 1;
+                    else array[innerX,innerY] = 0;
+                }
+            }
+            return array;
+        }
 
 
     }
