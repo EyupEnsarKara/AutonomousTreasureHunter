@@ -119,20 +119,15 @@ namespace ProLab2_1.Classes
 
                 }
              
-                bool testTheme = false;
                 do
                 {
                     location = generateRandomLocation(mapSize, mapSize, random);
                     x = location.getX();
                     y = location.getY();
-                    if(barrier is DynamicBarrier) testTheme = true;
-                    if (barrier.getTheme()=="summer"&& x>=(mapSize/2)) testTheme = true;
-                    if(barrier.getTheme()=="winter"&& x<(mapSize/2)) testTheme = true;
                 
 
 
-                } while (!testLocation(x, y, width_, height_)||!testTheme);
-                testTheme = false;
+                } while (!testLocation(x, y, width_, height_));
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
