@@ -56,6 +56,7 @@
     <Compile Include="Classes\Barriers\Static_Barriers\Wall.cs" />
     <Compile Include="Classes\Character.cs" />
     <Compile Include="Classes\Chest.cs" />
+    <Compile Include="Classes\Graph.cs" />
     <Compile Include="Classes\Location.cs" />
     <Compile Include="Classes\Map.cs" />
     <Compile Include="Classes\Quad.cs" />

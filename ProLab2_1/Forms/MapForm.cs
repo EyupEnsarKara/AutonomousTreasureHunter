@@ -256,7 +256,7 @@ namespace ProLab2_1.Forms
             List<List<int>> graph = new List<List<int>>();
 
             // Karakterin etrafındaki bölgeyi oluşturun (örneğin, 5x5 bir alan)
-            int regionSize = 5;
+            int regionSize = 50;
             int startX = Math.Max(0, characterX - regionSize / 2);
             int startY = Math.Max(0, characterY - regionSize / 2);
             int endX = Math.Min(mapSize - 1, characterX + regionSize / 2);
