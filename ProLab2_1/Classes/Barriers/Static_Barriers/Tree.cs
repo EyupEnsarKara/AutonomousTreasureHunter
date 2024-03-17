@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Tree:Barrier,IBarrier
     {
 
-        public Tree(Image image) : base(image,"Tree")
+        public Tree(Image image,string theme) : base(image,"Tree",theme)
         {
             SetBarrierSize();
            
@@ -40,13 +40,13 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class summerTree : Tree
     {
-        public summerTree() : base(Resources.Summer_Tree)
+        public summerTree() : base(Resources.Summer_Tree, "summer")
         {
         }
     }
     internal class winterTree : Tree
     {
-        public winterTree() : base(Resources.Winter_Tree)
+        public winterTree() : base(Resources.Winter_Tree,"winter")
         {
         }
     }

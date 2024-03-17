@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Wall:Barrier,IBarrier
     {
 
-        public Wall(Image image):base(image,"Wall")
+        public Wall(Image image,string theme):base(image,"Wall", theme)
         {
             SetBarrierSize();
 
@@ -33,14 +33,14 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class summerWall:Wall
     {
-        public summerWall() : base(Resources.Winter_Rock)
+        public summerWall() : base(Resources.Winter_Rock, "summer")
         {
             
         }
     }
         internal class winterWall:Wall
             {
-                public winterWall() : base(Resources.Winter_Rock)
+                public winterWall() : base(Resources.Winter_Rock,"winter")
                 {
             
                 }

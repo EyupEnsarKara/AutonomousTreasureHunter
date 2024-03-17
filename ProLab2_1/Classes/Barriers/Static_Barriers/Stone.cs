@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Stone:Barrier,IBarrier
     {
 
-        public Stone(Image image):base(image,"Stone")
+        public Stone(Image image,string theme):base(image,"Stone",theme)
         {
             SetBarrierSize();
         }
@@ -39,13 +39,13 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     //add summer and winter classes
     internal class summerStone : Stone
     {
-        public summerStone() : base(Resources.Summer_Stone)
+        public summerStone() : base(Resources.Summer_Stone, "summer")
         {
         }
     }
     internal class winterStone : Stone
     {
-        public winterStone() : base(Resources.Summer_Stone)
+        public winterStone() : base(Resources.Summer_Stone, "winter")
         {
         }
     }

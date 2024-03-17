@@ -19,6 +19,6 @@ namespace ProLab2_1.Classes.Barriers
         void setLocation(Location location);
         Image getImage();
         string getName();
-
+        string getTheme();
     }
 }

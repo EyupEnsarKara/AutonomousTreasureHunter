@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Mountain:Barrier,IBarrier
     {   
 
-        public Mountain(Image image):base(image,"Mountain")
+        public Mountain(Image image,string theme):base(image,"Mountain",theme)
         {
             SetBarrierSize();
         }
@@ -34,7 +34,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     //add summer and winter classeS
     internal class summerMountain:Mountain
     {
-        public summerMountain():base(Resources.Summer_Mountain)
+        public summerMountain():base(Resources.Summer_Mountain,"summer")
         {
            
         }
@@ -42,7 +42,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class winterMountain:Mountain
     {
-        public winterMountain():base(Resources.Winter_Mountain)
+        public winterMountain():base(Resources.Winter_Mountain,"winter")
         {
             
         }
