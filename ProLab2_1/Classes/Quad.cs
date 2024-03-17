@@ -92,6 +92,10 @@ namespace ProLab2_1.Classes
         {
             return barrier.getName();
         }
+        public void setFog()
+        {
+            this.isVisible = false;
+        }
 
 
     }

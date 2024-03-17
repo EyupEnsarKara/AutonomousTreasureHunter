@@ -284,6 +284,16 @@ namespace ProLab2_1.Classes
                 }
             }
         }
+        public void makeFoggedAllArea()
+        {
+            for (int i = 0; i < quads.GetLength(0); i++)
+            {
+                for (int j = 0; j < quads.GetLength(1); j++)
+                {
+                    quads[i, j].setFog();
+                }
+            }
+        }
 
         public List<IBarrier> GetBarriers()
         {

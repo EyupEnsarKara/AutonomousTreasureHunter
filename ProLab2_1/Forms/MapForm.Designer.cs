@@ -35,6 +35,8 @@
             this.lbl_counMovements = new System.Windows.Forms.Label();
             this.lbl_chestCounts = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btn_generateMap = new System.Windows.Forms.Button();
+            this.btn_start = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,15 +87,37 @@
             this.richTextBox1.Location = new System.Drawing.Point(770, 110);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(378, 72);
+            this.richTextBox1.Size = new System.Drawing.Size(378, 210);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
+            // 
+            // btn_generateMap
+            // 
+            this.btn_generateMap.Location = new System.Drawing.Point(852, 326);
+            this.btn_generateMap.Name = "btn_generateMap";
+            this.btn_generateMap.Size = new System.Drawing.Size(209, 58);
+            this.btn_generateMap.TabIndex = 4;
+            this.btn_generateMap.Text = "Harita Oluştur";
+            this.btn_generateMap.UseVisualStyleBackColor = true;
+            this.btn_generateMap.Click += new System.EventHandler(this.GenerateMapButtonClicked);
+            // 
+            // btn_start
+            // 
+            this.btn_start.Location = new System.Drawing.Point(852, 390);
+            this.btn_start.Name = "btn_start";
+            this.btn_start.Size = new System.Drawing.Size(209, 58);
+            this.btn_start.TabIndex = 5;
+            this.btn_start.Text = "Başlat";
+            this.btn_start.UseVisualStyleBackColor = true;
+            this.btn_start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
             // MapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 749);
+            this.Controls.Add(this.btn_start);
+            this.Controls.Add(this.btn_generateMap);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.lbl_chestCounts);
             this.Controls.Add(this.lbl_counMovements);
@@ -117,5 +141,7 @@
         private System.Windows.Forms.Label lbl_counMovements;
         private System.Windows.Forms.Label lbl_chestCounts;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button btn_generateMap;
+        private System.Windows.Forms.Button btn_start;
     }
 }

@@ -31,9 +31,7 @@ namespace ProLab2_1.Forms
             this.Text = "Map";
             AddPictureBox(GameMap);
             quadSize = (float)GameMap.Width / MapSize;
-            GameEvent.Start();
-            MoveObjectTimer.Start();
-            character.updateFogRemoveArea(quads);
+            Program.map.clearFoggedAllArea();
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
@@ -122,7 +120,7 @@ namespace ProLab2_1.Forms
                 {
                     if (!quads[i,j].getVisible())
                     {
-                        g.FillRectangle(Brushes.White, i * quadSize, j * quadSize, quadSize, quadSize);
+                        g.FillRectangle(Brushes.Azure, i * quadSize, j * quadSize, quadSize, quadSize);
                     }
                 }
             }
@@ -152,6 +150,8 @@ namespace ProLab2_1.Forms
                 GameEvent.Stop();
                 MoveObjectTimer.Stop();
                 richTextBox1.Enabled = true;
+                btn_start.Enabled = true;
+                btn_generateMap.Enabled = true;
             }
 
         }
@@ -266,11 +266,26 @@ namespace ProLab2_1.Forms
 
         }
 
+        private void GenerateMapButtonClicked(object sender, EventArgs e)
+        {
+            Program.map.generateEmptyMap();
+            Program.map.generateRandomMap();
 
+            //for reset map
+            Program.map.clearFoggedAllArea();
+            character = Program.map.GetCharacter();
+            
+            GameMap.Invalidate();
+        }
 
-
-
-
-
+        private void btn_Start_Click(object sender, EventArgs e)
+        {
+            Program.map.makeFoggedAllArea();
+            GameEvent.Start();
+            MoveObjectTimer.Start();
+            character.updateFogRemoveArea(quads);
+            btn_generateMap.Enabled = false;
+            btn_start.Enabled = false;
+        }
     }
 }
