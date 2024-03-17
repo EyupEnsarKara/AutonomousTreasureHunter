@@ -149,7 +149,7 @@ namespace ProLab2_1.Forms
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            
+            Location previousLocation = character.GetCurrentLocation();
             int x = character.GetCurrentLocation().getX();
             int y = character.GetCurrentLocation().getY();
             switch (e.KeyCode)
@@ -185,9 +185,14 @@ namespace ProLab2_1.Forms
                 case Keys.Enter:
                     Program.map.clearFoggedAllArea();
                     break;
+                case Keys.I:
+                    List<List<int>> graph = initGraph(MapSize,Program.map.GetBarriers(),quads,character.GetCurrentLocation().getX(),character.GetCurrentLocation().getY());
+                    break;
                     
             }
+            
             character.updateFogRemoveArea(quads);
+            
         }
 
         private void GameTimerTick(object sender, EventArgs e)
@@ -229,10 +234,64 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-
+            character.automaticallyMove(quads);
             
 
 
         }
+
+
+
+        private void drawLineBetweenQuads(Graphics g,Location p1,Location p2,Brush brush)
+        {
+            Pen pen = new Pen(brush);
+
+
+            g.DrawLine(pen, p1.getX() + quadSize / 2, p1.getY() + quadSize / 2, p2.getX() + quadSize / 2, p2.getX() + quadSize / 2);
+            
+        }
+
+        public List<List<int>> initGraph(int mapSize, List<IBarrier> barriers, Quad[,] quads, int characterX, int characterY)
+        {
+            List<List<int>> graph = new List<List<int>>();
+
+            // Karakterin etrafındaki bölgeyi oluşturun (örneğin, 5x5 bir alan)
+            int regionSize = 50;
+            int startX = Math.Max(0, characterX - regionSize / 2);
+            int startY = Math.Max(0, characterY - regionSize / 2);
+            int endX = Math.Min(mapSize - 1, characterX + regionSize / 2);
+            int endY = Math.Min(mapSize - 1, characterY + regionSize / 2);
+
+            // Sadece bu bölgedeki düğümleri ve kenarları oluşturun
+            for (int i = startX; i <= endX; i++)
+            {
+                List<int> row = new List<int>();
+                for (int j = startY; j <= endY; j++)
+                {
+                    if (quads[i, j].getIsFoggy())
+                    {
+                        row.Add(-2); // Sisli alan için -2 değeri kullanılabilir
+                    }
+                    else if (quads[i, j].GetIsBarrier())
+                    {
+                        row.Add(-1); // Engeller için -1 değeri kullanılabilir
+                    }
+                    else
+                    {
+                        row.Add(0); // Başlangıçta hiçbir kenar yok
+                    }
+                }
+                graph.Add(row);
+            }
+            Console.WriteLine("oluşturuldu");
+            // Diğer işlemler...
+
+            return graph;
+        }
+
+
+
+
+
     }
 }
