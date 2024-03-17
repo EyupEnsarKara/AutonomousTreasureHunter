@@ -32,6 +32,8 @@
             this.GameMap = new System.Windows.Forms.PictureBox();
             this.GameEvent = new System.Windows.Forms.Timer(this.components);
             this.MoveObjectTimer = new System.Windows.Forms.Timer(this.components);
+            this.lbl_counMovements = new System.Windows.Forms.Label();
+            this.lbl_chestCounts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +43,7 @@
             this.GameMap.Location = new System.Drawing.Point(9, 10);
             this.GameMap.Margin = new System.Windows.Forms.Padding(2);
             this.GameMap.Name = "GameMap";
-            this.GameMap.Size = new System.Drawing.Size(515, 310);
+            this.GameMap.Size = new System.Drawing.Size(751, 751);
             this.GameMap.TabIndex = 0;
             this.GameMap.TabStop = false;
             this.GameMap.Paint += new System.Windows.Forms.PaintEventHandler(this.GameMap_Paint);
@@ -56,11 +58,33 @@
             this.MoveObjectTimer.Interval = 50;
             this.MoveObjectTimer.Tick += new System.EventHandler(this.MoveObjectEvent);
             // 
+            // lbl_counMovements
+            // 
+            this.lbl_counMovements.AutoSize = true;
+            this.lbl_counMovements.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_counMovements.Location = new System.Drawing.Point(765, 10);
+            this.lbl_counMovements.Name = "lbl_counMovements";
+            this.lbl_counMovements.Size = new System.Drawing.Size(163, 29);
+            this.lbl_counMovements.TabIndex = 1;
+            this.lbl_counMovements.Text = "Adım Sayısı :";
+            // 
+            // lbl_chestCounts
+            // 
+            this.lbl_chestCounts.AutoSize = true;
+            this.lbl_chestCounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_chestCounts.Location = new System.Drawing.Point(765, 57);
+            this.lbl_chestCounts.Name = "lbl_chestCounts";
+            this.lbl_chestCounts.Size = new System.Drawing.Size(249, 29);
+            this.lbl_chestCounts.TabIndex = 2;
+            this.lbl_chestCounts.Text = "Kalan sandık sayısı :";
+            // 
             // MapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 329);
+            this.ClientSize = new System.Drawing.Size(1062, 749);
+            this.Controls.Add(this.lbl_chestCounts);
+            this.Controls.Add(this.lbl_counMovements);
             this.Controls.Add(this.GameMap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -69,6 +93,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -77,5 +102,7 @@
         private System.Windows.Forms.PictureBox GameMap;
         private System.Windows.Forms.Timer GameEvent;
         private System.Windows.Forms.Timer MoveObjectTimer;
+        private System.Windows.Forms.Label lbl_counMovements;
+        private System.Windows.Forms.Label lbl_chestCounts;
     }
 }

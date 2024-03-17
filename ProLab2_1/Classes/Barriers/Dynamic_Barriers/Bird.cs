@@ -15,7 +15,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
         private static int birdId = 1;
         
-        public Bird(Image image) : base(birdId,image,"Vertical",5)
+        public Bird() : base(birdId,Resources.Summer_Bee,"Vertical",5)
         {
             birdId++;
             SetBarrierSize();
@@ -72,21 +72,6 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
 
             this.setLocation(new Location(x, y));
-
-        }
-    }
-    internal class summerBird : Bird
-    {
-        public summerBird() : base(Resources.Bird)
-        {
-
-        }
-
-    }
-    internal class winterBird : Bird
-    {
-        public winterBird() : base(Resources.Bird)
-        {
 
         }
     }

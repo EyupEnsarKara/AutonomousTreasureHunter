@@ -22,6 +22,7 @@ namespace ProLab2_1.Forms
         private Quad[,] quads = Program.map.GetQuads();
         private float quadSize = 0;
         private Character character = Program.map.GetCharacter();
+        private int speedOfAutomaticPath = 1;
         public MapForm(int MapSize)
         {
             this.MapSize = MapSize;
@@ -29,7 +30,6 @@ namespace ProLab2_1.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Map";
             AddPictureBox(GameMap);
-            this.Size = new Size(751+16, 751+42);
             quadSize = (float)GameMap.Width / MapSize;
             GameEvent.Start();
             MoveObjectTimer.Start();
@@ -44,7 +44,8 @@ namespace ProLab2_1.Forms
 
         private void GameMap_Paint(object sender, PaintEventArgs e)
         {
-            
+            lbl_counMovements.Text = "Adım Sayısı :"+character.getCountOfMovements().ToString();
+            lbl_chestCounts.Text = "Kalan sandık sayısı :"+Program.map.GetChests().Count.ToString();
             Graphics g = e.Graphics;
 
             //mevsimlere göre renklendirme
@@ -127,7 +128,7 @@ namespace ProLab2_1.Forms
             //draw visited locations
             Location tempLocation=new Location(0,0);
             bool temp = false;
-            Pen pen1 = new Pen(Color.Red, 2);
+            Pen pen1 = new Pen(Color.Green, 2);
 
             foreach (Location location in character.GetVisitedLocations())
             {
@@ -143,7 +144,13 @@ namespace ProLab2_1.Forms
               g.DrawLine(pen1, tempLocation.getX() * quadSize + (quadSize / 2), tempLocation.getY() * quadSize + (quadSize / 2), character.GetCurrentLocation().getX() * quadSize + (quadSize / 2), character.GetCurrentLocation().getY() * quadSize + (quadSize / 2));
 
 
+            //mantıksal işlemler
 
+            if(Program.map.GetChests().Count == 0)
+            {
+                GameEvent.Stop();
+                MoveObjectTimer.Stop();
+            }
 
         }
 
@@ -185,11 +192,22 @@ namespace ProLab2_1.Forms
                 case Keys.Enter:
                     Program.map.clearFoggedAllArea();
                     break;
-                case Keys.P:
-                    MoveObjectTimer.Stop();
+                case Keys.NumPad9:
+                    speedOfAutomaticPath = 9;
                     break;
-                
-                    
+                case Keys.NumPad3:
+                    speedOfAutomaticPath = 3;
+                    break;
+                case Keys.NumPad1:
+                    speedOfAutomaticPath = 1;
+                    break;
+                case Keys.U:
+                    speedOfAutomaticPath = 30;
+                    break;
+
+
+
+
             }
             
             character.updateFogRemoveArea(quads);
@@ -235,8 +253,12 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-            character.automaticallyMove(quads);
+            for(int i=0; i < speedOfAutomaticPath; i++)
+            {
+                character.automaticallyMove(quads);
+            }
             
+
 
 
         }

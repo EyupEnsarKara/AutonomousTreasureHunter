@@ -42,16 +42,16 @@ namespace ProLab2_1
 
         public static void addBarriers(Map map)
         {
-            for (int i = 0;i<4;i++)
+            for (int i = 0;i<16;i++)
             {
-                map.AddBarrier(new summerBee());
-                map.AddBarrier(new summerBird());
+                map.AddBarrier(new Bee());
+                map.AddBarrier(new Bird());
                 map.AddBarrier(new summerMountain());
                 map.AddBarrier(new summerStone());
                 map.AddBarrier(new summerTree());
                 map.AddBarrier(new summerWall());
-                map.AddBarrier(new winterBee());
-                map.AddBarrier(new winterBird());
+                map.AddBarrier(new Bee());
+                map.AddBarrier(new Bird());
                 map.AddBarrier(new winterMountain());
                 map.AddBarrier(new winterStone());
                 map.AddBarrier(new winterTree());

@@ -16,7 +16,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         }
         private static int beeId = 1;
         private bool isTurn = false;
-        public Bee(Image image): base(beeId,image,"Horizontial", 3)
+        public Bee(): base(beeId,Resources.Winter_Bee,"Horizontial", 3)
         {
             beeId++;
             SetBarrierSize();
@@ -75,21 +75,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
     }
         
-    internal class summerBee:Bee
-    {
-        public summerBee():base(Resources.Summer_Bee)
-        {
-            
-        }
 
-    }
-    internal class winterBee:Bee
-    {
-        public winterBee():base(Resources.Winter_Bee)
-        {
-            
-        }
-    }
 
 
 
