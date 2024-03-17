@@ -185,9 +185,10 @@ namespace ProLab2_1.Forms
                 case Keys.Enter:
                     Program.map.clearFoggedAllArea();
                     break;
-                case Keys.I:
-                    List<List<int>> graph = initGraph(MapSize,Program.map.GetBarriers(),quads,character.GetCurrentLocation().getX(),character.GetCurrentLocation().getY());
+                case Keys.P:
+                    MoveObjectTimer.Stop();
                     break;
+                
                     
             }
             

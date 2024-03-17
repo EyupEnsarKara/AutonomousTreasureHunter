@@ -40,6 +40,10 @@ namespace ProLab2_1.Classes
         {
             this.Y = y;
         }
+        public Node ConvertNode()
+        {
+            return new Node(this.X,this.Y);
+        }
 
 
 

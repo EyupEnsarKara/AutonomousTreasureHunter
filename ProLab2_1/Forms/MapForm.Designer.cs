@@ -48,7 +48,7 @@
             // 
             // GameEvent
             // 
-            this.GameEvent.Interval = 1;
+            this.GameEvent.Interval = 50;
             this.GameEvent.Tick += new System.EventHandler(this.GameTimerTick);
             // 
             // MoveObjectTimer

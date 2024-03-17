@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,35 +88,71 @@ namespace ProLab2_1.Classes
         }
 
         Directions tempDirect = Directions.Right;
-        private int onceMovedSize = 0;
+
+        List<Node> path = new List<Node>();
 
         public void automaticallyMove(Quad[,] quads)
         {
             int x = CurrentLocation.getX(), y = CurrentLocation.getY();
 
             Location chest_location = checkChestLocation(quads);
-            if(chest_location !=null)
-            {
-                move(calculateDirectionToChest(chest_location), quads);
-            }
-
-            else if (!checkLocation(tempDirect, quads) && onceMovedSize < 1)
-            {
-                move(tempDirect, quads);
-                onceMovedSize++;
-
-            }
-            else
-            {
-
-                tempDirect = getDirection(quads);
-                onceMovedSize = 0;
-            }
-
             updateFogRemoveArea(quads);
 
 
+
+            if (chest_location != null)
+            {
+                Console.WriteLine("CHesaplanıyor :"+hesap);
+                path = Functions.AStar(Program.map.ConvertToIntArray(), new Node(x, y), chest_location.ConvertNode(), Program.map.getMapSize());
+                Console.WriteLine("CHesaplandı :"+hesap);
+                hesap++;
+                Location location = path[0].ConvertToLocation();
+                path.RemoveAt(0);
+            }
+            if (path!=null)
+            {
+                if (path.Count > 0)
+                {
+                    Location location = path[0].ConvertToLocation();
+                    path.RemoveAt(0);
+
+                    move(calculateDirectionToChest(location), quads);
+
+                    return;
+                }
+            }
+            
+
+            
+            
+
+                
+                getNearestFogLocation(quads);
+            if (targetLocation != null)
+            {
+                Console.WriteLine("NHesaplanıyor :" + hesap);
+
+                path = Functions.AStar(Program.map.ConvertToIntArray(), new Node(x, y), targetLocation.ConvertNode(), Program.map.getMapSize());
+                Console.WriteLine("NHesaplandı :" + hesap);
+                hesap++;
+            }
+            updateFogRemoveArea(quads);
+
+
+
+
+
         }
+
+        public void printNodeList(List<Node> path)
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                Console.WriteLine("X:" + path[i].X+"   Y:" + path[i].Y);
+            }
+        }
+        private bool writed = false;
+
         class element
         {
             public Directions direction;
@@ -243,7 +280,7 @@ namespace ProLab2_1.Classes
 
             //4 gelidği yönden devam
             //3 başlangıçta verilen normal yol
-            //2döngüdeyken kurtaracak yol
+            //2döngüdeyken kurtaracak yol(sise yönelim olarak değiştirilecek)
             //1 zaten geldiği yol
 
 
@@ -268,7 +305,40 @@ namespace ProLab2_1.Classes
             }
             return false;
         }
+        private int hesap = 0;
 
+        private Location targetLocation = null;
+
+        private int visibilty = 3; //7x7 lik alan için 
+        private void getNearestFogLocation(Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(), y=CurrentLocation.getY();
+            int mapsize = quads.GetLength(0);
+
+            for (int i = Math.Max(x-visibilty,0); i < Math.Min(x+visibilty,mapsize); i++)
+            {
+
+                for (int j = Math.Max(y - visibilty, 0); j < Math.Min(y + visibilty, mapsize); j++)
+                {
+                    if (quads[i, j].GetIsBarrier())
+                    {
+                        quads[i,j].removeFog();
+                        continue;
+                    }
+                    if(quads[i, j].getIsFoggy())
+                    {
+                        visibilty = 3;
+                        targetLocation= new Location(i, j);
+                        Console.WriteLine("Alınan nokta X:"+targetLocation.getX()+"  Y:"+targetLocation.getY()+"   visibility:"+visibilty);
+                    }
+
+                }
+            }
+            visibilty++;
+        }
+
+        
+        
 
 
 
@@ -326,7 +396,7 @@ namespace ProLab2_1.Classes
             if (y < chest_Y) return Directions.Bottom;
             if(y > chest_Y)return Directions.Top;
 
-            return Directions.Right;
+            return Directions.None;
 
         }
 
@@ -336,7 +406,7 @@ namespace ProLab2_1.Classes
         {
             int x = CurrentLocation.getX(), y = CurrentLocation.getY();
             AddVisitedLocation();
-
+            bool notEdited = false;
             switch (direction)
             {
                 case Directions.Left:
@@ -351,9 +421,15 @@ namespace ProLab2_1.Classes
                 case Directions.Bottom:
                     y++;
                     break;
+                default:
+                    notEdited = true;
+                    break;
             }
-            quads[x, y].setIsVisited();
-            CurrentLocation = new Location(x, y);
+            if(!notEdited)
+            {
+                quads[x, y].setIsVisited();
+                CurrentLocation = new Location(x, y);
+            }
         }
 
 

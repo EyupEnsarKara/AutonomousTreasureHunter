@@ -58,6 +58,7 @@
     <Compile Include="Classes\Chest.cs" />
     <Compile Include="Classes\Location.cs" />
     <Compile Include="Classes\Map.cs" />
+    <Compile Include="Classes\Node.cs" />
     <Compile Include="Classes\Quad.cs" />
     <Compile Include="Forms\MapForm.cs">
       <SubType>Form</SubType>
