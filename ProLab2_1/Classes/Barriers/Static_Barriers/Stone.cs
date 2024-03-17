@@ -42,11 +42,19 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         public summerStone() : base(Resources.Summer_Stone, "summer")
         {
         }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterStone();
+        }
     }
     internal class winterStone : Stone
     {
         public winterStone() : base(Resources.Summer_Stone, "winter")
         {
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerStone();
         }
     }
     

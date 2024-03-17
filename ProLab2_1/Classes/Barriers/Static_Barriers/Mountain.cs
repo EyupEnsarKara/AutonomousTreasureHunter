@@ -30,6 +30,8 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             this.SetHeight(15);
             this.SetWidth(15);
         }
+
+
     }
     //add summer and winter classeS
     internal class summerMountain:Mountain
@@ -38,6 +40,10 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         {
            
         }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterMountain();
+        }
 
     }
     internal class winterMountain:Mountain
@@ -45,6 +51,10 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         public winterMountain():base(Resources.Winter_Mountain,"winter")
         {
             
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerMountain();
         }
     }
     

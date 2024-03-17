@@ -71,6 +71,10 @@ namespace ProLab2_1.Classes.Barriers
         {
             return theme;
         }
+        public virtual IBarrier changeObjectTheme()
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

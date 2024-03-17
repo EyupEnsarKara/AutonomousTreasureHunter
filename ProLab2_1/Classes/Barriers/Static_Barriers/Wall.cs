@@ -37,6 +37,10 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         {
             
         }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterWall();
+        }
     }
         internal class winterWall:Wall
             {
@@ -44,5 +48,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
                 {
             
                 }
-            }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerWall();
+        }
+    }
 }

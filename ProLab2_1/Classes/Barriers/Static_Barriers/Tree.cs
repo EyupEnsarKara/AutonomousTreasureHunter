@@ -43,11 +43,21 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
         public summerTree() : base(Resources.Summer_Tree, "summer")
         {
         }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterTree();
+        }
+
+
     }
     internal class winterTree : Tree
     {
         public winterTree() : base(Resources.Winter_Tree,"winter")
         {
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerTree();
         }
     }
 }

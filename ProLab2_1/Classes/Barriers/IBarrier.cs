@@ -20,5 +20,6 @@ namespace ProLab2_1.Classes.Barriers
         Image getImage();
         string getName();
         string getTheme();
+        IBarrier changeObjectTheme();
     }
 }

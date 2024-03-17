@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProLab2_1.Classes.Barriers;
 using System.Collections.Specialized;
+using ProLab2_1.Classes.Barriers.Static_Barriers;
 
 namespace ProLab2_1.Classes
 { 
@@ -37,11 +38,52 @@ namespace ProLab2_1.Classes
         {
             this.mapSize = mapSize;
             quads= new Quad[mapSize,mapSize];
+            addBarriers();
             generateEmptyMap();
 
         }
 
+        public void addBarriers()
+        {
+            //for default barriers
+            for (int i = 0; i < 2; i++)
+            {
+                AddBarrier(new Bee());
+                AddBarrier(new Bird());
+                AddBarrier(new summerMountain());
+                AddBarrier(new summerStone());
+                AddBarrier(new summerTree());
+                AddBarrier(new summerWall());
+                AddBarrier(new Bee());
+                AddBarrier(new Bird());
+                AddBarrier(new winterMountain());
+                AddBarrier(new winterStone());
+                AddBarrier(new winterTree());
+                AddBarrier(new winterWall());
 
+            }
+            //for default chests
+            for (int i = 0; i < 5; i++)
+            {
+                addChest(new Golden_Chest());
+                addChest(new Emerald_Chest());
+                addChest(new Copper_Chest());
+                addChest(new Silver_Chest());
+                    
+            }
+
+            //for random adding barriers
+            Type[] barrierTypes = {typeof(Bee),typeof(Bird),typeof(summerMountain),typeof(winterMountain),typeof(summerStone),typeof(winterStone),typeof(winterTree),typeof(summerTree),typeof(summerWall),typeof(winterWall)};
+
+            Random random = new Random();
+
+            for(int i = 0;i <mapSize/5;i++)
+            {
+                AddBarrier((IBarrier)Activator.CreateInstance(barrierTypes[random.Next(barrierTypes.Length)]));
+            }
+
+        }
+        
 
         public void generateRandomMap()
         {
@@ -50,7 +92,7 @@ namespace ProLab2_1.Classes
             Random random = new Random();
 
             IBarrier[] barriers =this.barriers.ToArray();
-
+            int count = 0;
             foreach (IBarrier barrier in barriers)
             {
                 Location location;
@@ -85,6 +127,7 @@ namespace ProLab2_1.Classes
                     y = location.getY();
                 } while (!testLocation(x, y, width_, height_));
 
+
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
@@ -93,8 +136,14 @@ namespace ProLab2_1.Classes
                         quads[i, j].SetBarrier(barrier);
                     }
                 }
-                
+
+                if(x<quads.Length/2 && barrier.getTheme()=="summer")
+                {
+                    Console.WriteLine("çalıştı");
+                    barriers.SetValue(barrier.changeObjectTheme(), count);
+                }
                 barrier.setLocation(new Location(x,y));
+                count++;
                 
             }
             Console.WriteLine("Generated Barriers");
