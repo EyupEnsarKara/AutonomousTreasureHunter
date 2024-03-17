@@ -80,6 +80,10 @@ namespace ProLab2_1.Classes
         {
             return this.isVisited;
         }
+        public bool getIsFoggy()
+        {
+            return !this.isVisible;
+        }
 
 
     }

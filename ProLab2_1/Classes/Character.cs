@@ -188,10 +188,10 @@ namespace ProLab2_1.Classes
 
 
             //şimdi de duruma göre en uygununu göndermesini sağlamak lazım demi :)
-            Console.WriteLine("-----------------------------------");
+            //Console.WriteLine("-----------------------------------");
             foreach (element element in directions)
             {
-                Console.WriteLine("Yön: " + element.direction + "  Öncelik: " + element.priority);
+             //   Console.WriteLine("Yön: " + element.direction + "  Öncelik: " + element.priority);
             }
             int count_visitedPaths = 0;
             foreach (element element in directions)
