@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ProLab2_1.Classes
 {
-    public class Node
+    public class Node : IComparable<Node>
     {
         public int X { get; set; }
         public int Y { get; set; }
         public int Cost { get; set; }
+        public int FCost { get; set; }
         public Node Parent { get; set; }
 
         public Node(int x, int y, Node parent = null)
@@ -20,51 +22,51 @@ namespace ProLab2_1.Classes
             Parent = parent;
             Cost = parent != null ? parent.Cost + 1 : 0;
         }
-        public Location convertLocationClass()
+
+        public int CompareTo(Node other)
+        {
+            return FCost.CompareTo(other.FCost);
+        }
+
+        public Location ConvertToLocation()
         {
             return new Location(X, Y);
         }
     }
 
-
-
     public class Functions
     {
-        public static List<Node> AStar(int[,] harita, Node baslangic, Node bitis, int boyut)
+        public static List<Node> AStar(int[,] map, Node start, Node goal, int size)
         {
-            var acikListe = new List<Node>() { baslangic };
-            var kapaliListe = new HashSet<Node>();
-            var gCosts = new Dictionary<(int, int), int>() { { (baslangic.X, baslangic.Y), 0 } };
+            var openList = new List<Node>() { start };
+            var closedList = new HashSet<(int, int)>();
+            var gCosts = new Dictionary<(int, int), int>() { { (start.X, start.Y), 0 } };
 
-            while (acikListe.Any())
+            while (openList.Count > 0)
             {
-                var suanki = acikListe.OrderBy(node => node.Cost + ManhattanUzakligi(node, bitis)).First();
-                if (suanki.X == bitis.X && suanki.Y == bitis.Y)
-                    return YoluOlustur(suanki);
+                openList.Sort((node1, node2) => (node1.Cost + ManhattanDistance(node1, goal)).CompareTo(node2.Cost + ManhattanDistance(node2, goal)));
+                var current = openList[0];
+                openList.RemoveAt(0);
 
-                acikListe.Remove(suanki);
-                kapaliListe.Add(suanki);
+                if (current.X == goal.X && current.Y == goal.Y)
+                    return ConstructPath(current);
 
-                var komsular = KomsulariGetir(suanki, boyut, harita);
-                foreach (var komsu in komsular)
+                closedList.Add((current.X, current.Y));
+
+                foreach (var neighbor in GetNeighbors(current, size, map))
                 {
-                    if (kapaliListe.Contains(komsu))
+                    if (closedList.Contains((neighbor.X, neighbor.Y)))
                         continue;
 
-                    if (!acikListe.Contains(komsu))
+                    var newGCost = gCosts[(current.X, current.Y)] + 1;
+                    if (!gCosts.ContainsKey((neighbor.X, neighbor.Y)) || newGCost < gCosts[(neighbor.X, neighbor.Y)])
                     {
-                        gCosts[(komsu.X, komsu.Y)] = int.MaxValue;
-                        komsu.Parent = null;
-                    }
+                        gCosts[(neighbor.X, neighbor.Y)] = newGCost;
+                        neighbor.Cost = newGCost;
+                        neighbor.Parent = current;
 
-                    var yeniGCost = gCosts[(suanki.X, suanki.Y)] + 1;
-                    if (yeniGCost < gCosts[(komsu.X, komsu.Y)])
-                    {
-                        gCosts[(komsu.X, komsu.Y)] = yeniGCost;
-                        komsu.Cost = yeniGCost;
-                        komsu.Parent = suanki;
-                        if (!acikListe.Contains(komsu))
-                            acikListe.Add(komsu);
+                        if (!openList.Any(n => n.X == neighbor.X && n.Y == neighbor.Y))
+                            openList.Add(neighbor);
                     }
                 }
             }
@@ -72,7 +74,7 @@ namespace ProLab2_1.Classes
             return null;
         }
 
-        static List<Node> YoluOlustur(Node node)
+        static List<Node> ConstructPath(Node node)
         {
             var path = new List<Node>();
             while (node != null)
@@ -84,23 +86,23 @@ namespace ProLab2_1.Classes
             return path;
         }
 
-        static IEnumerable<Node> KomsulariGetir(Node node, int boyut, int[,] harita)
+        static IEnumerable<Node> GetNeighbors(Node node, int size, int[,] map)
         {
-            var hareketler = new List<(int, int)>() { (-1, 0), (1, 0), (0, -1), (0, 1) };
-            foreach (var hareket in hareketler)
+            var movements = new List<(int, int)>() { (-1, 0), (1, 0), (0, -1), (0, 1) };
+            foreach (var movement in movements)
             {
-                int x = node.X + hareket.Item1, y = node.Y + hareket.Item2;
-                if (x >= 0 && x < boyut && y >= 0 && y < boyut)
-                    if(harita[x, y] != 1)
+                int x = node.X + movement.Item1, y = node.Y + movement.Item2;
+                if (x >= 0 && x < size && y >= 0 && y < size && map[x, y] != 1)
+                {
                     yield return new Node(x, y);
+                }
             }
         }
 
-        static int ManhattanUzakligi(Node node1, Node node2)
+        static int ManhattanDistance(Node node1, Node node2)
         {
             return Math.Abs(node1.X - node2.X) + Math.Abs(node1.Y - node2.Y);
         }
-
-
     }
+
 }

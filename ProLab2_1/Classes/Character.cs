@@ -106,14 +106,14 @@ namespace ProLab2_1.Classes
                 path = Functions.AStar(Program.map.ConvertToIntArray(), new Node(x, y), chest_location.ConvertNode(), Program.map.getMapSize());
                 Console.WriteLine("CHesaplandı :"+hesap);
                 hesap++;
-                Location location = path[0].convertLocationClass();
+                Location location = path[0].ConvertToLocation();
                 path.RemoveAt(0);
             }
             if (path!=null)
             {
                 if (path.Count > 0)
                 {
-                    Location location = path[0].convertLocationClass();
+                    Location location = path[0].ConvertToLocation();
                     path.RemoveAt(0);
 
                     move(calculateDirectionToChest(location), quads);
