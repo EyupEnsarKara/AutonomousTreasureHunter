@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Stone:Barrier,IBarrier
     {
 
-        public Stone(Image image):base(image)
+        public Stone(Image image):base(image,"Stone")
         {
             SetBarrierSize();
         }

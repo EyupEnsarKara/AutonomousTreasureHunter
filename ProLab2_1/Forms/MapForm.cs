@@ -259,7 +259,8 @@ namespace ProLab2_1.Forms
             {
                 character.automaticallyMove(quads);
             }
-            
+
+            richTextBox1.Text = Program.map.getFoundList();
 
 
 

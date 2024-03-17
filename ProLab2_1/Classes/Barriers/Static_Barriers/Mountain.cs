@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Mountain:Barrier,IBarrier
     {   
 
-        public Mountain(Image image):base(image)
+        public Mountain(Image image):base(image,"Mountain")
         {
             SetBarrierSize();
         }

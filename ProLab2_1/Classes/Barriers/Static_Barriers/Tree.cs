@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     internal class Tree:Barrier,IBarrier
     {
 
-        public Tree(Image image) : base(image)
+        public Tree(Image image) : base(image,"Tree")
         {
             SetBarrierSize();
            

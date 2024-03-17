@@ -50,8 +50,20 @@ namespace ProLab2_1.Classes
                 {
                     if (i < 0 || j < 0 || i >= width || j >= height) continue;
                     quads[i, j].removeFog();
+                    if (quads[i, j].GetIsBarrier())
+                    {
+                        int id = quads[i, j].getBarrierID();
+
+                        if (!Program.map.getDiscoveredIds().Contains(id))
+                        {
+                            Program.map.getDiscoveredIds().Add(id);
+                            Program.map.addLineToFoundList(quads[i, j].getBarrierName());
+                        }
+
+                    }
                 }
             }
+
 
 
         }
@@ -207,7 +219,6 @@ namespace ProLab2_1.Classes
         private void move(Directions direction, Quad[,] quads)
         {
             int x = CurrentLocation.getX(), y = CurrentLocation.getY();
-            AddVisitedLocation();
             bool notEdited = false;
             switch (direction)
             {
@@ -229,6 +240,7 @@ namespace ProLab2_1.Classes
             }
             if(!notEdited)
             {
+                AddVisitedLocation();
                 hesap++;
                 quads[x, y].setIsVisited();
                 CurrentLocation = new Location(x, y);

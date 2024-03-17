@@ -15,12 +15,14 @@ namespace ProLab2_1.Classes.Barriers
         private int id;
         private Location location;
         private Image image;
+        private string Name;
         
-        public Barrier(Image image)
+        public Barrier(Image image,string name)
         {
             this.image = image;
             this.id = barriersCount;
             barriersCount++;
+            this.Name = name;
         }
         public void SetWidth(int width)
         {
@@ -61,6 +63,9 @@ namespace ProLab2_1.Classes.Barriers
          return this.image;
 
         }   
+        public string getName() {
+            return Name;
+        }
 
     }
 }

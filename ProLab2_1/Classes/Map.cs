@@ -26,6 +26,7 @@ namespace ProLab2_1.Classes
         private Character character;
         private List<Chest> chests = new List<Chest>();
         private string foundList = string.Empty;
+        private List<int> discoveredIDs = new List<int>();
         public void AddBarrier(IBarrier barrier)
         {
             barriers.Add(barrier);
@@ -289,6 +290,10 @@ namespace ProLab2_1.Classes
         public void addLineToFoundList(string str)
         {
             foundList=foundList+"\n"+str;
+        }
+        public List<int> getDiscoveredIds()
+        {
+            return discoveredIDs;
         }
 
 
