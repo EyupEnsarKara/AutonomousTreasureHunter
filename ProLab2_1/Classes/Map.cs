@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProLab2_1.Classes.Barriers;
 using System.Collections.Specialized;
+using ProLab2_1.Classes.Barriers.Static_Barriers;
 
 namespace ProLab2_1.Classes
 { 
@@ -25,7 +26,8 @@ namespace ProLab2_1.Classes
         private List<IBarrier> barriers = new List<IBarrier>();
         private Character character;
         private List<Chest> chests = new List<Chest>();
-
+        private string foundList = string.Empty;
+        private List<int> discoveredIDs = new List<int>();
         public void AddBarrier(IBarrier barrier)
         {
             barriers.Add(barrier);
@@ -36,11 +38,52 @@ namespace ProLab2_1.Classes
         {
             this.mapSize = mapSize;
             quads= new Quad[mapSize,mapSize];
+            addBarriers();
             generateEmptyMap();
 
         }
 
+        public void addBarriers()
+        {
+            //for default barriers
+            for (int i = 0; i < 2; i++)
+            {
+                AddBarrier(new Bee());
+                AddBarrier(new Bird());
+                AddBarrier(new summerMountain());
+                AddBarrier(new summerStone());
+                AddBarrier(new summerTree());
+                AddBarrier(new summerWall());
+                AddBarrier(new Bee());
+                AddBarrier(new Bird());
+                AddBarrier(new winterMountain());
+                AddBarrier(new winterStone());
+                AddBarrier(new winterTree());
+                AddBarrier(new winterWall());
 
+            }
+            //for default chests
+            for (int i = 0; i < 5; i++)
+            {
+                addChest(new Golden_Chest());
+                addChest(new Emerald_Chest());
+                addChest(new Copper_Chest());
+                addChest(new Silver_Chest());
+                    
+            }
+
+            //for random adding barriers
+            Type[] barrierTypes = {typeof(Bee),typeof(Bird),typeof(summerMountain),typeof(winterMountain),typeof(summerStone),typeof(winterStone),typeof(winterTree),typeof(summerTree),typeof(summerWall),typeof(winterWall)};
+
+            Random random = new Random();
+
+            for(int i = 0;i <mapSize/5;i++)
+            {
+                AddBarrier((IBarrier)Activator.CreateInstance(barrierTypes[random.Next(barrierTypes.Length)]));
+            }
+
+        }
+        
 
         public void generateRandomMap()
         {
@@ -49,7 +92,7 @@ namespace ProLab2_1.Classes
             Random random = new Random();
 
             IBarrier[] barriers =this.barriers.ToArray();
-
+            int count = 0;
             foreach (IBarrier barrier in barriers)
             {
                 Location location;
@@ -76,14 +119,15 @@ namespace ProLab2_1.Classes
 
                 }
              
-
                 do
                 {
                     location = generateRandomLocation(mapSize, mapSize, random);
                     x = location.getX();
                     y = location.getY();
-                } while (!testLocation(x, y, width_, height_));
+                
 
+
+                } while (!testLocation(x, y, width_, height_));
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
@@ -92,10 +136,13 @@ namespace ProLab2_1.Classes
                         quads[i, j].SetBarrier(barrier);
                     }
                 }
-                
+
                 barrier.setLocation(new Location(x,y));
+                count++;
+                
                 
             }
+            
             Console.WriteLine("Generated Barriers");
             generateChestLocations(random);
 
@@ -106,6 +153,30 @@ namespace ProLab2_1.Classes
             }
             character=new Character(1, "Steve", playerLocation);
             Console.WriteLine("Generated player location");
+            optimizeMap();
+        }
+        public void optimizeMap()
+        {
+            for(int i = 0;i<barriers.Count;i++)
+            {
+                IBarrier barrier = barriers[i];
+                if (barrier.getTheme() == "summer" && barrier.getLocation().getX() < mapSize / 2)
+                {
+                    barriers.RemoveAt(i);
+                    IBarrier barrier1 = barrier.changeObjectTheme();
+                    barrier1.setLocation(barrier.getLocation());
+                    barriers.Add(barrier1);
+                    i = 0;
+                }
+                else if (barrier.getTheme() == "winter" && barrier.getLocation().getX() > mapSize / 2)
+                {
+                    barriers.RemoveAt(i);
+                    IBarrier barrier1 = barrier.changeObjectTheme();
+                    barrier1.setLocation(barrier.getLocation());
+                    barriers.Add(barrier1);
+                    i = 0;
+                }
+            }
         }
 
         public void generateChestLocations(Random random)
@@ -130,6 +201,7 @@ namespace ProLab2_1.Classes
                     location = generateRandomLocation(mapSize, mapSize,random);
                     x = location.getX();
                     y = location.getY();
+                   
                 } while (!testLocation(x, y, width_, height_));
 
                 for (int i = x; i < x + width_; i++)
@@ -212,6 +284,16 @@ namespace ProLab2_1.Classes
                 }
             }
         }
+        public void makeFoggedAllArea()
+        {
+            for (int i = 0; i < quads.GetLength(0); i++)
+            {
+                for (int j = 0; j < quads.GetLength(1); j++)
+                {
+                    quads[i, j].setFog();
+                }
+            }
+        }
 
         public List<IBarrier> GetBarriers()
         {
@@ -283,6 +365,16 @@ namespace ProLab2_1.Classes
                 }
             }
             return array;
+        }
+        public string getFoundList()
+        { return foundList; }
+        public void addLineToFoundList(string str)
+        {
+            foundList=foundList+"\n"+str;
+        }
+        public List<int> getDiscoveredIds()
+        {
+            return discoveredIDs;
         }
 
 

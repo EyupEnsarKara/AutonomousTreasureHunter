@@ -21,7 +21,6 @@ namespace ProLab2_1
             int mapSize = Convert.ToInt32(Console.ReadLine());
 
             map = new Map(mapSize);
-            addBarriers(map);
 
             
 
@@ -40,36 +39,7 @@ namespace ProLab2_1
             Console.ReadLine();
         }
 
-        public static void addBarriers(Map map)
-        {
-            for (int i = 0;i<4;i++)
-            {
-                map.AddBarrier(new summerBee());
-                map.AddBarrier(new summerBird());
-                map.AddBarrier(new summerMountain());
-                map.AddBarrier(new summerStone());
-                map.AddBarrier(new summerTree());
-                map.AddBarrier(new summerWall());
-                map.AddBarrier(new winterBee());
-                map.AddBarrier(new winterBird());
-                map.AddBarrier(new winterMountain());
-                map.AddBarrier(new winterStone());
-                map.AddBarrier(new winterTree());
-                map.AddBarrier(new winterWall());
-                
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                map.addChest(new Golden_Chest());
-                map.addChest(new Emerald_Chest());
-                map.addChest(new Copper_Chest());
-                map.addChest(new Silver_Chest());
-
-            }
-            
-
-
-        }
+        
         
 
     }

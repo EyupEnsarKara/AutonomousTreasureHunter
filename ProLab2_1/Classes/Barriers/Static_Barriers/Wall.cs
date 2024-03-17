@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Wall:Barrier,IBarrier
     {
-        private static int wallId = 1;
 
-        public Wall(Image image):base(wallId, image)
+        public Wall(Image image,string theme):base(image,"Wall", theme)
         {
-            wallId++;
             SetBarrierSize();
 
         }
@@ -35,16 +33,24 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class summerWall:Wall
     {
-        public summerWall() : base(Resources.Winter_Rock)
+        public summerWall() : base(Resources.Winter_Rock, "summer")
         {
             
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterWall();
         }
     }
         internal class winterWall:Wall
             {
-                public winterWall() : base(Resources.Winter_Rock)
+                public winterWall() : base(Resources.Winter_Rock,"winter")
                 {
             
                 }
-            }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerWall();
+        }
+    }
 }

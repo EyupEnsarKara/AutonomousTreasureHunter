@@ -9,15 +9,21 @@ namespace ProLab2_1.Classes.Barriers
 {
     public class Barrier
     {
+        private static int barriersCount = 0;
         private int width;
         private  int height;
         private int id;
         private Location location;
         private Image image;
-        
-        public Barrier(int id,Image image)
+        private string Name;
+        private string theme;
+        public Barrier(Image image,string name, string theme)
         {
             this.image = image;
+            this.id = barriersCount;
+            barriersCount++;
+            this.Name = name;
+            this.theme = theme;
         }
         public void SetWidth(int width)
         {
@@ -58,6 +64,17 @@ namespace ProLab2_1.Classes.Barriers
          return this.image;
 
         }   
+        public string getName() {
+            return Name;
+        }
+        public string getTheme()
+        {
+            return theme;
+        }
+        public virtual IBarrier changeObjectTheme()
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

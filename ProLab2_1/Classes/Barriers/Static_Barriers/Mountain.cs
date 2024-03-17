@@ -9,11 +9,9 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 {
     internal class Mountain:Barrier,IBarrier
     {   
-        private static int mountainId = 1;
 
-        public Mountain(Image image):base(mountainId,image)
+        public Mountain(Image image,string theme):base(image,"Mountain",theme)
         {
-            mountainId++;
             SetBarrierSize();
         }
 
@@ -32,21 +30,31 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
             this.SetHeight(15);
             this.SetWidth(15);
         }
+
+
     }
     //add summer and winter classeS
     internal class summerMountain:Mountain
     {
-        public summerMountain():base(Resources.Summer_Mountain)
+        public summerMountain():base(Resources.Summer_Mountain,"summer")
         {
            
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new winterMountain();
         }
 
     }
     internal class winterMountain:Mountain
     {
-        public winterMountain():base(Resources.Winter_Mountain)
+        public winterMountain():base(Resources.Winter_Mountain,"winter")
         {
             
+        }
+        public override IBarrier changeObjectTheme()
+        {
+            return new summerMountain();
         }
     }
     

@@ -84,6 +84,18 @@ namespace ProLab2_1.Classes
         {
             return !this.isVisible;
         }
+        public int getBarrierID()
+        {
+            return barrier.GetId();
+        }
+        public string getBarrierName()
+        {
+            return barrier.getName();
+        }
+        public void setFog()
+        {
+            this.isVisible = false;
+        }
 
 
     }

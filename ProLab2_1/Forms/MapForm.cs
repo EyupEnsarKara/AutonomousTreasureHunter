@@ -22,6 +22,7 @@ namespace ProLab2_1.Forms
         private Quad[,] quads = Program.map.GetQuads();
         private float quadSize = 0;
         private Character character = Program.map.GetCharacter();
+        private int speedOfAutomaticPath = 1;
         public MapForm(int MapSize)
         {
             this.MapSize = MapSize;
@@ -29,11 +30,8 @@ namespace ProLab2_1.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Map";
             AddPictureBox(GameMap);
-            this.Size = new Size(751+16, 751+42);
             quadSize = (float)GameMap.Width / MapSize;
-            GameEvent.Start();
-            MoveObjectTimer.Start();
-            character.updateFogRemoveArea(quads);
+            Program.map.clearFoggedAllArea();
         }
         PictureBox AddPictureBox(PictureBox pictureBox)
         {
@@ -44,7 +42,9 @@ namespace ProLab2_1.Forms
 
         private void GameMap_Paint(object sender, PaintEventArgs e)
         {
-            
+            lbl_counMovements.Text = "Adım Sayısı :"+character.getCountOfMovements().ToString();
+            lbl_chestCounts.Text = "Kalan sandık sayısı :"+Program.map.GetChests().Count.ToString();
+
             Graphics g = e.Graphics;
 
             //mevsimlere göre renklendirme
@@ -120,14 +120,14 @@ namespace ProLab2_1.Forms
                 {
                     if (!quads[i,j].getVisible())
                     {
-                        g.FillRectangle(Brushes.White, i * quadSize, j * quadSize, quadSize, quadSize);
+                        g.FillRectangle(Brushes.Azure, i * quadSize, j * quadSize, quadSize, quadSize);
                     }
                 }
             }
             //draw visited locations
             Location tempLocation=new Location(0,0);
             bool temp = false;
-            Pen pen1 = new Pen(Color.Red, 2);
+            Pen pen1 = new Pen(Color.Green, 2);
 
             foreach (Location location in character.GetVisitedLocations())
             {
@@ -143,7 +143,16 @@ namespace ProLab2_1.Forms
               g.DrawLine(pen1, tempLocation.getX() * quadSize + (quadSize / 2), tempLocation.getY() * quadSize + (quadSize / 2), character.GetCurrentLocation().getX() * quadSize + (quadSize / 2), character.GetCurrentLocation().getY() * quadSize + (quadSize / 2));
 
 
+            //mantıksal işlemler
 
+            if(Program.map.GetChests().Count == 0)
+            {
+                GameEvent.Stop();
+                MoveObjectTimer.Stop();
+                richTextBox1.Enabled = true;
+                btn_start.Enabled = true;
+                btn_generateMap.Enabled = true;
+            }
 
         }
 
@@ -185,11 +194,22 @@ namespace ProLab2_1.Forms
                 case Keys.Enter:
                     Program.map.clearFoggedAllArea();
                     break;
-                case Keys.P:
-                    MoveObjectTimer.Stop();
+                case Keys.NumPad9:
+                    speedOfAutomaticPath = 9;
                     break;
-                
-                    
+                case Keys.NumPad3:
+                    speedOfAutomaticPath = 3;
+                    break;
+                case Keys.NumPad1:
+                    speedOfAutomaticPath = 1;
+                    break;
+                case Keys.U:
+                    speedOfAutomaticPath = 30;
+                    break;
+
+
+
+
             }
             
             character.updateFogRemoveArea(quads);
@@ -235,64 +255,37 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-            character.automaticallyMove(quads);
-            
-
-
-        }
-
-
-
-        private void drawLineBetweenQuads(Graphics g,Location p1,Location p2,Brush brush)
-        {
-            Pen pen = new Pen(brush);
-
-
-            g.DrawLine(pen, p1.getX() + quadSize / 2, p1.getY() + quadSize / 2, p2.getX() + quadSize / 2, p2.getX() + quadSize / 2);
-            
-        }
-
-        public List<List<int>> initGraph(int mapSize, List<IBarrier> barriers, Quad[,] quads, int characterX, int characterY)
-        {
-            List<List<int>> graph = new List<List<int>>();
-
-            // Karakterin etrafındaki bölgeyi oluşturun (örneğin, 5x5 bir alan)
-            int regionSize = 50;
-            int startX = Math.Max(0, characterX - regionSize / 2);
-            int startY = Math.Max(0, characterY - regionSize / 2);
-            int endX = Math.Min(mapSize - 1, characterX + regionSize / 2);
-            int endY = Math.Min(mapSize - 1, characterY + regionSize / 2);
-
-            // Sadece bu bölgedeki düğümleri ve kenarları oluşturun
-            for (int i = startX; i <= endX; i++)
+            for(int i=0; i < speedOfAutomaticPath; i++)
             {
-                List<int> row = new List<int>();
-                for (int j = startY; j <= endY; j++)
-                {
-                    if (quads[i, j].getIsFoggy())
-                    {
-                        row.Add(-2); // Sisli alan için -2 değeri kullanılabilir
-                    }
-                    else if (quads[i, j].GetIsBarrier())
-                    {
-                        row.Add(-1); // Engeller için -1 değeri kullanılabilir
-                    }
-                    else
-                    {
-                        row.Add(0); // Başlangıçta hiçbir kenar yok
-                    }
-                }
-                graph.Add(row);
+                character.automaticallyMove(quads);
             }
-            Console.WriteLine("oluşturuldu");
-            // Diğer işlemler...
 
-            return graph;
+            richTextBox1.Text = Program.map.getFoundList();
+
+
+
         }
 
+        private void GenerateMapButtonClicked(object sender, EventArgs e)
+        {
+            Program.map.generateEmptyMap();
+            Program.map.generateRandomMap();
 
+            //for reset map
+            Program.map.clearFoggedAllArea();
+            character = Program.map.GetCharacter();
+            
+            GameMap.Invalidate();
+        }
 
-
-
+        private void btn_Start_Click(object sender, EventArgs e)
+        {
+            Program.map.makeFoggedAllArea();
+            GameEvent.Start();
+            MoveObjectTimer.Start();
+            character.updateFogRemoveArea(quads);
+            btn_generateMap.Enabled = false;
+            btn_start.Enabled = false;
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace ProLab2_1.Classes.Barriers
         Location getLocation();
         void setLocation(Location location);
         Image getImage();
-
+        string getName();
+        string getTheme();
+        IBarrier changeObjectTheme();
     }
 }

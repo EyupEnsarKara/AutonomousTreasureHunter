@@ -14,7 +14,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
         private int currentMovedSize = 0;
         private int maxMove;
 
-        public DynamicBarrier(int id,Image image,string direction,int maxMove) : base(id,image)
+        public DynamicBarrier(string name,Image image,string direction,int maxMove) : base(image,name,"none")
         {
             this.direction = direction;
             this.maxMove = maxMove;
