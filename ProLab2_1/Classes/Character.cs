@@ -57,7 +57,7 @@ namespace ProLab2_1.Classes
                         if (!Program.map.getDiscoveredIds().Contains(id))
                         {
                             Program.map.getDiscoveredIds().Add(id);
-                            Program.map.addLineToFoundList(quads[i, j].getBarrierName());
+                            Program.map.addLineToFoundList(quads[i, j].getBarrierName()+" Has discovered!");
                         }
 
                     }
