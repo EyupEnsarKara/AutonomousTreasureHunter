@@ -10,7 +10,7 @@ namespace ProLab2_1.Classes
     public enum Directions
     {
         Left, Right,
-        Top, Bottom
+        Top, Bottom,None
     }
     public class Character
     {
@@ -93,7 +93,13 @@ namespace ProLab2_1.Classes
         {
             int x = CurrentLocation.getX(), y = CurrentLocation.getY();
 
-            if (!checkLocation(tempDirect, quads) && onceMovedSize < 1)
+            Location chest_location = checkChestLocation(quads);
+            if(chest_location !=null)
+            {
+                move(calculateDirectionToChest(chest_location), quads);
+            }
+
+            else if (!checkLocation(tempDirect, quads) && onceMovedSize < 1)
             {
                 move(tempDirect, quads);
                 onceMovedSize++;
@@ -295,6 +301,32 @@ namespace ProLab2_1.Classes
             }
 
             return barrierDetected;
+
+        }
+        private Location checkChestLocation(Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(),y=CurrentLocation.getY();
+            int maxMap = quads.GetLength(0);
+            for(int i = x-3;i<=x+3;i++)
+            {
+                for(int j = y-3;j<=y+3;j++)
+                {
+                    if(i<0 || j<0 || i>=maxMap || j>=maxMap) continue;
+                    if (quads[i, j].getCollectible()) return new Location(i,j);
+                }
+            }
+            return null;
+        }
+        private Directions calculateDirectionToChest(Location location)
+        {
+            int x = CurrentLocation.getX(),y = CurrentLocation.getY();
+            int chest_X = location.getX(), chest_Y = location.getY();
+            if (x < chest_X) return Directions.Right;
+            if (x > chest_X) return Directions.Left;
+            if (y < chest_Y) return Directions.Bottom;
+            if(y > chest_Y)return Directions.Top;
+
+            return Directions.Right;
 
         }
 

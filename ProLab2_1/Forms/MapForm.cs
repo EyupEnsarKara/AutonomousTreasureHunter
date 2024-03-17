@@ -234,7 +234,7 @@ namespace ProLab2_1.Forms
                     break;
                 }
             }
-            //character.automaticallyMove(quads);
+            character.automaticallyMove(quads);
             
 
 
