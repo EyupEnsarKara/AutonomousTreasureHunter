@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -243,7 +244,7 @@ namespace ProLab2_1.Classes
 
             //4 gelidği yönden devam
             //3 başlangıçta verilen normal yol
-            //2döngüdeyken kurtaracak yol
+            //2döngüdeyken kurtaracak yol(sise yönelim olarak değiştirilecek)
             //1 zaten geldiği yol
 
 
@@ -269,6 +270,34 @@ namespace ProLab2_1.Classes
             return false;
         }
 
+
+        private Location targetLocation = null;
+
+        private int visibilty = 3; //7x7 lik alan için 
+        private void getNearestFogLocation(Quad[,] quads)
+        {
+            int x = CurrentLocation.getX(), y=CurrentLocation.getY();
+            int mapsize = quads.GetLength(0);
+
+            for (int i = Math.Max(x-visibilty,0); i < Math.Min(x+visibilty,mapsize); i++)
+            {
+
+                for (int j = Math.Max(y - visibilty, 0); j < Math.Min(y + visibilty, mapsize); j++)
+                {
+                    if (quads[i, j].GetIsBarrier()) continue;
+                    if(quads[i, j].getIsFoggy())
+                    {
+                        visibilty = 3;
+                        targetLocation= new Location(i, j);
+                    }
+
+                }
+            }
+            visibilty++;
+        }
+
+        
+        
 
 
 
