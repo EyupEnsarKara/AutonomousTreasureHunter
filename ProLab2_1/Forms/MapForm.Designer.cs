@@ -93,6 +93,7 @@
             // 
             // btn_generateMap
             // 
+            this.btn_generateMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_generateMap.Location = new System.Drawing.Point(852, 326);
             this.btn_generateMap.Name = "btn_generateMap";
             this.btn_generateMap.Size = new System.Drawing.Size(209, 58);
@@ -103,6 +104,7 @@
             // 
             // btn_start
             // 
+            this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F);
             this.btn_start.Location = new System.Drawing.Point(852, 390);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(209, 58);
