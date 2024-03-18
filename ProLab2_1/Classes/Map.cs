@@ -92,7 +92,6 @@ namespace ProLab2_1.Classes
             Random random = new Random();
 
             IBarrier[] barriers =this.barriers.ToArray();
-            int count = 0;
             foreach (IBarrier barrier in barriers)
             {
                 Location location;
@@ -138,7 +137,6 @@ namespace ProLab2_1.Classes
                 }
 
                 barrier.setLocation(new Location(x,y));
-                count++;
                 
                 
             }
