@@ -93,19 +93,31 @@
     <None Include="Resources\steve.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Summer_Tree.png" />
+    <None Include="Resources\Summer_Bee.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bird.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Summer_Bee.png" />
+    <None Include="Resources\Copper_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emerald_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Golden_Chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Silver_Chest.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Summer_Mountain.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Summer_Stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer_Tree.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Winter_Bee.png" />
@@ -120,16 +132,13 @@
     <None Include="Resources\Winter_Tree.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Golden_Chest.png" />
+    <None Include="Resources\summer_wall.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Copper_Chest.png" />
+    <None Include="Resources\winter_wall.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Emerald_Chest.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Silver_Chest.png" />
+    <None Include="Resources\Character.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

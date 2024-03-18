@@ -15,7 +15,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
 
         private static int birdId = 1;
         
-        public Bird() : base("Bird",Resources.Summer_Bee,"Vertical",5)
+        public Bird() : base("Bird",Resources.Bird,"Vertical",5)
         {
             birdId++;
             SetBarrierSize();
