@@ -83,82 +83,65 @@ namespace ProLab2_1.Classes
             }
 
         }
-        
+
 
         public void generateRandomMap()
         {
             Console.WriteLine("Generating Map...");
-
             Random random = new Random();
 
-            IBarrier[] barriers =this.barriers.ToArray();
             foreach (IBarrier barrier in barriers)
             {
                 Location location;
-                
-                int x;
-                int y;
-                int width_ = barrier.getBarrierWidth();
-                int height_ = barrier.getBarrierHeight();
+                int x, y, width_, height_;
+                width_ = barrier.getBarrierWidth();
+                height_ = barrier.getBarrierHeight();
 
-                if(barrier is DynamicBarrier)
-                {   DynamicBarrier barrier_ = (DynamicBarrier)barrier;
-
+                if (barrier is DynamicBarrier dynamicBarrier)
+                {
                     if (barrier is Bee)
-                    {
-                        width_+=barrier_.getMaxMove()*2-1;
-                    }
+                        width_ += dynamicBarrier.getMaxMove() * 2 - 1;
                     else if (barrier is Bird)
-                    {
-                        height_ += barrier_.getMaxMove() * 2 - 1;
-
-                    }
-                    Console.WriteLine("width : "+width_);
-                    Console.WriteLine("h : "+height_);
-
+                        height_ += dynamicBarrier.getMaxMove() * 2 - 1;
                 }
-             
+
                 do
                 {
                     location = generateRandomLocation(mapSize, mapSize, random);
                     x = location.getX();
                     y = location.getY();
-                
-
-
                 } while (!testLocation(x, y, width_, height_));
+
                 for (int i = x; i < x + width_; i++)
                 {
                     for (int j = y; j < y + height_; j++)
                     {
-                        
                         quads[i, j].SetBarrier(barrier);
                     }
                 }
 
-                barrier.setLocation(new Location(x,y));
-                
-                
+                barrier.setLocation(new Location(x, y));
             }
-            
+            optimizeMap();
             Console.WriteLine("Generated Barriers");
             generateChestLocations(random);
 
             Location playerLocation = generateRandomLocation(mapSize, mapSize, random);
-            while (quads[playerLocation.getX(),playerLocation.getY()].GetIsBarrier())
+            while (quads[playerLocation.getX(), playerLocation.getY()].GetIsBarrier())
             {
-                playerLocation = generateRandomLocation(mapSize, mapSize,random);
+                playerLocation = generateRandomLocation(mapSize, mapSize, random);
             }
-            character=new Character(1, "Steve", playerLocation);
+            character = new Character(1, "Steve", playerLocation);
             Console.WriteLine("Generated player location");
-            optimizeMap();
+            
         }
         public void optimizeMap()
         {
             for(int i = 0;i<barriers.Count;i++)
             {
                 IBarrier barrier = barriers[i];
-                if (barrier.getTheme() == "summer" && barrier.getLocation().getX() < mapSize / 2)
+                int x = barrier.getLocation().getX(),y=barrier.getLocation().getY();
+                if (barrier.getTheme() == "summer" && !quads[x,y].GetIsSummer())
                 {
                     barriers.RemoveAt(i);
                     IBarrier barrier1 = barrier.changeObjectTheme();
@@ -166,13 +149,21 @@ namespace ProLab2_1.Classes
                     barriers.Add(barrier1);
                     i = 0;
                 }
-                else if (barrier.getTheme() == "winter" && barrier.getLocation().getX() > mapSize / 2)
+                else if (barrier.getTheme() == "winter" && quads[x,y].GetIsSummer())
                 {
                     barriers.RemoveAt(i);
                     IBarrier barrier1 = barrier.changeObjectTheme();
+                    
                     barrier1.setLocation(barrier.getLocation());
                     barriers.Add(barrier1);
                     i = 0;
+                }
+                for (int k = x; k < x + barrier.getBarrierWidth() &&k<mapSize&&k>=0; k++)
+                {
+                    for (int j = y; j < y + barrier.getBarrierHeight() && j<mapSize && j>=0; j++)
+                    {
+                        quads[k, j].SetBarrier(barrier);
+                    }
                 }
             }
         }
