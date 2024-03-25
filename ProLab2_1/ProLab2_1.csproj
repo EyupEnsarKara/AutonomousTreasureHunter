@@ -96,6 +96,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Rapor.pdf" />
     <None Include="Resources\tree.png" />
   </ItemGroup>
   <ItemGroup>
