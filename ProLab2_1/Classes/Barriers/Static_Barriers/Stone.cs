@@ -36,7 +36,6 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
 
         }
     }
-    //add summer and winter classes
     internal class summerStone : Stone
     {
         public summerStone() : base(Resources.Summer_Stone, "summer")
@@ -49,7 +48,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class winterStone : Stone
     {
-        public winterStone() : base(Resources.Summer_Stone, "winter")
+        public winterStone() : base(Resources.Winter_Stone, "winter")
         {
         }
         public override IBarrier changeObjectTheme()

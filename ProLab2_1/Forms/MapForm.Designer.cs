@@ -35,7 +35,6 @@
             this.lbl_counMovements = new System.Windows.Forms.Label();
             this.lbl_chestCounts = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btn_generateMap = new System.Windows.Forms.Button();
             this.btn_start = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).BeginInit();
             this.SuspendLayout();
@@ -91,17 +90,6 @@
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
-            // btn_generateMap
-            // 
-            this.btn_generateMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_generateMap.Location = new System.Drawing.Point(852, 326);
-            this.btn_generateMap.Name = "btn_generateMap";
-            this.btn_generateMap.Size = new System.Drawing.Size(209, 58);
-            this.btn_generateMap.TabIndex = 4;
-            this.btn_generateMap.Text = "Harita Oluştur";
-            this.btn_generateMap.UseVisualStyleBackColor = true;
-            this.btn_generateMap.Click += new System.EventHandler(this.GenerateMapButtonClicked);
-            // 
             // btn_start
             // 
             this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.70909F);
@@ -119,7 +107,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 749);
             this.Controls.Add(this.btn_start);
-            this.Controls.Add(this.btn_generateMap);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.lbl_chestCounts);
             this.Controls.Add(this.lbl_counMovements);
@@ -127,6 +114,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MapForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MapForm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             ((System.ComponentModel.ISupportInitialize)(this.GameMap)).EndInit();
@@ -143,7 +131,6 @@
         private System.Windows.Forms.Label lbl_counMovements;
         private System.Windows.Forms.Label lbl_chestCounts;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button btn_generateMap;
         private System.Windows.Forms.Button btn_start;
     }
 }

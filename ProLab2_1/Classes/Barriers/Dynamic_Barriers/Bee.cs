@@ -15,7 +15,7 @@ namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
             Right=0, Left=1
         }
         private bool isTurn = false;
-        public Bee(): base("Bee",Resources.Winter_Bee,"Horizontial", 3)
+        public Bee(): base("Bee",Resources.Bee,"Horizontial", 3)
         {
 
             SetBarrierSize();

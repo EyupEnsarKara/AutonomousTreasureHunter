@@ -33,7 +33,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
     internal class summerWall:Wall
     {
-        public summerWall() : base(Resources.Winter_Rock, "summer")
+        public summerWall() : base(Resources.summer_wall, "summer")
         {
             
         }
@@ -44,7 +44,7 @@ namespace ProLab2_1.Classes.Barriers.Static_Barriers
     }
         internal class winterWall:Wall
             {
-                public winterWall() : base(Resources.Winter_Rock,"winter")
+                public winterWall() : base(Resources.winter_wall,"winter")
                 {
             
                 }

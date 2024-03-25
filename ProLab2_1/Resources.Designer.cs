@@ -63,9 +63,29 @@ namespace ProLab2_1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Bee {
+            get {
+                object obj = ResourceManager.GetObject("Bee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bird {
             get {
                 object obj = ResourceManager.GetObject("Bird", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character {
+            get {
+                object obj = ResourceManager.GetObject("Character", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,26 +133,6 @@ namespace ProLab2_1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap steve {
-            get {
-                object obj = ResourceManager.GetObject("steve", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Summer_Bee {
-            get {
-                object obj = ResourceManager.GetObject("Summer_Bee", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Summer_Mountain {
             get {
                 object obj = ResourceManager.GetObject("Summer_Mountain", resourceCulture);
@@ -163,19 +163,9 @@ namespace ProLab2_1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tree {
+        internal static System.Drawing.Bitmap summer_wall {
             get {
-                object obj = ResourceManager.GetObject("tree", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Winter_Bee {
-            get {
-                object obj = ResourceManager.GetObject("Winter_Bee", resourceCulture);
+                object obj = ResourceManager.GetObject("summer_wall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +183,9 @@ namespace ProLab2_1 {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Winter_Rock {
+        internal static System.Drawing.Bitmap Winter_Stone {
             get {
-                object obj = ResourceManager.GetObject("Winter_Rock", resourceCulture);
+                object obj = ResourceManager.GetObject("Winter_Stone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +196,16 @@ namespace ProLab2_1 {
         internal static System.Drawing.Bitmap Winter_Tree {
             get {
                 object obj = ResourceManager.GetObject("Winter_Tree", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap winter_wall {
+            get {
+                object obj = ResourceManager.GetObject("winter_wall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

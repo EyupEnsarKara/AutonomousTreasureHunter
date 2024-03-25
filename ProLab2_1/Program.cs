@@ -17,19 +17,16 @@ namespace ProLab2_1
         static public Map map;
         static void Main(string[] args)
         {     
-            Console.Write("Enter map size: ");
-            int mapSize = Convert.ToInt32(Console.ReadLine());
 
-            map = new Map(mapSize);
 
             
 
 
-            map.generateRandomMap();
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MapForm(mapSize));
+            Application.Run(new MainForm());
 
             
           

@@ -107,7 +107,7 @@ namespace ProLab2_1.Forms
 
 
             //karakter çizimi
-            g.DrawImage(global::ProLab2_1.Resources.steve, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
+            g.DrawImage(global::ProLab2_1.Resources.Character, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
             g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);
 
 
@@ -147,13 +147,23 @@ namespace ProLab2_1.Forms
 
             if(Program.map.GetChests().Count == 0)
             {
-                GameEvent.Stop();
-                MoveObjectTimer.Stop();
-                richTextBox1.Enabled = true;
-                btn_start.Enabled = true;
-                btn_generateMap.Enabled = true;
+                gameOverEvent();
             }
 
+        }
+        private void gameOverEvent()
+
+        {
+            GameEvent.Stop();
+            MoveObjectTimer.Stop();
+            richTextBox1.Enabled = true;
+            btn_start.Enabled = true;
+            foreach(Chest chest in character.GetCollectedChests())
+            {
+                Program.map.addLineToFoundList(chest.GetType().Name + " Collected (x:" + chest.getLocation().getX() + " y:" + chest.getLocation().getY() + ") Id:" + chest.getId());
+            
+            }
+            richTextBox1.Text = Program.map.getFoundList();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -266,17 +276,7 @@ namespace ProLab2_1.Forms
 
         }
 
-        private void GenerateMapButtonClicked(object sender, EventArgs e)
-        {
-            Program.map.generateEmptyMap();
-            Program.map.generateRandomMap();
-
-            //for reset map
-            Program.map.clearFoggedAllArea();
-            character = Program.map.GetCharacter();
-            
-            GameMap.Invalidate();
-        }
+        
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
@@ -284,7 +284,6 @@ namespace ProLab2_1.Forms
             GameEvent.Start();
             MoveObjectTimer.Start();
             character.updateFogRemoveArea(quads);
-            btn_generateMap.Enabled = false;
             btn_start.Enabled = false;
         }
     }
