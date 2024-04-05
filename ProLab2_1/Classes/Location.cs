@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProLab2_1.Classes
+namespace AutonomousTreasureHunter.Classes
 {
     public class Location
     {

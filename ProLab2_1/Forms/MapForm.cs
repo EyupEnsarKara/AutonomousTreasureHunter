@@ -1,6 +1,6 @@
-﻿using ProLab2_1.Classes;
-using ProLab2_1.Classes.Barriers;
-using ProLab2_1.Classes.Barriers.Dynamic_Barriers;
+﻿using AutonomousTreasureHunter.Classes;
+using AutonomousTreasureHunter.Classes.Barriers;
+using AutonomousTreasureHunter.Classes.Barriers.Dynamic_Barriers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProLab2_1.Forms
+namespace AutonomousTreasureHunter.Forms
 {
     public partial class MapForm : Form
     {
@@ -107,7 +107,7 @@ namespace ProLab2_1.Forms
 
 
             //karakter çizimi
-            g.DrawImage(global::ProLab2_1.Resources.Character, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
+            g.DrawImage(global::AutonomousTreasureHunter.Resources.Character, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize,quadSize,quadSize);
             g.FillRectangle(Brushes.Black, character.GetCurrentLocation().getX() * quadSize, character.GetCurrentLocation().getY() * quadSize, quadSize, quadSize);
 
 

@@ -23,9 +23,11 @@
 - **Interactive UI**: A graphical user interface that updates in real-time to show the character's progress and the dynamic environment.
 - **Customizable Settings**: Different parameters of the game, like map size and obstacle density, can be adjusted.
 
-## Installation
+## Installation -for develop
 Just clone the repository and open the project in Visual Studio. You can run the game by building the solution and starting the application. Make sure you have the necessary dependencies installed.
 
+## Installation -for user
+Just download the `AutonomousTreasureHunter.zip` file from the release section and extract it. Run the `AutonomousTreasureHunter.exe` file to start the game. Make sure you have the necessary dependencies installed.
 
 ## Usage
 

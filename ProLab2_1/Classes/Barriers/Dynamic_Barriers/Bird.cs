@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProLab2_1.Classes.Barriers.Dynamic_Barriers
+namespace AutonomousTreasureHunter.Classes.Barriers.Dynamic_Barriers
 {
     internal class Bird : DynamicBarrier, IBarrier
     {

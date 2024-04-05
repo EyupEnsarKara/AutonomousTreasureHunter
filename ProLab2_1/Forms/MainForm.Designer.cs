@@ -1,4 +1,4 @@
-﻿namespace ProLab2_1.Forms
+﻿namespace AutonomousTreasureHunter.Forms
 {
     partial class MainForm
     {

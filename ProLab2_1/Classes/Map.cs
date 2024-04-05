@@ -1,4 +1,4 @@
-﻿using ProLab2_1.Classes.Barriers.Dynamic_Barriers;
+﻿using AutonomousTreasureHunter.Classes.Barriers.Dynamic_Barriers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ProLab2_1.Classes.Barriers;
+using AutonomousTreasureHunter.Classes.Barriers;
 using System.Collections.Specialized;
-using ProLab2_1.Classes.Barriers.Static_Barriers;
+using AutonomousTreasureHunter.Classes.Barriers.Static_Barriers;
 
-namespace ProLab2_1.Classes
+namespace AutonomousTreasureHunter.Classes
 { 
 
 

@@ -5,9 +5,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{657117DB-E218-4C64-838D-B5049E5EEDE5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ProLab2_1</RootNamespace>
-    <AssemblyName>ProLab2_1</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AutonomousTreasureHunter</RootNamespace>
+    <AssemblyName>AutonomousTreasureHunter</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

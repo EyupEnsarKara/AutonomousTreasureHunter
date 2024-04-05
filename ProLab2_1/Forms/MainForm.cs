@@ -1,4 +1,4 @@
-﻿using ProLab2_1.Classes;
+﻿using AutonomousTreasureHunter.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProLab2_1.Forms
+namespace AutonomousTreasureHunter.Forms
 {
     public partial class MainForm : Form
     {
