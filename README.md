@@ -27,7 +27,7 @@
 Just clone the repository and open the project in Visual Studio. You can run the game by building the solution and starting the application. Make sure you have the necessary dependencies installed.
 
 ## Installation -for user
-Just download the `AutonomousTreasureHunter.zip` file from the release section and extract it. Run the `AutonomousTreasureHunter.exe` file to start the game. Make sure you have the necessary dependencies installed.
+Just download the `AutonomousTreasureHunter_v0.0.1.zip` file from the release section and extract it. Run the `AutonomousTreasureHunter.exe` file to start the game
 
 ## Usage
 
