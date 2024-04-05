@@ -9,12 +9,8 @@
 - Installation
 - Usage
 - Dependencies
-- Configuration
-- Documentation
 - Examples
-- Troubleshooting
 - Contributors
-- License
 
 ## Features
 - **Dynamic Game Environment**: Randomly generated maps with treasures placed at different locations.
@@ -39,23 +35,10 @@ Just download the `AutonomousTreasureHunter_v0.0.1.zip` file from the release se
 
 ## Dependencies
 - .NET Framework (specific version)
-- Any additional libraries or frameworks used in the project.
 
-## Configuration
-(TBD - any configuration options for the game, such as difficulty settings, map size, etc.)
-
-## Documentation
-(TBD - a link to more detailed documentation if available.)
 
 ## Examples
-(TBD - examples of gameplay scenarios, strategies, or tips.)
-
-## Troubleshooting
-(TBD - common issues encountered during installation or gameplay and their solutions.)
 
 ## Contributors
 - Eyüp Ensar Kara (eyupensarkara0@gmail.com)
 - Yunus Hanifi Öztürk (oyunushanifi@gmail.com)
-
-## License
-(TBD - information about the project's licensing, copyright terms, etc.)
