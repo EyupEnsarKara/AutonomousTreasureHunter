@@ -1,123 +1,187 @@
-# Autonomous Treasure Hunter | Otonom Hazine Avcısı
+# 🎮 Otonom Hazine Avcısı | Autonomous Treasure Hunter
 
-## English
-
-### Introduction
-"Autonomous Treasure Hunter" is a 2D game developed using C# and Windows Forms. The game's core objective is to navigate an autonomous character through a randomly generated map to collect treasures. The game is designed to challenge and enhance problem-solving skills, applying object-oriented programming concepts and data structures effectively. The implementation of the A* pathfinding algorithm ensures the character can find the shortest route to collect all treasures while avoiding obstacles.
-
-### Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation-for-develop)
-- [Usage](#usage)
-- [Game Mechanics](#game-mechanics)
-- [Dependencies](#dependencies)
-- [Contributors](#contributors)
-
-### Features
-- **Dynamic Game Environment**: Randomly generated maps with treasures placed at different locations.
-- **Obstacle System**: 
-  - **Static Obstacles**: Trees, rocks, walls, and mountains that must be avoided.
-  - **Dynamic Obstacles**: Moving obstacles like birds and bees that require strategic navigation.
-- **A* Pathfinding Algorithm**: Efficient route calculation for the autonomous character to collect treasures optimally.
-- **Interactive UI**: A graphical user interface that updates in real-time to show the character's progress and the dynamic environment.
-- **Customizable Settings**: Different parameters of the game, like map size and obstacle density, can be adjusted.
-- **Adjustable Speed**: Players can change the simulation speed during gameplay.
-
-### Installation - For Developers
-Clone the repository and open the project in Visual Studio. You can run the game by building the solution and starting the application. Make sure you have the necessary dependencies installed.
-
-```
-git clone https://github.com/yourusername/Autonomous-Treasure-Hunter.git
-```
-
-### Installation - For Users
-Download the `AutonomousTreasureHunter_v0.0.1.zip` file from the release section and extract it. Run the `AutonomousTreasureHunter.exe` file to start the game.
-
-### Usage
-1. **Starting the Game**: Run the application to start the game. You will see the game window with the map and the autonomous character.				
-2. **Game Objective**: The objective is to collect all treasures on the map by navigating the character through obstacles.
-3. **Character Movement**: The character moves autonomously using the A* pathfinding algorithm to collect treasures.
-4. **Game Progress**: The game will end when all treasures are collected, and the character will return to the starting point.
-5. **Speed Control**: Customize speed with numpad keys:
-   - `1`: Slow
-   - `2`: Normal
-   - `3`: Fast
-   - `U`: Maximum speed
-
-### Game Mechanics
-- The character autonomously navigates using the A* algorithm
-- The map is randomly generated with various obstacles
-- Static obstacles remain in place while dynamic obstacles move around the map
-- Treasures are placed randomly across the map
-- The character must find the optimal path to collect all treasures and return to start
-
-### Dependencies
-- .NET Framework
-- Windows Forms
-
-### Contributors
-- Eyüp Ensar Kara (eyupensarkara0@gmail.com)
-- Yunus Hanifi Öztürk (oyunushanifi@gmail.com)
+C# ve Windows Forms kullanılarak geliştirilmiş 2D otonom oyun. Karakter, A* yol bulma algoritması kullanarak rastgele oluşturulan haritada hazineleri toplar.
 
 ---
 
-## Türkçe
+## 📋 İçindekiler
 
-### Giriş
-"Otonom Hazine Avcısı", C# ve Windows Forms kullanılarak geliştirilen 2 boyutlu bir oyundur. Oyunun temel amacı, rastgele oluşturulan bir haritada otonom bir karakteri engellere takılmadan hazineleri toplamak için yönlendirmektir. Oyun, nesne yönelimli programlama kavramlarını ve veri yapılarını etkili bir şekilde uygulayarak problem çözme becerilerini geliştirmek üzere tasarlanmıştır. A* yol bulma algoritmasının uygulanması, karakterin engelleri aşarak tüm hazineleri toplamak için en kısa rotayı bulmasını sağlar.
-
-### İçindekiler
 - [Giriş](#giriş)
 - [Özellikler](#özellikler)
-- [Kurulum](#kurulum---geliştiriciler-için)
+- [Kurulum](#kurulum)
 - [Kullanım](#kullanım)
 - [Oyun Mekanikleri](#oyun-mekanikleri)
-- [Bağımlılıklar](#bağımlılıklar)
-- [Katkıda Bulunanlar](#katkıda-bulunanlar)
+- [Kontroller](#kontroller)
+- [Gereksinimler](#gereksinimler)
 
-### Özellikler
-- **Dinamik Oyun Ortamı**: Farklı konumlara yerleştirilmiş hazinelerle rastgele oluşturulan haritalar.
-- **Engel Sistemi**: 
-  - **Statik Engeller**: Ağaçlar, kayalar, duvarlar ve dağlar gibi kaçınılması gereken engeller.
-  - **Dinamik Engeller**: Kuşlar ve arılar gibi stratejik navigasyon gerektiren hareketli engeller.
-- **A* Yol Bulma Algoritması**: Otonom karakterin hazineleri en uygun şekilde toplaması için verimli rota hesaplaması.
-- **Etkileşimli Kullanıcı Arayüzü**: Karakterin ilerlemesini ve dinamik ortamı gerçek zamanlı olarak gösteren grafiksel kullanıcı arayüzü.
-- **Özelleştirilebilir Ayarlar**: Harita boyutu ve engel yoğunluğu gibi oyunun farklı parametreleri ayarlanabilir.
-- **Ayarlanabilir Hız**: Oyuncular oyun sırasında simülasyon hızını değiştirebilir.
+---
 
-### Kurulum - Geliştiriciler İçin
-Depoyu klonlayın ve projeyi Visual Studio'da açın. Çözümü derleyerek ve uygulamayı başlatarak oyunu çalıştırabilirsiniz. Gerekli bağımlılıkların yüklü olduğundan emin olun.
+## 🎯 Giriş
 
+Otonom Hazine Avcısı, oyuncunun bir karakteri manuel olarak kontrol etmek yerine, karakterin A* algoritması kullanarak otomatik olarak haritadaki tüm hazineleri topladığı bir simülasyon oyunudur. Oyun, rastgele oluşturulan haritalar, çeşitli engeller ve farklı değerdeki hazineler sunar.
+
+---
+
+## ✨ Özellikler
+
+### 🗺️ Dinamik Harita Sistemi
+- Rastgele oluşturulan haritalar
+- Özelleştirilebilir harita boyutu
+- Yaz ve kış temalı bölgeler
+
+### 🚧 Engel Sistemi
+- **Statik Engeller**: Ağaç, kaya, duvar ve dağ gibi sabit engeller
+- **Dinamik Engeller**: Kuş ve arı gibi hareketli engeller
+
+### 💎 Hazine Sistemi
+- Farklı değerde hazineler (Bakır, Gümüş, Altın, Zümrüt)
+- Rastgele yerleştirilen hazine konumları
+
+### 🤖 Otonom Navigasyon
+- A* yol bulma algoritması ile optimal rota hesaplama
+- Otomatik engel algılama ve kaçınma
+- Sis (fog of war) mekaniği
+
+### ⚙️ Özelleştirilebilir Ayarlar
+- Harita boyutu seçimi
+- Simülasyon hızı kontrolü
+- Gerçek zamanlı görselleştirme
+
+---
+
+## 📦 Kurulum
+
+### Geliştiriciler İçin
+
+1. Projeyi klonlayın:
+```bash
+git clone https://github.com/yourusername/Autonomous-Treasure-Hunter.git
 ```
-git clone https://github.com/kullaniciadi/Autonomous-Treasure-Hunter.git
+
+2. Visual Studio'da projeyi açın
+
+3. Gerekli bağımlılıkların yüklü olduğundan emin olun
+
+4. Projeyi derleyin ve çalıştırın
+
+### Kullanıcılar İçin
+
+1. Sürümler bölümünden en son sürümü indirin
+2. ZIP dosyasını çıkarın
+3. `AutonomousTreasureHunter.exe` dosyasını çalıştırın
+
+---
+
+## 🎮 Kullanım
+
+### Oyunu Başlatma
+
+1. Uygulamayı çalıştırın
+2. Harita boyutunu girin (örneğin: 50, 100, 200)
+3. "Başlat" butonuna tıklayın
+4. Oyun otomatik olarak başlar
+
+### Oyun Akışı
+
+- Karakter otomatik olarak haritayı keşfetmeye başlar
+- Yakındaki hazineler algılandığında karakter onlara doğru hareket eder
+- Tüm hazineler toplandığında oyun sona erer
+- Karakter başlangıç noktasına geri döner
+
+---
+
+## 🎲 Oyun Mekanikleri
+
+### Karakter Hareketi
+- Karakter A* algoritması kullanarak en kısa yolu hesaplar
+- 7x7 alan içindeki hazineleri algılar
+- Engelleri otomatik olarak tespit eder ve kaçınır
+
+### Harita Keşfi
+- Başlangıçta harita sisle kaplıdır
+- Karakter hareket ettikçe çevresindeki alan açılır
+- Keşfedilen engeller kaydedilir
+
+### Hazine Toplama
+- Karakter hazineye yaklaştığında otomatik olarak toplar
+- Farklı hazineler farklı değerlere sahiptir
+- Toplanan hazineler listede gösterilir
+
+### Engel Türleri
+- **Statik Engeller**: Sabit konumda duran engeller
+- **Dinamik Engeller**: Belirli bir alanda hareket eden engeller
+
+---
+
+## ⌨️ Kontroller
+
+### Hız Kontrolü
+- **Numpad 1**: Yavaş hız
+- **Numpad 2**: Normal hız
+- **Numpad 3**: Hızlı
+- **U Tuşu**: Maksimum hız
+
+---
+
+## 🔧 Gereksinimler
+
+- **İşletim Sistemi**: Windows
+- **.NET Framework**: Güncel sürüm
+- **Windows Forms**: .NET Framework ile birlikte gelir
+
+---
+
+## 📝 Notlar
+
+- Harita boyutu ne kadar büyükse, oyun o kadar uzun sürer
+- Dinamik engeller karakterin yolunu değiştirebilir
+- Tüm hazineler toplanana kadar oyun devam eder
+
+---
+
+## 🌐 English
+
+### Introduction
+
+"Autonomous Treasure Hunter" is a 2D game developed using C# and Windows Forms. The game's core objective is to navigate an autonomous character through a randomly generated map to collect treasures. The character uses the A* pathfinding algorithm to find the shortest route while avoiding obstacles.
+
+### Features
+
+- **Dynamic Game Environment**: Randomly generated maps with treasures
+- **Obstacle System**: Static (trees, rocks, walls, mountains) and dynamic (birds, bees) obstacles
+- **A* Pathfinding Algorithm**: Efficient route calculation
+- **Interactive UI**: Real-time visualization
+- **Customizable Settings**: Adjustable map size and simulation speed
+
+### Installation
+
+**For Developers:**
+```bash
+git clone https://github.com/yourusername/Autonomous-Treasure-Hunter.git
 ```
+Open in Visual Studio and build the solution.
 
-### Kurulum - Kullanıcılar İçin
-Sürüm bölümünden `AutonomousTreasureHunter_v0.0.1.zip` dosyasını indirin ve çıkarın. Oyunu başlatmak için `AutonomousTreasureHunter.exe` dosyasını çalıştırın.
+**For Users:**
+Download the latest release, extract, and run `AutonomousTreasureHunter.exe`.
 
-### Kullanım
-1. **Oyunu Başlatma**: Oyunu başlatmak için uygulamayı çalıştırın. Harita ve otonom karakter ile oyun penceresini göreceksiniz.
-2. **Oyun Amacı**: Amaç, karakteri engeller arasında yönlendirerek haritadaki tüm hazineleri toplamaktır.
-3. **Karakter Hareketi**: Karakter, hazineleri toplamak için A* yol bulma algoritmasını kullanarak otonom olarak hareket eder.
-4. **Oyun İlerlemesi**: Tüm hazineler toplandığında oyun sona erer ve karakter başlangıç noktasına geri döner.
-5. **Hız Kontrolü**: Numpad tuşlarıyla hızı özelleştirin:
-   - `1`: Yavaş
-   - `2`: Normal
-   - `3`: Hızlı
-   - `U`: Maksimum hız
+### Usage
 
-### Oyun Mekanikleri
-- Karakter A* algoritmasını kullanarak otonom olarak gezinir
-- Harita çeşitli engellerle rastgele oluşturulur
-- Statik engeller yerinde kalırken dinamik engeller harita üzerinde hareket eder
-- Hazineler harita üzerine rastgele yerleştirilir
-- Karakter tüm hazineleri toplamak ve başlangıca dönmek için en uygun yolu bulmalıdır
+1. Run the application
+2. Enter map size
+3. Click "Start"
+4. Watch the character autonomously collect treasures
 
-### Bağımlılıklar
+### Controls
+
+- **Numpad 1**: Slow speed
+- **Numpad 2**: Normal speed
+- **Numpad 3**: Fast speed
+- **U Key**: Maximum speed
+
+### Requirements
+
+- Windows OS
 - .NET Framework
 - Windows Forms
 
-### Katkıda Bulunanlar
-- Eyüp Ensar Kara (eyupensarkara0@gmail.com)
-- Yunus Hanifi Öztürk (oyunushanifi@gmail.com)
+---
